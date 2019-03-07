@@ -10,6 +10,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>drugadministration_common</module>
+        <module>drugadministration_api</module>
+        <module>drugadministration_eureka</module>
+        <module>drugadministration_feign</module>
+        <module>drugadministration_provider</module>
     </modules>
 
 
