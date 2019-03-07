@@ -9,8 +9,8 @@ spring:
     name: provider-drus
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password:
-    url: jdbc:mysql://localhost:3306/zht?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=Hongkong
+    password: root
+    url: jdbc:mysql://192.168.101.34:3306/yiyao?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=Hongkong
     username: root
   jpa:
     hibernate:
