@@ -25,6 +25,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtie</scope>
+            <version>5.1.34</version>
         </dependency>
 
         <dependency>

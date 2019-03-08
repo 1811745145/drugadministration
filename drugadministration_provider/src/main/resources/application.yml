@@ -8,13 +8,15 @@ spring:
   application:
     name: provider-drus
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    password: root
-    url: jdbc:mysql://192.168.101.34:3306/yiyao?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=Hongkong
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.101.64:3306/1808?characterEncoding=utf-8
     username: root
-  jpa:
-    hibernate:
-      ddl-auto: update
-      show-sql: true
+    password: root
+
+    thymeleaf:
+      encoding: UTF-8
+      servlet:
+        content-type: text/html
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
