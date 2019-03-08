@@ -11,7 +11,7 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.101.64:3306/1808?characterEncoding=utf-8
     username: root
-    password: root
+    password:
 
     thymeleaf:
       encoding: UTF-8

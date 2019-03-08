@@ -24,6 +24,70 @@
 </head>
 
 <body>
-
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class=navbar-header>
+            <img src="../img/5.jpg" height="50px" width="50px"/>
+        </div>
+        <div class="navbar-right">
+            <a href="#" class="navbar-brand">采购中心</a>
+            <a href="#" class="navbar-brand">销售中心</a>
+            <a href="#" class="navbar-brand">网站首页</a>
+            <a href="#" class="navbar-brand">我的店铺</a>
+            <a href="#" class="navbar-brand">帮助中心</a>
+            <a href="#" class="navbar-brand">联系客服</a>
+            <a href="#" class="navbar-brand">退出系统</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <!-- 展示树 -->
+            <div id="myTree"></div>
+        </div>
+        <div class="col-md-10">
+            <div id="myTabs">
+                <!-- 新选项卡 -->
+                <ul class="nav nav-tabs" id="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#home" role="tab" data-toggle="tab">欢迎</a>
+                    </li>
+                </ul>
+                <!-- 选项卡下内容 -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        你好
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script>
+    //初始化加载左侧树
+    $(function(){
+        initTree();
+    })
+    //查询树
+    function initTree(){
+        $.ajax({
+            url:'../findTreeList',
+            success:function(data){
+                $('#myTree').treeview({
+                    data:data,
+                    onNodeSelected:function(event, node) {
+                        $.addtabs({iframeHeight: 550});
+                        $.addtabs.add({
+                            id:node.id,
+                            title:node.text,
+                            url:"../"+node.href
+                        });
+                    }
+                })
+            }
+        })
+    }
+</script>
 </html>
