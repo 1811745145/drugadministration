@@ -2,6 +2,7 @@ package com.jk.controller;
 
 import com.jk.mapper.DrusMapper;
 import com.jk.pojo.Address;
+import com.jk.pojo.DrugNoReturn;
 import com.jk.pojo.TreeBean;
 import com.jk.service.DrusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,16 @@ public class DrusController implements DrusService {
             }
         }
         return list;
+    }
+
+    /**
+     * 退货商品查询
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public List<DrugNoReturn> returnList() {
+
+        return drusMapper.returnList();
     }
 }

@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.jk.pojo.Address;
+import com.jk.pojo.DrugNoReturn;
 import com.jk.pojo.TreeBean;
 import com.jk.service.DrusServicefeign;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class DrusController {
     @RequestMapping("findTreeList")
     @ResponseBody
     public List<TreeBean> findTreeList(){
+
         return drusServicefeign.findTreeList();
     }
     /**
@@ -57,4 +59,24 @@ public class DrusController {
         return drusServicefeign.queryaddressList();
     }
 
+
+    /**
+     * 退货商品查询
+     * @return
+     */
+    @GetMapping("returnList")
+    @ResponseBody
+    public List<DrugNoReturn> returnList(){
+
+        return drusServicefeign.returnList();
+    }
+
+    /**
+     * 退货商品查询跳页面
+     * @return
+     */
+    @RequestMapping("toReturnList")
+    public String toReturnList(){
+        return "returnList";
+    }
 }

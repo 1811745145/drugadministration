@@ -1,5 +1,6 @@
 package com.jk.mapper;
 
+import com.jk.pojo.DrugNoReturn;
 import com.jk.pojo.Address;
 import com.jk.pojo.TreeBean;
 import org.apache.ibatis.annotations.Delete;
@@ -16,4 +17,10 @@ public interface DrusMapper {
 
     @Delete(" delete from addressmanagement where address_Id = #{value} ")
     void delById(Integer addressId);
+
+    /**
+     * 退货商品查询
+     * @return
+     */
+    List<DrugNoReturn> returnList();
 }

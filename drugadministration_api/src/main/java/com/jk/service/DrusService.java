@@ -1,6 +1,7 @@
 package com.jk.service;
 
 import com.jk.pojo.Address;
+import com.jk.pojo.DrugNoReturn;
 import com.jk.pojo.TreeBean;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,4 +16,12 @@ public interface DrusService {
 
     @DeleteMapping("delById")
     void delById(@RequestParam("addressId") Integer addressId);
+
+    /**
+     * 退货商品查询
+     * @return
+     */
+    @GetMapping("returnList")
+    List<DrugNoReturn> returnList();
+
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.DrusMapper">
+
+    <select id="returnList"  resultType="com.jk.pojo.DrugNoReturn">
+        select
+          return_Id as returnId,
+          return_Name as returnName,
+          return_Time as returnTime,
+          return_Num as returnNum,
+          return_Supply as returnSupply,
+          return_Price as returnPrice,
+          return_Type as returnType,
+          return_img as returnImg
+        from
+          drug_no_return
+    </select>
+
+
+</mapper>
