@@ -119,4 +119,14 @@ public class DrusController implements DrusService {
 
         return drusMapper.querycommodityList();
     }
+
+    /**
+     * 退货商品状态
+     * @param returnId
+     */
+    @Override
+    @ResponseBody
+    public void countersign(@RequestParam("returnId") Integer returnId) {
+        drusMapper.countersign(returnId);
+    }
 }

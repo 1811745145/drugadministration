@@ -33,4 +33,10 @@ public interface DrusService {
 
     @RequestMapping("querycommodityList")
     List<Commodity> querycommodityList();
+    /**
+     * 退货商品状态
+     * @return
+     */
+    @PostMapping("countersign")
+    void countersign(@RequestParam("returnId") Integer returnId);
 }

@@ -121,4 +121,15 @@ public class DrusController {
     public String toReturnList(){
         return "returnList";
     }
+
+    /**
+     * 退货商品状态
+     * @return
+     */
+    @PostMapping("countersign")
+    @ResponseBody
+    public String countersign(@RequestParam("returnId") Integer returnId){
+        drusServicefeign.countersign(returnId);
+        return "1";
+    }
 }

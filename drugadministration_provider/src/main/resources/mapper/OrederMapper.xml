@@ -15,6 +15,10 @@
         from
           drug_no_return
     </select>
+    
+    <update id="countersign" parameterType="int">
+        update drug_no_return set return_Type = 1 where return_Id = #{value}
+    </update>
 
 
 </mapper>

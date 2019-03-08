@@ -70,7 +70,6 @@
                 }
             },*/
             columns: [
-                {field: 'returnId', title: '主键ID', width: '7%',sortable:true,checkbox: true},
                 {field: 'returnName', title: '退货商品', width: '7%'},
                 {field: 'returnTime', title: '退货时间', width: '7%'},
                 {field: 'returnNum', title: '商品数量', width: '7%'},
@@ -85,16 +84,43 @@
                         }
                     }
                 },
-                {field:'returnImg',title:'商品图片',formatter:function(value,row,index){
-                        return '<img width="50px" height="50px" src="'+value+'"/>'
+                {field:'returnImg',title:'商品图片',width: '7%',formatter:function(value,row,index){
+                        return '<img width="70px" height="50px" src="'+value+'"/>'
                 }},
                 {field: "123", title: "操作", width: '10%', formatter: function (value, row, index) {
-                        return '<input type="button" Class="btn btn-info glyphicon glyphicon-plus"  value="修改" onclick="updates(' + row.id + ')">';
+                        var returnType = row.returnType;
+                        if (returnType == 0){/*<a href='javascript:countersign("+row.returnId+");'>确认</a>*/
+                            return '' +
+                                '<input type="button" Class="btn btn-info glyphicon glyphicon-plus"  value="确认" onclick="countersign('+row.returnId+')"> | ' +
+                                '<input type="button" Class="btn btn-info glyphicon glyphicon-plus"  value="修改" onclick="updates('+row.returnId+')">' ;
+                        } else if (returnType == 1) {
+                            return '<input type="button" Class="btn btn-info glyphicon glyphicon-plus"  value="修改" onclick="updates('+row.returnId+')">';
+                        }
+
                     }
                 }
             ]
         })
     }
+
+    function countersign(returnId) {
+        $.ajax({
+            url:"../countersign",
+            data:{returnId:returnId},
+            type:"post",
+            dataType:"json",
+            success:function (data) {
+                if (data == 1){
+                    alert("已确认");
+                    $("#myTablke").bootstrapTable("refresh");
+                }
+            },
+            error:function () {
+                alert("失败")
+            }
+        })
+    }
+
 
     /*批量删除*/
     function delUser() {

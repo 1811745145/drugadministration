@@ -48,6 +48,12 @@ public interface DrusMapper {
     List<DrugNoReturn> returnList();
 
     /**
+     * 退货商品状态
+     * @param returnId
+     */
+    void countersign(Integer returnId);
+
+    /**
      * 修改根据id
      * @param address
      */
