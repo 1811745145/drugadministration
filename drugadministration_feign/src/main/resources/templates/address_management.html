@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="../jquery-easyui-1.5/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/default/easyui.css">
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/icon.css">
+    <script src="../jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="../bootstrap3/css/bootstrap.css">
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <link rel="stylesheet" href="../js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-fileinput/css/fileinput.css">
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <script src="../js/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+    <script src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="../js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+</head>
+<body>
+<h7>采购中心>账户设置>地址管理</h7>
+        <div id="toolbar">
+            <button type="button" class="btn btn-primary" style="width: 160px" onclick="openAdd()">新增</button>
+        </div>
+<table id="myTable"></table>
+</body>
+<script>
+    //初始加载表格数据   地址中心
+    $(function(){
+        queryaddressList();
+    })
+    //删除
+    function delById(addressId){
+        bootbox.confirm("你确定要删除吗?", function(result) {
+            if(result){
+                $.ajax({
+                    url:'../delById',
+                    type:'DELETE',
+                    data:{
+                        addressId:addressId
+                    },
+                    dataType:'json',
+                    success:function(data){
+                        alert("删除成功");
+                    }
+                })
+            }
+        })
+    }
+    //查询地址数据
+    function queryaddressList(){
+        $('#myTable').bootstrapTable({
+            toolbar:'#toolbar',
+            url:'../queryaddressList',//获取数据地址
+            queryParams:function(){
+                return {
+
+                };
+            },
+            columns:[
+                {field:"address_name",width:80,align:'center',title:"收货人"},
+                {field:"address_area",width:80,align:'center',title:"所在地区"},
+                {field:"address_area",width:80,align:'center',title:"详细地址"},
+                {field:"address_area",width:80,align:'center',title:"邮编"},
+                {field:"address_area",width:80,align:'center',title:"电话"},
+                {field:"caozuo",width:80,align:'center',title:"操作",formatter(value,row,index){
+                        return "<a href='javascript:updateAddress("+row.address_Id+");'>修改</a>||<a href='javascript:delById("+row.address_Id+");'>删除</a>";
+                    }}
+            ]
+        })
+    }
+</script>
+</html>
