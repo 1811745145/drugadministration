@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.jk.pojo.Address;
+import com.jk.pojo.Commodity;
 import com.jk.pojo.DrugNoReturn;
 import com.jk.pojo.TreeBean;
 import com.jk.service.DrusServicefeign;
@@ -15,14 +16,55 @@ public class DrusController {
     @Autowired
     private DrusServicefeign drusServicefeign;
 
+    /**
+     * 查询商品管理
+     */
+    @RequestMapping("querycommodityList")
+    @ResponseBody
+    public List<Commodity> querycommodityList(){
+        return drusServicefeign.querycommodityList();
+    }
+    /**
+     * 跳转商品管理页面
+     */
+    @RequestMapping("commodity")
+    public String commodity(){
+        return "commodity";
+    }
+    /**
+     * 根据id查询  回显
+     */
+    @RequestMapping("queryAddressById")
+    @ResponseBody
+    public Address queryAddressById(@RequestParam("addressId")Integer addressId){
+        return drusServicefeign.queryAddressById(addressId);
+    }
+    /**
+     * 新增
+     */
+    @PostMapping("saveAddress")
+    @ResponseBody
+    public String saveAddress(@RequestBody Address address){
+        drusServicefeign.saveAddress(address);
+        return "1";
+    }
+    /**
+     * 跳转新增页面
+     * @return
+     */
+    @RequestMapping("toaddAddress")
+    public String addAddress(){
+        return "addAddress";
+    }
 
     /**
      * 根据id删除数据
      */
     @DeleteMapping("delById")
     @ResponseBody
-    public void delById(@RequestParam("addressId") Integer addressId){
+    public String delById(@RequestParam("addressId") Integer addressId){
         drusServicefeign.delById(addressId);
+        return "1";
     }
     /**
      * 跳转主页面

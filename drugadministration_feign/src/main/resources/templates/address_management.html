@@ -34,6 +34,65 @@
     $(function(){
         queryaddressList();
     })
+    //打开修改弹框
+    function updateAddress(addressId){
+        var url="../toaddAddress";
+        bootbox.dialog({
+            title:'修改信息',
+            message: createAddContent(url),
+            closeButton: true,
+            buttons : {
+                "success" : {
+                    "label" : "<i class='icon-ok'></i> 保存",
+                    "className" : "btn-sm btn-success",
+                    "callback" : function() {
+                        var address_name = $("#address_name").val();
+                        var address_area = $("#address_area").val();
+                        var detailedaddress = $("#detailedaddress").val();
+                        var zipcode = $("#zipcode").val();
+                        var phone = $("#phone").val();
+                        var address_Id = $("#address_Id").val();
+                        $.ajax({
+                            url:'../saveAddress',
+                            type:'post',
+                            data:JSON.stringify(
+                                {'address_Id':address_Id,'address_name':address_name,'address_area':address_area,'detailedaddress':detailedaddress,'zipcode':zipcode,'phone':phone}),
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            dataType:'json',
+                            success:function(data){
+                                if(data == 1){
+                                    $("#myTable").bootstrapTable("refresh");
+                                }
+                            }
+                        });
+                    }
+                },
+                "cancel" : {
+                    "label" : "<i class='icon-info'></i> 取消",
+                    "className" : "btn-sm btn-danger",
+                    "callback" : function() {
+
+                    }
+                }
+            }
+        });
+        $.ajax({
+            url:'../queryAddressById',
+            type:'post',
+            async:false,
+            data:{addressId:addressId},
+            success:function(data){
+                $("#address_name").val(data.address_name);
+                $("#address_area").val(data.address_area);
+                $("#detailedaddress").val(data.detailedaddress);
+                $("#zipcode").val(data.zipcode);
+                $("#phone").val(data.phone);
+                $("#address_Id").val(data.address_Id);
+            }
+        })
+    }
     //删除
     function delById(addressId){
         bootbox.confirm("你确定要删除吗?", function(result) {
@@ -46,7 +105,9 @@
                     },
                     dataType:'json',
                     success:function(data){
-                        alert("删除成功");
+                        if(data==1){
+                            $("#myTable").bootstrapTable("refresh");
+                        }
                     }
                 })
             }
@@ -65,14 +126,71 @@
             columns:[
                 {field:"address_name",width:80,align:'center',title:"收货人"},
                 {field:"address_area",width:80,align:'center',title:"所在地区"},
-                {field:"address_area",width:80,align:'center',title:"详细地址"},
-                {field:"address_area",width:80,align:'center',title:"邮编"},
-                {field:"address_area",width:80,align:'center',title:"电话"},
+                {field:"detailedaddress",width:80,align:'center',title:"详细地址"},
+                {field:"zipcode",width:80,align:'center',title:"邮编"},
+                {field:"phone",width:80,align:'center',title:"电话"},
                 {field:"caozuo",width:80,align:'center',title:"操作",formatter(value,row,index){
                         return "<a href='javascript:updateAddress("+row.address_Id+");'>修改</a>||<a href='javascript:delById("+row.address_Id+");'>删除</a>";
                     }}
             ]
         })
+    }
+    //查询页面
+    function createAddContent(url){
+        $.ajax({
+            url:url,
+            async:false,
+            success:function(data){
+                res = data;
+            }
+        });
+        return res;
+    }
+
+    var res;
+    //打开新增弹框
+    function openAdd(){
+        var url="../toaddAddress";
+        bootbox.dialog({
+            title:'添加地址',
+            message: createAddContent(url),
+            closeButton: true,
+            buttons : {
+                "success" : {
+                    "label" : "<i class='icon-ok'></i> 保存",
+                    "className" : "btn-sm btn-success",
+                    "callback" : function() {
+                        var address_name = $("#address_name").val();
+                        var address_area = $("#address_area").val();
+                        var detailedaddress = $("#detailedaddress").val();
+                        var zipcode = $("#zipcode").val();
+                        var phone = $("#phone").val();
+                        $.ajax({
+                            url:'../saveAddress',
+                            type:'post',
+                            data:JSON.stringify(
+                                {'address_name':address_name,'address_area':address_area,'detailedaddress':detailedaddress,'zipcode':zipcode,'phone':phone}),
+                            headers: {
+                              "Content-Type": "application/json"
+                            },
+                            dataType:'json',
+                            success:function(data){
+                                if(data == 1){
+                                    $("#myTable").bootstrapTable("refresh");
+                                }
+                            }
+                        });
+                    }
+                },
+                "cancel" : {
+                    "label" : "<i class='icon-info'></i> 取消",
+                    "className" : "btn-sm btn-danger",
+                    "callback" : function() {
+
+                    }
+                }
+            }
+        });
     }
 </script>
 </html>

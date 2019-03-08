@@ -1,6 +1,7 @@
 package com.jk.service;
 
 import com.jk.pojo.Address;
+import com.jk.pojo.Commodity;
 import com.jk.pojo.DrugNoReturn;
 import com.jk.pojo.TreeBean;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public interface DrusService {
     @DeleteMapping("delById")
     void delById(@RequestParam("addressId") Integer addressId);
 
+    @PostMapping("saveAddress")
+    void saveAddress(Address address);
+
     /**
      * 退货商品查询
      * @return
@@ -24,4 +28,9 @@ public interface DrusService {
     @GetMapping("returnList")
     List<DrugNoReturn> returnList();
 
+    @RequestMapping("queryAddressById")
+    Address queryAddressById(@RequestParam("addressId")Integer addressId);
+
+    @RequestMapping("querycommodityList")
+    List<Commodity> querycommodityList();
 }

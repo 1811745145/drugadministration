@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+    <script src="../jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="../jquery-easyui-1.5/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/default/easyui.css">
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/icon.css">
+    <script src="../jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="../bootstrap3/css/bootstrap.css">
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <link rel="stylesheet" href="../js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-fileinput/css/fileinput.css">
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <script src="../js/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+    <script src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="../js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+</head>
+<body>
+<table id="myTable"></table>
+</body>
+<script>
+    $(function(){
+        querycommodityList();
+    })
+    //查询地址数据
+    function querycommodityList(){
+        $('#myTable').bootstrapTable({
+            toolbar:'#toolbar',
+            url:'../querycommodityList',//获取数据地址
+            queryParams:function(){
+                return {
+
+                };
+            },
+            columns:[
+                {field:"id",width:80,align:'center',title:"商品编号"},
+                {field:"commodity_name",width:80,align:'center',title:"商品名称"},
+                {field:"commodity_number",width:80,align:'center',title:"商品货号"},
+                {field:"commodity_specifications",width:80,align:'center',title:"商品规格"},
+                {field:"manufacture_factory",width:80,align:'center',title:"生产厂家"},
+                {field:" approval_number",width:80,align:'center',title:"批准文号"},
+                {field:"supply_price",width:80,align:'center',title:"供应价格"},
+                {field:"commodity_stock",width:80,align:'center',title:"库存"},
+                {field:"release_time",width:80,align:'center',title:"发布时间"},
+                {field:"commodity_status",width:80,align:'center',title:"商品状态"},
+                {field:"audit_status",width:80,align:'center',title:"审核状态"}
+            ]
+        })
+    }
+</script>
+</html>

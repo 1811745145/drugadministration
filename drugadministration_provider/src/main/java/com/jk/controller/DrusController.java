@@ -2,6 +2,7 @@ package com.jk.controller;
 
 import com.jk.mapper.DrusMapper;
 import com.jk.pojo.Address;
+import com.jk.pojo.Commodity;
 import com.jk.pojo.DrugNoReturn;
 import com.jk.pojo.TreeBean;
 import com.jk.service.DrusService;
@@ -46,10 +47,31 @@ public class DrusController implements DrusService {
      * @param addressId
      */
     @Override
+    @ResponseBody
     public void delById(@RequestParam("addressId") Integer addressId) {
         drusMapper.delById(addressId);
     }
 
+    /**
+     * 新增
+     * @param address
+     */
+    @Override
+    @ResponseBody
+    public void saveAddress(@RequestBody Address address) {
+        if(address.getAddress_Id()==null){
+            drusMapper.saveAddress(address);
+        }else{
+            drusMapper.updateAddress(address);
+        }
+
+    }
+
+    /**
+     * 封装方法
+     * @param id
+     * @return
+     */
     private List<TreeBean> getTreeBeans(int id) {
         List<TreeBean> list = drusMapper.findTreeList(id);
         for (TreeBean treeBean : list) {
@@ -73,5 +95,28 @@ public class DrusController implements DrusService {
     public List<DrugNoReturn> returnList() {
 
         return drusMapper.returnList();
+    }
+
+    /**
+     * 根据id查询
+     * @param addressId
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public Address queryAddressById(@RequestParam("addressId") Integer addressId) {
+
+        return drusMapper.queryAddressById(addressId);
+    }
+
+    /**
+     * 查询商品管理
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public List<Commodity> querycommodityList() {
+
+        return drusMapper.querycommodityList();
     }
 }
