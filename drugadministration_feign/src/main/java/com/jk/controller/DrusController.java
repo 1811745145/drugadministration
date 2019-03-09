@@ -16,6 +16,11 @@ public class DrusController {
     @Autowired
     private DrusServicefeign drusServicefeign;
 
+    @RequestMapping("PageDrugPurchase")
+    public String PageDrugPurchase(){
+        return "DrugPurchase/DrugPurchaseShow";
+    }
+
     /**
      * 查询商品管理
      */

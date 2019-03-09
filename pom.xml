@@ -14,6 +14,9 @@
         <module>drugadministration_eureka</module>
         <module>drugadministration_feign</module>
         <module>drugadministration_provider</module>
+        <module>rugpurchase_api</module>
+        <module>rugpurchase_server</module>
+        <module>rugpurchase_web</module>
     </modules>
 
 
