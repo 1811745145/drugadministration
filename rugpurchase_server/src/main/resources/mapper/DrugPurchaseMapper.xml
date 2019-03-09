@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.jk.mapper.DrugPurchaseMapper">
+    <!--查询药品采购信息-->
+<select id="QueryDrugPurchase"  resultType="com.jk.pojo.MedicineDrugdetailsBean"   parameterType="com.jk.pojo.MedicineDrugdetailsBean">
+    SELECT
+    td.drugdetailsid  drugdetailsid,
+    td.drugdetailsimg  drugdetailsimg,
+    td.drugdetailsName  drugdetailsName,
+    td.drugdetailsNameprice  drugdetailsNameprice,
+    td.drugdetailsnventory  drugdetailsnventory,
+    td.drugdetailsquantity  drugdetailsquantity,
+    td.drugdetailsUSL      drugdetailsUSL,
+    td.expiryDate      expiryDate,
+    ts.supplierName  supplierName
+    FROM
+    t_medicine_drugdetails td
+    LEFT JOIN t_medicine_supplier ts ON ts.supplierId = td.` supplierId`
+    <where>
+            <if test="medicineDrugdetailsBean.supplierId!=-1 and medicineDrugdetailsBean.supplierId!=null and medicineDrugdetailsBean.supplierId!='' ">
+                ts.supplierId=#{medicineDrugdetailsBean.supplierId}
+            </if>
+    </where>
+</select>
+
+    <!--查询药品厂商信息-->
+    <select id="QuerySupplierBean"  resultType="com.jk.pojo.MedicineSupplierBean">
+SELECT
+	ts.supplierId  supplierId,
+	ts.supplierName  supplierName
+FROM
+	t_medicine_supplier ts
+
+    </select>
+</mapper>
