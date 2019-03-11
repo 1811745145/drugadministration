@@ -7,3 +7,5 @@ eureka:
 spring:
   application:
     name: fegin-drus
+  mongodb:
+    uri: mongodb://name:password@localhost:27017/test
