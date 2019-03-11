@@ -17,6 +17,9 @@
         <module>rugpurchase_api</module>
         <module>rugpurchase_server</module>
         <module>rugpurchase_web</module>
+        <module>products_api</module>
+        <module>products_server</module>
+        <module>products_server_web</module>
     </modules>
 
 

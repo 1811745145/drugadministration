@@ -1,0 +1,22 @@
+server:
+  port: 9081
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+spring:
+  application:
+    name: provider-drus
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.101.64:3306/1808?characterEncoding=utf-8
+    username: root
+    password:
+
+    thymeleaf:
+      encoding: UTF-8
+      servlet:
+        content-type: text/html
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
