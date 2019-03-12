@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.jk.mapper.DrugPurchaseMapper">
+    <!--查询药品采购信息-->
+<select id="QueryDrugPurchase"  resultType="com.jk.pojo.MedicineDrugdetailsBean"   parameterType="com.jk.pojo.MedicineDrugdetailsBean">
+    SELECT
+    td.drugdetailsid  drugdetailsid,
+    td.drugdetailsimg  drugdetailsimg,
+    td.drugdetailsName  drugdetailsName,
+    td.drugdetailsNameprice  drugdetailsNameprice,
+    td.drugdetailsnventory  drugdetailsnventory,
+    td.drugdetailsquantity  drugdetailsquantity,
+    td.drugdetailsUSL      drugdetailsUSL,
+    td.expiryDate      expiryDate,
+    ts.supplierName  supplierName,
+    ts.supplierId     supplierId
+    FROM
+    t_medicine_drugdetails td
+    LEFT JOIN t_medicine_supplier ts ON ts.supplierId = td.` supplierId`
+    <where>
+            <if test="medicineDrugdetailsBean.supplierId!=-1 and medicineDrugdetailsBean.supplierId!=null and medicineDrugdetailsBean.supplierId!='' ">
+                ts.supplierId=#{medicineDrugdetailsBean.supplierId}
+            </if>
+    </where>
+</select>
+
+    <!--查询药品厂商信息-->
+    <select id="QuerySupplierBean"  resultType="com.jk.pojo.MedicineSupplierBean">
+SELECT
+	ts.supplierId  supplierId,
+	ts.supplierName  supplierName
+FROM
+	t_medicine_supplier ts
+    </select>
+    <!--根据id查询供应商-->
+    <select id="selectMedicineSupplierById"  parameterType="int" resultType="com.jk.pojo.MedicineSupplierBean">
+           SELECT
+            t.supplierId  supplierId,
+            t.supplierName supplierName
+        FROM
+            t_medicine_supplier t
+        WHERE
+            t.supplierId=#{supplierId}
+    </select>
+    <!--根据药品id查询药品-->
+    <select id="selectmedicineDrugdetailsById"  parameterType="int" resultType="com.jk.pojo.MedicineDrugdetailsBean">
+    SELECT
+	t.drugdetailsid,
+	t.drugdetailsimg,
+	t.drugdetailsName,
+	t.drugdetailsNameprice,
+	t.drugdetailsnventory,
+	t.drugdetailsquantity,
+	t.drugdetailsUSL,
+	t.expiryDate
+FROM
+	t_medicine_drugdetails t
+WHERE
+	t.drugdetailsid = #{drugdetailsid}
+    </select>
+    <!--新增购物车-->
+    <insert id="AddShoppingCart"  parameterType="com.jk.pojo.ShoppingCartBean">
+INSERT INTO  t_medicine_shoppingtrolley (stid,stunitprice,stcount,stsubtotal,csid) VALUES (#{shoppingCartBean.stId},#{shoppingCartBean.stunitPrice},#{shoppingCartBean.stCount},#{shoppingCartBean.stsubTotal},#{shoppingCartBean.csId})
+    </insert>
+    <!--新增采购订单-->
+    <insert id="AddmedicineOrderlist"  parameterType="com.jk.pojo.MedicineOrderlistBean">
+        INSERT  INTO  t_medicine_orderlist  (paidTime,supplierid,drugdetailsid,ordercount,disbursements,orderStatus,orderId)
+         VALUES (#{medicineOrderlistBean.paidTime},#{medicineOrderlistBean.supplierId},#{medicineOrderlistBean.drugdetailsid},#{medicineOrderlistBean.ordercount},#{medicineOrderlistBean.disbursements},#{medicineOrderlistBean.orderStatus},#{medicineOrderlistBean.orderId})
+    </insert>
+    <!--修改库存-->
+    <update id="updateMedicineDrugdetailsById" >
+     update   t_medicine_drugdetails set drugdetailsnventory=drugdetailsnventory-#{boxCount}  where   drugdetailsid=#{drugdetailsid}
+    </update>
+    <!--查询购物车-->
+    <select id="SelectShoppingCart"  resultType="com.jk.pojo.ShoppingCartBean">
+      SELECT
+      tms.scid  scId,
+	tmd.drugdetailsimg  drugdetailsimg,
+	tmd.drugdetailsName drugdetailsName ,
+	tmd.drugdetailsUSL  drugdetailsUSL,
+	tmd.type   type,
+	tms.stunitprice  stunitPrice,
+	tms.stcount  stCount,
+	tms.stsubtotal  stsubTotal
+FROM
+	t_medicine_shoppingtrolley tms
+LEFT JOIN t_medicine_supplier tcs ON tms.csid = tcs.supplierId
+LEFT JOIN t_medicine_drugdetails tmd ON tms.stid = tmd.drugdetailsid
+    </select>
+
+    <!--查询采购订单-->
+    <select id="SelectDrugPurchaseList"  resultType="com.jk.pojo.MedicineOrderlistBean">
+        SELECT
+        tmo.orderId  orderId,
+        tmo.paidTime  paidTime,
+        tms.supplierName  supplierName,
+        tmd.drugdetailsimg  drugdetailsimg,
+        tmd.drugdetailsName  drugdetailsName,
+        tmd.type  ctype ,
+        tmo.ordercount  ordercount,
+        tmd.drugdetailsNameprice drugdetailsNameprice ,
+        tmo.disbursements  disbursements ,
+        tmo.orderStatus  orderStatus
+        FROM
+        t_medicine_orderlist tmo
+        LEFT JOIN t_medicine_supplier tms ON tmo.supplierId = tms.supplierId
+        LEFT JOIN t_medicine_drugdetails tmd on  tmo.drugdetailsid=tmd.drugdetailsid
+      <where>
+            <if test="medicineOrderlistBean.orderId!=null and medicineOrderlistBean.orderId!='' ">
+                and tmo.orderId=#{medicineOrderlistBean.orderId}
+            </if>
+          <if test="medicineOrderlistBean.supplierId!=null  and  medicineOrderlistBean.supplierId!='' and medicineOrderlistBean.supplierId!=-1 ">
+                and tmo.supplierId=#{medicineOrderlistBean.supplierId}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form id="userFrom">
+    <div class="row myrow">
+            <input type="hidden" id="id">
+            <div class="col-md-2">
+                <label for="commodityname">商品名称</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="commodityname" name="commodityname">
+            </div>
+            <div class="col-md-2">
+                <label for="commoditynumber">商品货号</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="commoditynumber" name="commoditynumber">
+            </div>
+    </div>
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="commodityspecifications">商品规格</label>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="commodityspecifications" name="commodityspecifications">
+        </div>
+        <div class="col-md-2">
+            <label for="manufacturefactory">生产厂家</label>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="manufacturefactory" name="manufacturefactory">
+        </div>
+    </div>
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="approvalnumber">批准文号</label>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="approvalnumber" name="approvalnumber">
+        </div>
+        <div class="col-md-2">
+            <label for="supplyprice">供应价格</label>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="supplyprice" name="supplyprice">
+        </div>
+    </div>
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="commoditystock">库存</label>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="commoditystock" name="commoditystock">
+        </div>
+        <div class="col-md-2">
+            <label>商品状态</label>
+        </div>
+        <div class="col-md-4">
+            <input type="radio" name = "commoditystatus" value="1">上架
+            <input type="radio" name = "commoditystatus" value="2">下架
+        </div>
+    </div>
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="releasetime">发布时间</label>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="releasetime" name="releasetime">
+        </div>
+        <div class="col-md-2">
+            <label>审核状态</label>
+        </div>
+        <div class="col-md-4">
+            <input type="radio" name = "auditstatus" value="1">待审核<br>
+            <input type="radio" name = "auditstatus" value="2">已通过<br>
+            <input type="radio" name = "auditstatus" value="3">未通过
+        </div>
+    </div>
+</form>
+</body>
+</html>

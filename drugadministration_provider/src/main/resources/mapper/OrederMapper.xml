@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.jk.mapper.DrusMapper">
+
+    <select id="returnList"  resultType="com.jk.pojo.DrugNoReturn">
+        select
+          return_Id as returnId,
+          return_Name as returnName,
+          return_Time as returnTime,
+          return_Num as returnNum,
+          return_Supply as returnSupply,
+          return_Price as returnPrice,
+          return_Type as returnType,
+          return_img as returnImg
+        from
+          drug_no_return
+    </select>
+    
+    <update id="countersign" parameterType="int">
+        update drug_no_return set return_Type = 1 where return_Id = #{value}
+    </update>
+
+    <select id="queryProductList" resultType="com.jk.pojo.ProductBuy">
+        select * from register_drug
+    </select>
+
+    <insert id="addProduct" parameterType="com.jk.pojo.ProductBuy">
+        insert into register_drug
+          (
+          drug_Name,
+          manufacturers_Name,
+          specifications,
+          area,
+          contacts,
+          phone
+          )
+        values
+          (
+          #{drug_Name},
+          #{manufacturers_Name},
+          #{specifications},
+          #{area},
+          #{contacts},
+          #{phone}
+          )
+    </insert>
+
+    <select id="queryProductuyBuy" resultType="com.jk.pojo.ProductBuy">
+        select * from register_drug where drug_Id = #{value}
+    </select>
+    
+    <update id="updeteProductuyBuy" parameterType="com.jk.pojo.ProductBuy">
+        update register_drug set
+          drug_Name = #{drug_Name},
+          manufacturers_Name = #{manufacturers_Name},
+          specifications = #{specifications},
+          area = #{area},
+          contacts = #{contacts},
+          phone = #{phone}
+        where drug_Id = #{drug_Id}
+
+    </update>
+
+    <delete id="delProductuyBuy" parameterType="int">
+        delete from register_drug where drug_Id = #{value}
+    </delete>
+</mapper>

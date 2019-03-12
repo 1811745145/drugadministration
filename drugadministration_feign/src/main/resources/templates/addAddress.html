@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<style type="text/css">
+    .myrow{
+        margin-bottom:10px
+    }
+</style>
+<body>
+<form id="userFrom">
+    <input type="hidden" name="orderId" >
+    <div class="row myrow">
+
+        <div class="form-group">
+            <input type="hidden" id="address_Id">
+            <div class="col-md-2">
+                <label for="address_name">收货人</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="address_name" name="address_name">
+            </div>
+            <div class="col-md-2">
+                <label for="address_area">所在地区</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="address_area" name="address_area">
+            </div>
+        </div>
+    </div>
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="detailedaddress">详细地址</label>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="detailedaddress" name="detailedaddress">
+        </div>
+        <div class="col-md-2">
+            <label for="zipcode">邮编</label>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="zipcode" name="zipcode">
+        </div>
+    </div>
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="phone">电话</label>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="phone" name="phone">
+        </div>
+    </div>
+</form>
+</body>
+<script>
+
+
+</script>
+</html>

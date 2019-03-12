@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="../jquery-easyui-1.5/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/default/easyui.css">
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/icon.css">
+    <script src="../jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="../bootstrap3/css/bootstrap.css">
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <link rel="stylesheet" href="../js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-fileinput/css/fileinput.css">
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <script src="../js/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+    <script src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="../js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+ 
+<body>
+<span>采购中心 > 订单管理 > 快速采购</span>
+    <div   id="toolbar">
+        供应商家：  <select class="form-control" onchange="searchUser()" id="deptid" >
+                    </select>
+    </div>
+    <table class="table" id="myTable"></table>
+
+</body>
+<script>
+
+$(function () {
+    /*初始化药品表*/
+    queryDrugPurchase()
+   /*初始化供应商下拉框*/
+   initSupplier()
+})
+
+function    initSupplier() {
+    $.ajax({
+        toolbar:'#toolbar',
+        url:"http://127.0.0.1:8100/DrugPurchaseController/QuerySupplierBean",
+        type:'post',
+        success:function (data) {
+            var  html="";
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="'+data[i].supplierId +'">'+data[i].supplierName+'</option>'
+            }
+            $("#deptid").html(html);
+        }
+    })
+}
+
+function searchUser(){
+
+
+    $('#myTable').bootstrapTable('refresh');
+}
+function  queryDrugPurchase() {
+  $('#myTable').bootstrapTable({
+        toolbar:'#toolbar',
+        url:"http://127.0.0.1:8100/DrugPurchaseController/queryDrugPurchase",
+        type:'post',
+          queryParams:function(){
+              var supplierId=$("#deptid").val()
+              return {
+                  supplierId:supplierId
+              }
+          },
+        columns:[
+            {field:"img",title:"药品图片",formatter: function (value, row, index){
+              var   html="<img src=\"'+row.drugdetailsimg+'\" style=\"width: 100px; height: 100px\">"
+                return  html;
+                }},
+            {field:"Nameandmanufacturerandpurchaseprice",title:"名字生产厂家采购价",formatter: function (value, row, index){
+              var   html='<font color="#ff7f50">'+row.drugdetailsName+'</font></br>';
+                    html+='生产厂家：'+row.supplierName+'</br>';
+                    html+='采购价'+row.drugdetailsNameprice+'</br>';
+                return html
+                }},
+            {field:"Nameandmanufacturerandpurchasepricespecification",title:"规格 有限期 包装数量",formatter: function (value, row, index){
+               var      htmlnaf='规格：'+row.drugdetailsUSL+'</br>';
+                    htmlnaf+='有效期'+row.expiryDate+'</br>';
+                    htmlnaf+='包装数量'+row.drugdetailsquantity+'</br>';
+                    return htmlnaf
+                }},
+            {field:"box",title:"盒数",formatter: function (value, row, index){
+                    var      htmlnaf='<button type="button"   onclick="subtractbox('+row.drugdetailsid+')" class="btn btn-primary">-</button><input  type="text" size="5px"  name="box"  id="box'+row.drugdetailsid+'"  value="0">';
+                    htmlnaf+=' <button type="button"  onclick="addbox('+row.drugdetailsid+')" class="btn btn-primary">+</button>'
+                    return htmlnaf
+                }},
+            {field:"inventory",title:"库存",formatter: function (value, row, index){
+                    var      htmlnaf='';
+                    if (row.drugdetailsnventory > 500){
+                        return  htmlnaf="库存>500"
+                    }
+                    if (row.drugdetailsnventory<500){
+                        return  htmlnaf="库存<500"
+                    }
+                }},
+            {field:"add to shopping cart",title:"加入购物车",formatter: function (value, row, index){/**/
+                    var  htmlnaf='<button type="button"  onclick="addToShoppingCart('+row.drugdetailsid+','+row.supplierId+')" class="btn btn-primary">加入购物车</button>'
+                    return htmlnaf
+                }}
+        ]
+    })
+}
+/*点击增加盒数*/
+    function  addbox(id){
+        var box=$("#box"+id).val()
+
+        $("#box"+id).val(++box)
+
+    }
+/*点击减少盒数*/
+    function subtractbox(id) {
+        var box=$("#box"+id).val()
+        if (box<=0) {
+            alert("不能为负数")
+            return
+        }
+        $("#box"+id).val(--box)
+    }
+
+
+    /*点击加入购物车*/             /*出厂商id*/
+    function addToShoppingCart(id , suId){
+        /*盒数*/
+      var sboxCount=$("#box").val()
+
+        if (sboxCount<=0){
+           alert("请选择商品！！！")
+            return
+        }
+
+        $.ajax({
+            url:'http://127.0.0.1:8100/DrugPurchaseController/AddShoppingCart',
+            type:'post',
+            data:{
+                    supplierId:suId,
+                    boxCount:sboxCount,
+                    drugdetailsid:id
+                },
+
+            success:function (data) {
+                alert("加入购物车成功！")
+                $("#box").val(0)
+            }
+        })
+        }
+
+
+</script>
+</html>
