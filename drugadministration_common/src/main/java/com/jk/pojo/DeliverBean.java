@@ -24,110 +24,130 @@ public class DeliverBean {
 
         private String deliveryTime;              //发货时间
 
-        public Integer getId() {
-            return id;
-        }
+        private String startDate;                 //下单开始时间
 
-        public void setId(Integer id) {
-            this.id = id;
-        }
+        private String stopDate;                  //下单结束时间
 
-        public String getTradeName() {
-            return tradeName;
-        }
+    public Integer getId() {
+        return id;
+    }
 
-        public void setTradeName(String tradeName) {
-            this.tradeName = tradeName;
-        }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-        public String getPurchaser() {
-            return purchaser;
-        }
+    public String getTradeName() {
+        return tradeName;
+    }
 
-        public void setPurchaser(String purchaser) {
-            this.purchaser = purchaser;
-        }
+    public void setTradeName(String tradeName) {
+        this.tradeName = tradeName;
+    }
 
-        public String getApprovalNumber() {
-            return approvalNumber;
-        }
+    public String getPurchaser() {
+        return purchaser;
+    }
 
-        public void setApprovalNumber(String approvalNumber) {
-            this.approvalNumber = approvalNumber;
-        }
+    public void setPurchaser(String purchaser) {
+        this.purchaser = purchaser;
+    }
 
-        public String getCommoditySpecifications() {
-            return commoditySpecifications;
-        }
+    public String getApprovalNumber() {
+        return approvalNumber;
+    }
 
-        public void setCommoditySpecifications(String commoditySpecifications) {
-            this.commoditySpecifications = commoditySpecifications;
-        }
+    public void setApprovalNumber(String approvalNumber) {
+        this.approvalNumber = approvalNumber;
+    }
 
-        public Integer getPurchaseQuantity() {
-            return purchaseQuantity;
-        }
+    public String getCommoditySpecifications() {
+        return commoditySpecifications;
+    }
 
-        public void setPurchaseQuantity(Integer purchaseQuantity) {
-            this.purchaseQuantity = purchaseQuantity;
-        }
+    public void setCommoditySpecifications(String commoditySpecifications) {
+        this.commoditySpecifications = commoditySpecifications;
+    }
 
-        public Integer getQuantityShipped() {
-            return quantityShipped;
-        }
+    public Integer getPurchaseQuantity() {
+        return purchaseQuantity;
+    }
 
-        public void setQuantityShipped(Integer quantityShipped) {
-            this.quantityShipped = quantityShipped;
-        }
+    public void setPurchaseQuantity(Integer purchaseQuantity) {
+        this.purchaseQuantity = purchaseQuantity;
+    }
 
-        public Integer getUnitPrice() {
-            return unitPrice;
-        }
+    public Integer getQuantityShipped() {
+        return quantityShipped;
+    }
 
-        public void setUnitPrice(Integer unitPrice) {
-            this.unitPrice = unitPrice;
-        }
+    public void setQuantityShipped(Integer quantityShipped) {
+        this.quantityShipped = quantityShipped;
+    }
 
-        public Integer getTotal() {
-            return total;
-        }
+    public Integer getUnitPrice() {
+        return unitPrice;
+    }
 
-        public void setTotal(Integer total) {
-            this.total = total;
-        }
+    public void setUnitPrice(Integer unitPrice) {
+        this.unitPrice = unitPrice;
+    }
 
-        public String getOrderTime() {
-            return orderTime;
-        }
+    public Integer getTotal() {
+        return total;
+    }
 
-        public void setOrderTime(String orderTime) {
-            this.orderTime = orderTime;
-        }
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
 
-        public String getDeliveryTime() {
-            return deliveryTime;
-        }
+    public String getOrderTime() {
+        return orderTime;
+    }
 
-        public void setDeliveryTime(String deliveryTime) {
-            this.deliveryTime = deliveryTime;
-        }
+    public void setOrderTime(String orderTime) {
+        this.orderTime = orderTime;
+    }
 
-        @Override
-        public String toString() {
-            return "DeliveryBean{" +
-                    "id=" + id +
-                    ", tradeName='" + tradeName + '\'' +
-                    ", purchaser='" + purchaser + '\'' +
-                    ", approvalNumber='" + approvalNumber + '\'' +
-                    ", commoditySpecifications='" + commoditySpecifications + '\'' +
-                    ", purchaseQuantity=" + purchaseQuantity +
-                    ", quantityShipped=" + quantityShipped +
-                    ", unitPrice=" + unitPrice +
-                    ", total=" + total +
-                    ", orderTime='" + orderTime + '\'' +
-                    ", deliveryTime='" + deliveryTime + '\'' +
-                    '}';
-        }
+    public String getDeliveryTime() {
+        return deliveryTime;
+    }
 
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
 
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getStopDate() {
+        return stopDate;
+    }
+
+    public void setStopDate(String stopDate) {
+        this.stopDate = stopDate;
+    }
+
+    @Override
+    public String toString() {
+        return "DeliverBean{" +
+                "id=" + id +
+                ", tradeName='" + tradeName + '\'' +
+                ", purchaser='" + purchaser + '\'' +
+                ", approvalNumber='" + approvalNumber + '\'' +
+                ", commoditySpecifications='" + commoditySpecifications + '\'' +
+                ", purchaseQuantity=" + purchaseQuantity +
+                ", quantityShipped=" + quantityShipped +
+                ", unitPrice=" + unitPrice +
+                ", total=" + total +
+                ", orderTime='" + orderTime + '\'' +
+                ", deliveryTime='" + deliveryTime + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", stopDate='" + stopDate + '\'' +
+                '}';
+    }
 }

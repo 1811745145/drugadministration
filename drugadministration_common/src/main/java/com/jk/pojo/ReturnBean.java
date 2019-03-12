@@ -20,6 +20,10 @@ public class ReturnBean {
 
     private Integer returnState;        //退货状态
 
+    private String startDate;           //退货开始时间
+
+    private String stopDate;            //退货结束时间
+
     public Integer getId() {
         return id;
     }
@@ -92,6 +96,22 @@ public class ReturnBean {
         this.returnState = returnState;
     }
 
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getStopDate() {
+        return stopDate;
+    }
+
+    public void setStopDate(String stopDate) {
+        this.stopDate = stopDate;
+    }
+
     @Override
     public String toString() {
         return "ReturnBean{" +
@@ -104,6 +124,8 @@ public class ReturnBean {
                 ", applicant='" + applicant + '\'' +
                 ", returnMoney=" + returnMoney +
                 ", returnState=" + returnState +
+                ", startDate='" + startDate + '\'' +
+                ", stopDate='" + stopDate + '\'' +
                 '}';
     }
 }
