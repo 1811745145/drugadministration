@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.pojo.*;
 import com.jk.ConstantUtils.ConstantUtil;
 import com.jk.pojo.Address;
 import com.jk.pojo.Commodity;
@@ -258,5 +259,15 @@ public class DrusController {
     @RequestMapping("toAddcommodity")
     public String toAddcommodity(){
         return "addcommodity";
+    }
+
+    /**
+     * 缺药登记查询
+     * @return
+     */
+    @GetMapping("queryProductList")
+    @ResponseBody
+    public List<ProductBuy> queryProductList(){
+        return drusServicefeign.queryProductList();
     }
 }

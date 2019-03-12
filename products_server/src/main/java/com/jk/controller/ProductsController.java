@@ -20,6 +20,7 @@ public class ProductsController implements ProductService {
     @Override
     @ResponseBody
     public List<ProductsBean> findProductsAll() {
+
         return productsMapper.findProductsAll();
     }
 }

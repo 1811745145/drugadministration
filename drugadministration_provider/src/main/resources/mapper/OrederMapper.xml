@@ -20,5 +20,9 @@
         update drug_no_return set return_Type = 1 where return_Id = #{value}
     </update>
 
+    <select id="queryProductList" resultType="com.jk.pojo.ProductBuy">
+        select * from product_buy
+    </select>
+
 
 </mapper>

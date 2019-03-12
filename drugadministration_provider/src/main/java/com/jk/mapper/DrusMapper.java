@@ -1,9 +1,6 @@
 package com.jk.mapper;
 
-import com.jk.pojo.Commodity;
-import com.jk.pojo.DrugNoReturn;
-import com.jk.pojo.Address;
-import com.jk.pojo.TreeBean;
+import com.jk.pojo.*;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -128,4 +125,11 @@ public interface DrusMapper {
      * @param ids
      */
     void downShelf(Integer[] ids);
+    List<Commodity> querycommodityList();
+
+    /**
+     * 缺药登记查询
+     * @return
+     */
+    List<ProductBuy> queryProductList();
 }

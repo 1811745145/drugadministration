@@ -1,10 +1,7 @@
 package com.jk.controller;
 
 import com.jk.mapper.DrusMapper;
-import com.jk.pojo.Address;
-import com.jk.pojo.Commodity;
-import com.jk.pojo.DrugNoReturn;
-import com.jk.pojo.TreeBean;
+import com.jk.pojo.*;
 import com.jk.service.DrusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-public class DrusController implements DrusService
-{
+public class DrusController implements DrusService{
     @Autowired
     private DrusMapper drusMapper;
 
@@ -116,10 +112,20 @@ public class DrusController implements DrusService
      */
     @Override
     @ResponseBody
-    public List<Commodity> querycommodityList(@RequestBody Commodity commodity) {
-
-        return drusMapper.querycommodityList(commodity);
+    public List<Commodity> querycommodityList(Commodity commodity) {
+        return drusMapper.querycommodityList();
     }
+
+    /**
+     * 查询商品管理
+     * @return
+     */
+    /*@Override
+    @ResponseBody
+    public List<Commodity> querycommodityList() {
+
+        return drusMapper.querycommodityList();
+    }*/
 
     /**
      * 退货商品状态
@@ -197,5 +203,17 @@ public class DrusController implements DrusService
     @ResponseBody
     public void downShelf(@RequestParam("ids") Integer[] ids) {
         drusMapper.downShelf(ids);
+    }
+
+
+    /**
+     * 缺药登记查询
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public List<ProductBuy> queryProductList() {
+
+        return drusMapper.queryProductList();
     }
 }

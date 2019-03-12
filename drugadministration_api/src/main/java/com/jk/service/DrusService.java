@@ -1,9 +1,6 @@
 package com.jk.service;
 
-import com.jk.pojo.Address;
-import com.jk.pojo.Commodity;
-import com.jk.pojo.DrugNoReturn;
-import com.jk.pojo.TreeBean;
+import com.jk.pojo.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,6 +61,13 @@ public interface DrusService {
      */
     @PostMapping("countersign")
     void countersign(@RequestParam("returnId") Integer returnId);
+
+    /**
+     * 缺药登记查询
+     * @return
+     */
+    @GetMapping("queryProductList")
+    List<ProductBuy> queryProductList();
 
     /**
      * 新增商品管理数据

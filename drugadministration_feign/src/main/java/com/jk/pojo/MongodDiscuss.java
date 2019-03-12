@@ -10,7 +10,7 @@ import java.util.Date;
 @Document(collection="1808_mongo")
 public class MongodDiscuss {
 
-    private String discuss_Id;
+    private String id;
 
     private String merchant;
 
@@ -31,12 +31,12 @@ public class MongodDiscuss {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date endTime;
 
-    public String getDiscuss_Id() {
-        return discuss_Id;
+    public String getId() {
+        return id;
     }
 
-    public void setDiscuss_Id(String discuss_Id) {
-        this.discuss_Id = discuss_Id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMerchant() {
@@ -98,7 +98,7 @@ public class MongodDiscuss {
     @Override
     public String toString() {
         return "MongodDiscuss{" +
-                "discuss_Id='" + discuss_Id + '\'' +
+                "id='" + id + '\'' +
                 ", merchant='" + merchant + '\'' +
                 ", discuss='" + discuss + '\'' +
                 ", discuss_Grade=" + discuss_Grade +
