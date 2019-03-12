@@ -1,7 +1,10 @@
 package com.jk.pojo;
 
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
+    private static final long serialVersionUID = 8405870292054914807L;
     private Integer address_Id;
     private String address_name;
     private String address_area;

@@ -1,33 +1,100 @@
 package com.jk.controller;
 
+import com.jk.ConstantUtils.ConstantUtil;
 import com.jk.pojo.Address;
 import com.jk.pojo.Commodity;
 import com.jk.pojo.DrugNoReturn;
 import com.jk.pojo.TreeBean;
 import com.jk.service.DrusServicefeign;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class DrusController {
     @Autowired
     private DrusServicefeign drusServicefeign;
+    @Autowired
+    private RedisTemplate redisTemplate;
+    /**
+     * 批量上架
+     */
+    @RequestMapping("batchShelves")
+    @ResponseBody
+    public Boolean batchShelves(@RequestParam("ids") Integer[] ids){
+        try {
+            drusServicefeign.batchShelves(ids);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
+     * 批量下架
+     */
+    @RequestMapping("downShelf")
+    @ResponseBody
+    public Boolean downShelf(@RequestParam("ids") Integer[] ids){
+        try {
+            drusServicefeign.downShelf(ids);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
+    /**
+     * 上下架
+     */
+    @RequestMapping("upDownJia")
+    @ResponseBody
+    public Boolean upDownJia(@RequestParam("id") Integer id,@RequestParam("commoditystatus") Integer commoditystatus){
+        try {
+            drusServicefeign.upDownJia(id,commoditystatus);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
+     * 跳转医药查看页面
+     * @return
+     */
     @RequestMapping("PageDrugPurchase")
     public String PageDrugPurchase(){
         return "DrugPurchase/DrugPurchaseShow";
     }
 
     /**
+     * 新增商品管理
+     */
+    @PostMapping("saveCommodity")
+    @ResponseBody
+    public Boolean saveCommodity(@RequestBody Commodity commodity){
+        try {
+            drusServicefeign.saveCommodity(commodity);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
      * 查询商品管理
      */
     @RequestMapping("querycommodityList")
     @ResponseBody
-    public List<Commodity> querycommodityList(){
-        return drusServicefeign.querycommodityList();
+    public List<Commodity> querycommodityList(Commodity commodity){
+
+        return drusServicefeign.querycommodityList(commodity);
     }
     /**
      * 跳转商品管理页面
@@ -35,6 +102,14 @@ public class DrusController {
     @RequestMapping("commodity")
     public String commodity(){
         return "commodity";
+    }
+    /**
+     * 根据Id查询商品管理
+     */
+    @RequestMapping("queryCommodityById")
+    @ResponseBody
+    public Commodity queryCommodityById(@RequestParam("comId") Integer comId){
+        return drusServicefeign.queryCommodityById(comId);
     }
     /**
      * 根据id查询  回显
@@ -49,9 +124,14 @@ public class DrusController {
      */
     @PostMapping("saveAddress")
     @ResponseBody
-    public String saveAddress(@RequestBody Address address){
-        drusServicefeign.saveAddress(address);
-        return "1";
+    public Boolean saveAddress(@RequestBody Address address){
+        try {
+            drusServicefeign.saveAddress(address);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
     /**
      * 跳转新增页面
@@ -63,13 +143,32 @@ public class DrusController {
     }
 
     /**
-     * 根据id删除数据
+     * 根据Id删除商品管理数据
+     */
+    @DeleteMapping("delCommodityById")
+    @ResponseBody
+    public Boolean delCommodityById(@RequestParam("comId")Integer comId){
+        try {
+            drusServicefeign.delCommodityById(comId);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
+     * 根据id删除地址管理数据
      */
     @DeleteMapping("delById")
     @ResponseBody
-    public String delById(@RequestParam("addressId") Integer addressId){
-        drusServicefeign.delById(addressId);
-        return "1";
+    public Boolean delById(@RequestParam("addressId") Integer addressId){
+        try {
+            drusServicefeign.delById(addressId);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
     /**
      * 跳转主页面
@@ -103,7 +202,23 @@ public class DrusController {
     @RequestMapping("queryaddressList")
     @ResponseBody
     public List<Address> queryaddressList(){
-        return drusServicefeign.queryaddressList();
+        //创建一个集合
+        List<Address> list = new ArrayList<>();
+        //定义一个常量
+        String cacheKay = ConstantUtil.CACHE_ADDRESS_SELE;
+        //判断key是否存在
+        Boolean hasKey = redisTemplate.hasKey(cacheKay);
+        if(hasKey){
+            //如果存在则取出list集合
+          list = (List<Address>) redisTemplate.opsForValue().get(cacheKay);
+        }else{
+            //不存在去数据库查询然后set到常量里面
+          list = drusServicefeign.queryaddressList();
+          redisTemplate.opsForValue().set(cacheKay,list);
+          //设置过期时间
+          redisTemplate.expire(cacheKay, 30, TimeUnit.MINUTES);
+        }
+        return list;
     }
 
 
@@ -136,5 +251,12 @@ public class DrusController {
     public String countersign(@RequestParam("returnId") Integer returnId){
         drusServicefeign.countersign(returnId);
         return "1";
+    }
+    /**
+     * 跳转商品管理发布商品页面
+     */
+    @RequestMapping("toAddcommodity")
+    public String toAddcommodity(){
+        return "addcommodity";
     }
 }

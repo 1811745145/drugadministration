@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-public class DrusController implements DrusService {
+public class DrusController implements DrusService
+{
     @Autowired
     private DrusMapper drusMapper;
 
@@ -115,9 +116,9 @@ public class DrusController implements DrusService {
      */
     @Override
     @ResponseBody
-    public List<Commodity> querycommodityList() {
+    public List<Commodity> querycommodityList(@RequestBody Commodity commodity) {
 
-        return drusMapper.querycommodityList();
+        return drusMapper.querycommodityList(commodity);
     }
 
     /**
@@ -128,5 +129,73 @@ public class DrusController implements DrusService {
     @ResponseBody
     public void countersign(@RequestParam("returnId") Integer returnId) {
         drusMapper.countersign(returnId);
+    }
+
+    /**
+     * 新增商品管理数据
+     * @param commodity
+     */
+    @Override
+    @ResponseBody
+    public void saveCommodity(@RequestBody Commodity commodity) {
+        if(commodity.getId()==null){
+            drusMapper.saveCommodity(commodity);
+        }else{
+            drusMapper.updateCommodity(commodity);
+        }
+
+    }
+
+    /**
+     * 删除商品管理
+     * @param comId
+     */
+    @Override
+    @ResponseBody
+    public void delCommodityById(@RequestParam("comId") Integer comId) {
+        drusMapper.delCommodityById(comId);
+    }
+
+    /**
+     * 回显商品管理
+     * @param comId
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public Commodity queryCommodityById(@RequestParam("comId") Integer comId) {
+        return drusMapper.queryCommodityById(comId);
+    }
+
+    /**
+     * 上下架
+     * @param id
+     * @param commoditystatus
+     */
+    @Override
+    @ResponseBody
+    public void upDownJia(@RequestParam("id") Integer id,@RequestParam("commoditystatus") Integer commoditystatus) {
+        if(commoditystatus == 1){
+            drusMapper.downCommodity(id);
+        }else{
+            drusMapper.updCommodity(id);
+        }
+
+    }
+
+    /**
+     * 批量上架
+     * @param ids
+     */
+    @Override
+    @ResponseBody
+    public void batchShelves(@RequestParam("ids") Integer[] ids) {
+        drusMapper.batchShelves(ids);
+    }
+
+    @Override
+    @ResponseBody
+    public void downShelf(@RequestParam("ids") Integer[] ids) {
+        drusMapper.downShelf(ids);
     }
 }
