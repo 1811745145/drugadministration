@@ -112,4 +112,18 @@ public interface DrusService {
      */
     @RequestMapping("downShelf")
     void downShelf(@RequestParam("ids") Integer[] ids);
+    /**
+     * 查询用户登录数据
+     * @return
+     */
+    @RequestMapping("queryUserBySessionId")
+    UserBean queryUserBySessionId();
+
+    /**
+     * 根据Id修改密码
+     * @param userId
+     * @param newPassword
+     */
+    @RequestMapping("updateUserBySessionId")
+    void updateUserBySessionId(@RequestParam("userId") Integer userId,@RequestParam("newPassword") String newPassword);
 }

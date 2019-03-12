@@ -21,6 +21,37 @@ public class DrusController {
     @Autowired
     private DrusServicefeign drusServicefeign;
     /**
+     * 根据Id修改密码
+     */
+    @RequestMapping("updateUserBySessionId")
+    @ResponseBody
+    public Boolean updateUserBySessionId(@RequestParam("userId") Integer userId,@RequestParam("newPassword")String newPassword){
+        try {
+            drusServicefeign.updateUserBySessionId(userId,newPassword);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 查看登录用户原始密码
+     */
+    @RequestMapping("queryUserBySessionId")
+    @ResponseBody
+    public UserBean queryUserBySessionId(){
+        UserBean userBean = drusServicefeign.queryUserBySessionId();
+        return userBean;
+    }
+    /**
+     * 跳转修改密码页面
+     */
+    @RequestMapping("changePassword")
+    public String changePassword(){
+        return "securitySetting/changePassword";
+    }
+    /**
      * 批量上架
      */
     @RequestMapping("batchShelves")

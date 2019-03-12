@@ -39,4 +39,7 @@ select * from commodity
             #{item}
         </foreach>
     </update>
+    <update id="updateUserBySessionId">
+      update t_user set userPassword = #{newPassword} where userId = #{userId}
+</update>
 </mapper>

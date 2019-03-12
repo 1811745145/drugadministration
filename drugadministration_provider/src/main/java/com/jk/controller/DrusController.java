@@ -194,6 +194,23 @@ public class DrusController implements DrusService{
         drusMapper.downShelf(ids);
     }
 
+    /**
+     * 查询原始密码
+     * @param session
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public UserBean queryUserBySessionId() {
+
+        return drusMapper.queryUserBySessionId();
+    }
+
+    @Override
+    @ResponseBody
+    public void updateUserBySessionId(@RequestParam("userId") Integer userId,@RequestParam("newPassword")String newPassword) {
+        drusMapper.updateUserBySessionId(userId,newPassword);
+    }
 
     /**
      * 缺药登记查询
