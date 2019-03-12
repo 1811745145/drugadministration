@@ -23,36 +23,346 @@
     <script src="../js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
 </head>
 <body>
-<table id="myTable"></table>
+
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class=navbar-header>
+            <br>
+            商品名称：<input type="text" id="name">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            商品编号：<input type="text" id="comId">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            批准文号：<input type="text" id="number"><br><br>&nbsp &nbsp &nbsp &nbsp
+            规格：<input type="text" id="specifications">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            商品状态：<input type="radio" name="comdstatus" value="1">上架
+            <input type="radio" name="comdstatus" value="2">下架
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            审核状态：  <input type="radio" name="audstatus" value="1">待审核
+            <input type="radio" name="audstatus" value="2">已通过
+            <input type="radio" name="audstatus" value="3">未通过
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            <button type="button" class="btn btn-primary" style="width: 80px;height: 80px" onclick="search()">查询</button>
+        </div>
+    </div>
+</nav>
+    <button type="button" class="btn btn-warning" style="width: 160px" onclick="openAdd()">发布商品</button>
+<div class="container-fluid">
+    <div class="row myrow">
+        <table id="myTable"></table>
+    </div>
+    <div class="row myrow">
+        <button type="button" class="btn btn-default" style="width: 160px" onclick="batchShelves()">批量上架</button>
+        <button type="button" class="btn btn-default" style="width: 160px" onclick="downShelf()">批量下架</button>
+    </div>
+</div>
 </body>
 <script>
     $(function(){
         querycommodityList();
     })
+
+    function search(){
+        $("#myTable").bootstrapTable("refresh");
+    }
     //查询地址数据
     function querycommodityList(){
         $('#myTable').bootstrapTable({
             toolbar:'#toolbar',
             url:'../querycommodityList',//获取数据地址
-            queryParams:function(){
+            queryParams: function () {
+                var name = $("#name").val()
+                var comId = $("#comId").val()
+                var number = $("#number").val()
+                var specifications = $("#specifications").val()
+                var comdstatus = $("input:radio[name='comdstatus']:checked").val();
+                var audstatus = $("input:radio[name='audstatus']:checked").val();
                 return {
-
-                };
+                    commodityname:name,
+                    id:comId,
+                    approvalnumber:number,
+                    commodityspecifications:specifications,
+                    commoditystatus:comdstatus,
+                    auditstatus:audstatus
+                }
             },
             columns:[
+                {field:"check",checkbox:true},
                 {field:"id",width:80,align:'center',title:"商品编号"},
-                {field:"commodity_name",width:80,align:'center',title:"商品名称"},
-                {field:"commodity_number",width:80,align:'center',title:"商品货号"},
-                {field:"commodity_specifications",width:80,align:'center',title:"商品规格"},
-                {field:"manufacture_factory",width:80,align:'center',title:"生产厂家"},
-                {field:" approval_number",width:80,align:'center',title:"批准文号"},
-                {field:"supply_price",width:80,align:'center',title:"供应价格"},
-                {field:"commodity_stock",width:80,align:'center',title:"库存"},
-                {field:"release_time",width:80,align:'center',title:"发布时间"},
-                {field:"commodity_status",width:80,align:'center',title:"商品状态"},
-                {field:"audit_status",width:80,align:'center',title:"审核状态"}
+                {field:"commodityname",width:80,align:'center',title:"商品名称"},
+                {field:"commoditynumber",width:80,align:'center',title:"商品货号"},
+                {field:"commodityspecifications",width:80,align:'center',title:"商品规格"},
+                {field:"manufacturefactory",width:80,align:'center',title:"生产厂家"},
+                {field:"approvalnumber",width:80,align:'center',title:"批准文号"},
+                {field:"supplyprice",width:80,align:'center',title:"供应价格"},
+                {field:"commoditystock",width:80,align:'center',title:"库存"},
+                {field:"releasetime",width:80,align:'center',title:"发布时间"},
+                {field:"commoditystatus",width:80,align:'center',title:"商品状态",formatter(value,row,index){
+                    return value == 1 ? "上架" : "下架";
+                    }},
+                {field:"auditstatus",width:80,align:'center',title:"审核状态",formatter(value,row,index){
+                    return value == 1 ? "待审核" : value == 2 ? "已通过" : "未通过"
+                    }},
+                {field:"caozuo",title:"操作",width:160,formatter(value,row,index){
+                    if(row.commoditystatus == 1){
+                        return"<a href='javascript:down("+row.id+","+row.commoditystatus+");'>下架</a>  <a href='javascript:edit("+row.id+");'>编辑</a>  <a href='javascript:deleteOne("+row.id+");'>删除</a>  <a href='javascript:selectOne("+row.id+");'>查看</a>";
+                    }else if(row.commoditystatus == 2){
+                        return"<a href='javascript:down("+row.id+","+row.commoditystatus+");'>上架</a>  <a href='javascript:edit("+row.id+");'>编辑</a>  <a href='javascript:deleteOne("+row.id+");'>删除</a>  <a href='javascript:selectOne("+row.id+");'>查看</a>";
+                        }                    }}
             ]
         })
+    }
+
+    /**
+     * 批量上架
+     * @param id
+     * @param commoditystatus
+     */
+    function batchShelves(){
+            var commoditys = $('#myTable').bootstrapTable("getSelections")
+            if(commoditys.length<=0){
+                bootbox.alert("请选择需要操作的数据")
+                return;
+            }
+            bootbox.confirm("你确定要进行改变吗?", function(result) {
+                if(result){
+                    var ids = "";
+                    for (var i = 0; i < commoditys.length; i++) {
+                        if(commoditys[i].commoditystatus == 1){
+                            bootbox.alert("已上架的不能在上架了,请重新选择")
+                            return;
+                        }else{
+                            ids += ids == "" ? commoditys[i].id : ","+commoditys[i].id
+                        }
+                    }
+                    $.ajax({
+                        url:"../batchShelves",
+                        type:"post",
+                        data:{
+                            ids:ids
+                        },
+                        dataType:"json",
+                        success:function(data){
+                            if(data){
+                                $('#myTable').bootstrapTable('refresh');
+                            }
+                        }
+                    })
+                }
+            });
+    }
+    //批量下架
+    function downShelf(){
+        var commoditys = $('#myTable').bootstrapTable("getSelections")
+        if(commoditys.length<=0){
+            bootbox.alert("请选择需要操作的数据")
+            return;
+        }
+        bootbox.confirm("你确定要进行改变吗?", function(result) {
+            if(result){
+                var ids = "";
+                for (var i = 0; i < commoditys.length; i++) {
+                    if(commoditys[i].commoditystatus == 2){
+                        bootbox.alert("已上架的不能在下架了,请重新选择")
+                        return;
+                    }else{
+                        ids += ids == "" ? commoditys[i].id : ","+commoditys[i].id
+                    }
+                }
+                $.ajax({
+                    url:"../downShelf",
+                    type:"post",
+                    data:{
+                        ids:ids
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        if(data){
+                            $('#myTable').bootstrapTable('refresh');
+                        }
+                    }
+                })
+            }
+        });
+    }
+
+
+
+    //下架
+    function down(id,commoditystatus){
+        alert(commoditystatus);
+        $.ajax({
+            url:'../upDownJia',
+            type:'post',
+            data:{
+                id:id,
+                commoditystatus:commoditystatus
+            },
+            dataType:'json',
+            success:function(data){
+                if(data){
+                    $("#myTable").bootstrapTable("refresh");
+                }
+            }
+        })
+    }
+    //删除商品管理根据Id
+    function deleteOne(comId){
+        bootbox.confirm("你确定要删除吗?", function(result) {
+            if(result){
+                $.ajax({
+                    url:'../delCommodityById',
+                    type:'DELETE',
+                    data:{
+                        comId:comId
+                    },
+                    dataType:'json',
+                    success:function(data){
+                        if(data){
+                            $("#myTable").bootstrapTable("refresh");
+                        }
+                    }
+                })
+            }
+        })
+    }
+    //查询页面
+    function createAddContent(url){
+        $.ajax({
+            url:url,
+            async:false,
+            success:function(data){
+                res = data;
+            }
+        });
+        return res;
+    }
+    var res;
+    //打开修改弹框
+    function edit(comId){
+        var url="../toAddcommodity";
+        bootbox.dialog({
+            title:'编辑信息',
+            message: createAddContent(url),
+            closeButton: true,
+            buttons : {
+                "success" : {
+                    "label" : "<i class='icon-ok'></i> 保存",
+                    "className" : "btn-sm btn-success",
+                    "callback" : function() {
+                        var id = $("#id").val();
+                        var commodityname = $("#commodityname").val();
+                        var commoditynumber = $("#commoditynumber").val();
+                        var commodityspecifications = $("#commodityspecifications").val();
+                        var manufacturefactory = $("#manufacturefactory").val();
+                        var approvalnumber = $("#approvalnumber").val();
+                        var supplyprice = $("#supplyprice").val();
+                        var commoditystock = $("#commoditystock").val();
+                        var releasetime = $("#releasetime").val();
+                        var commoditystatus = $("input:radio[name='commoditystatus']:checked").val();
+                        var auditstatus = $("input:radio[name='auditstatus']:checked").val();
+                        $.ajax({
+                            url:'../saveCommodity',
+                            type:'post',
+                            data:JSON.stringify(
+                                {'id':id,'commodityname':commodityname,'commoditynumber':commoditynumber,'commodityspecifications':commodityspecifications,'manufacturefactory':manufacturefactory,'approvalnumber':approvalnumber,'supplyprice':supplyprice,'commoditystock':commoditystock,'releasetime':releasetime,'commoditystatus':commoditystatus,'auditstatus':auditstatus}),
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            dataType:'json',
+                            success:function(data){
+                                if(data){
+                                    $("#myTable").bootstrapTable("refresh");
+                                }
+                            }
+                        });
+                    }
+                },
+                "cancel" : {
+                    "label" : "<i class='icon-info'></i> 取消",
+                    "className" : "btn-sm btn-danger",
+                    "callback" : function() {
+
+                    }
+                }
+            }
+        });
+        $.ajax({
+            url:'../queryCommodityById',
+            type:'post',
+            async:false,
+            data:{comId:comId},
+            success:function(data){
+                $("#commodityname").val(data.commodityname);
+                $("#commoditynumber").val(data.commoditynumber);
+                $("#commodityspecifications").val(data.commodityspecifications);
+                $("#manufacturefactory").val(data.manufacturefactory);
+                $("#approvalnumber").val(data.approvalnumber);
+                $("#supplyprice").val(data.supplyprice);
+                $("#commoditystock").val(data.commoditystock);
+                $("#releasetime").val(data.releasetime);
+                $("#id").val(data.id);
+                $(":input[name='commoditystatus']").each(function(){
+                    var val = $(this).val();
+                    if(val==data.commoditystatus){
+                        $(this).prop("checked",true);
+                    }
+                });
+                $(":input[name='auditstatus']").each(function(){
+                    var val = $(this).val();
+                    if(val==data.auditstatus){
+                        $(this).prop("checked",true);
+                    }
+                })
+            }
+        })
+    }
+
+    //打开新增弹框
+    function openAdd(){
+        var url="../toAddcommodity";
+        bootbox.dialog({
+            title:'发布商品',
+            message: createAddContent(url),
+            closeButton: true,
+            buttons : {
+                "success" : {
+                    "label" : "<i class='icon-ok'></i> 保存",
+                    "className" : "btn-sm btn-success",
+                    "callback" : function() {
+                        var commodityname = $("#commodityname").val();
+                        var commoditynumber = $("#commoditynumber").val();
+                        var commodityspecifications = $("#commodityspecifications").val();
+                        var manufacturefactory = $("#manufacturefactory").val();
+                        var approvalnumber = $("#approvalnumber").val();
+                        var supplyprice = $("#supplyprice").val();
+                        var commoditystock = $("#commoditystock").val();
+                        var releasetime = $("#releasetime").val();
+                        var commoditystatus = $("input:radio[name='commoditystatus']:checked").val();
+                        var auditstatus = $("input:radio[name='auditstatus']:checked").val();
+                        $.ajax({
+                            url:'../saveCommodity',
+                            type:'post',
+                            data:JSON.stringify(
+                                {'commodityname':commodityname,'commoditynumber':commoditynumber,'commodityspecifications':commodityspecifications,'manufacturefactory':manufacturefactory,'approvalnumber':approvalnumber,'supplyprice':supplyprice,'commoditystock':commoditystock,'releasetime':releasetime,'commoditystatus':commoditystatus,'auditstatus':auditstatus}),
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            dataType:'json',
+                            success:function(data){
+                                if(data){
+                                    $("#myTable").bootstrapTable("refresh");
+                                }
+                            }
+                        });
+                    }
+                },
+                "cancel" : {
+                    "label" : "<i class='icon-info'></i> 取消",
+                    "className" : "btn-sm btn-danger",
+                    "callback" : function() {
+
+                    }
+                }
+            }
+        });
     }
 </script>
 </html>

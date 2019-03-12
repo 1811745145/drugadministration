@@ -72,5 +72,60 @@ public interface DrusMapper {
      * 查询商品管理
      * @return
      */
-    List<Commodity> querycommodityList();
+    List<Commodity> querycommodityList(Commodity commodity);
+
+    /**
+     * 新增商品管理数据
+     * @param commodity
+     */
+    @Insert(" insert into commodity(commodityname,commoditynumber,commodityspecifications,manufacturefactory,approvalnumber,supplyprice,commoditystock,releasetime,commoditystatus,auditstatus)values(#{commodityname},#{commoditynumber},#{commodityspecifications},#{manufacturefactory},#{approvalnumber},#{supplyprice},#{commoditystock},#{releasetime},#{commoditystatus},#{auditstatus}) ")
+    void saveCommodity(Commodity commodity);
+
+    /**
+     * 删除商品管理
+     * @param comId
+     */
+    @Delete(" delete from commodity where id = #{value} ")
+    void delCommodityById(Integer comId);
+
+    /**
+     * 回显商品管理
+     * @param comId
+     * @return
+     */
+    @Select(" select * from commodity where id = #{value} ")
+    Commodity queryCommodityById(Integer comId);
+
+    /**
+     * 修改商品管理
+     * @param commodity
+     */
+    @Update(" update commodity set commodityname = #{commodityname},commoditynumber = #{commoditynumber},commodityspecifications = #{commodityspecifications},manufacturefactory = #{manufacturefactory},approvalnumber = #{approvalnumber},supplyprice = #{supplyprice},commoditystock = #{commoditystock},releasetime = #{releasetime},commoditystatus = #{commoditystatus},auditstatus = #{auditstatus} where id = #{id} ")
+    void updateCommodity(Commodity commodity);
+
+    /**
+     * 下架
+     * @param id
+     */
+    @Update(" update commodity set commoditystatus = 2  where id = #{value}")
+    void downCommodity(Integer id);
+
+    /**
+     * 上架
+     * @param id
+     */
+    @Update(" update commodity set commoditystatus = 1  where id = #{value}")
+    void updCommodity(Integer id);
+
+    /**
+     * 批量上架
+     * @param ids
+     */
+    void batchShelves(Integer[] ids);
+
+    /**
+     * 批量下架
+     * @param ids
+     */
+    void downShelf(Integer[] ids);
 }

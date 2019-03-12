@@ -3,5 +3,40 @@
 <mapper namespace="com.jk.mapper.DrusMapper">
 <select id="querycommodityList" resultType="com.jk.pojo.Commodity">
 select * from commodity
+<include refid="commodityWhere"></include>
 </select>
+    <sql id="commodityWhere">
+        <where>
+            <if test="commodityname != null and commodityname != ''">
+                and commodityname like '%${commodityname}%'
+            </if>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="approvalnumber != null and approvalnumber != ''">
+                and approvalnumber = #{approvalnumber}
+            </if>
+            <if test="commodityspecifications != null and commodityspecifications != ''">
+                and commodityspecifications = #{commodityspecifications}
+            </if>
+            <if test="commoditystatus != null and commoditystatus != ''">
+                and commoditystatus = #{commoditystatus}
+            </if>
+            <if test="auditstatus != null and auditstatus != ''">
+                and auditstatus = #{auditstatus}
+            </if>
+        </where>
+    </sql>
+<update id="batchShelves">
+     update commodity set commoditystatus = 1 where id in
+     <foreach collection="array" close=")" open="(" separator="," item="item">
+         #{item}
+     </foreach>
+</update>
+    <update id="downShelf">
+        update commodity set commoditystatus = 2 where id in
+        <foreach collection="array" close=")" open="(" separator="," item="item">
+            #{item}
+        </foreach>
+    </update>
 </mapper>
