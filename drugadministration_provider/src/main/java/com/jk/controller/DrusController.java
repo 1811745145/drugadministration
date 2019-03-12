@@ -112,20 +112,9 @@ public class DrusController implements DrusService{
      */
     @Override
     @ResponseBody
-    public List<Commodity> querycommodityList(Commodity commodity) {
-        return drusMapper.querycommodityList();
+    public List<Commodity> querycommodityList(@RequestBody Commodity commodity) {
+        return drusMapper.querycommodityList(commodity);
     }
-
-    /**
-     * 查询商品管理
-     * @return
-     */
-    /*@Override
-    @ResponseBody
-    public List<Commodity> querycommodityList() {
-
-        return drusMapper.querycommodityList();
-    }*/
 
     /**
      * 退货商品状态

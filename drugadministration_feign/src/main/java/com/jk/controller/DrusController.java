@@ -20,8 +20,6 @@ import java.util.concurrent.TimeUnit;
 public class DrusController {
     @Autowired
     private DrusServicefeign drusServicefeign;
-    @Autowired
-    private RedisTemplate redisTemplate;
     /**
      * 批量上架
      */
@@ -203,23 +201,7 @@ public class DrusController {
     @RequestMapping("queryaddressList")
     @ResponseBody
     public List<Address> queryaddressList(){
-        //创建一个集合
-        List<Address> list = new ArrayList<>();
-        //定义一个常量
-        String cacheKay = ConstantUtil.CACHE_ADDRESS_SELE;
-        //判断key是否存在
-        Boolean hasKey = redisTemplate.hasKey(cacheKay);
-        if(hasKey){
-            //如果存在则取出list集合
-          list = (List<Address>) redisTemplate.opsForValue().get(cacheKay);
-        }else{
-            //不存在去数据库查询然后set到常量里面
-          list = drusServicefeign.queryaddressList();
-          redisTemplate.opsForValue().set(cacheKay,list);
-          //设置过期时间
-          redisTemplate.expire(cacheKay, 30, TimeUnit.MINUTES);
-        }
-        return list;
+        return drusServicefeign.queryaddressList();
     }
 
 
