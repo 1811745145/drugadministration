@@ -5,6 +5,7 @@ package com.jk.pojo;
 public class MedicineSupplierBean {
 private     Integer      supplierId;//   商家id
 private    String       supplierName;// 商家名字
+    private   Integer      test;
 
     public Integer getSupplierId() {
         return supplierId;
