@@ -143,4 +143,26 @@ public interface DrusMapper {
      * @param newPassword
      */
     void updateUserBySessionId(@Param("userId") Integer userId, @Param("newPassword") String newPassword);
+
+    /**
+     * 发布缺药登记
+     * @return
+     */
+    void addProduct(ProductBuy productBuy);
+
+    /**
+     * 回显发布缺药登记
+     * @param drug_Id
+     * @return
+     */
+    ProductBuy queryProductuyBuy(Integer drug_Id);
+
+    /**
+     * 修改发布缺药登记
+     * @param productBuy
+     * @return
+     */
+    void updeteProductuyBuy(ProductBuy productBuy);
+
+    void delProductuyBuy(Integer drug_Id);
 }

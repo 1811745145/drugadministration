@@ -112,6 +112,19 @@ public interface DrusService {
      */
     @RequestMapping("downShelf")
     void downShelf(@RequestParam("ids") Integer[] ids);
+
+    /**
+     *发布缺药登记
+     * @param productBuy
+     */
+    @PostMapping("addProduct")
+    void addProduct(ProductBuy productBuy);
+
+    @RequestMapping("queryProductuyBuy")
+    ProductBuy queryProductuyBuy(@RequestParam("drug_Id") Integer drug_Id);
+
+    @RequestMapping("delProductuyBuy")
+    void delProductuyBuy(@RequestParam("id") Integer id);
     /**
      * 查询用户登录数据
      * @return

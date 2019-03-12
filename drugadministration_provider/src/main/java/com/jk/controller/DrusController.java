@@ -222,4 +222,35 @@ public class DrusController implements DrusService{
 
         return drusMapper.queryProductList();
     }
+
+    /**
+     * 发布缺药登记
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public void addProduct(@RequestBody ProductBuy productBuy) {
+        if (productBuy.getDrug_Id()==null) {
+            drusMapper.addProduct(productBuy);
+        } else {
+            drusMapper.updeteProductuyBuy(productBuy);
+        }
+    }
+
+    /**
+     * 回显发布缺药登记
+     * @param drug_Id
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public ProductBuy queryProductuyBuy(@RequestParam("drug_Id") Integer drug_Id) {
+        return drusMapper.queryProductuyBuy(drug_Id);
+    }
+
+    @Override
+    @ResponseBody
+    public void delProductuyBuy(@RequestParam("id") Integer id) {
+        drusMapper.delProductuyBuy(id);
+    }
 }

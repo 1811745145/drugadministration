@@ -20,6 +20,10 @@ import java.util.concurrent.TimeUnit;
 public class DrusController {
     @Autowired
     private DrusServicefeign drusServicefeign;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     /**
      * 根据Id修改密码
      */
@@ -276,11 +280,88 @@ public class DrusController {
 
     /**
      * 缺药登记查询
+     * redis缓存
      * @return
      */
     @GetMapping("queryProductList")
     @ResponseBody
     public List<ProductBuy> queryProductList(){
-        return drusServicefeign.queryProductList();
+        /*return drusServicefeign.queryProductList();*/
+
+        //创建一个集合
+        List<ProductBuy> list = new ArrayList<>();
+        //定义一个常量
+        String product = ConstantUtil.CACHE_ADDRESS_SELE;
+        //判断key是否存在
+        Boolean hasKey = redisTemplate.hasKey(product);
+        if(hasKey){
+            //如果存在则取出list集合
+            list = (List<ProductBuy>) redisTemplate.opsForValue().get(product);
+        }else{
+            //不存在去数据库查询然后set到常量里面
+            list = drusServicefeign.queryProductList();
+            redisTemplate.opsForValue().set(product,list);
+            //设置过期时间
+            redisTemplate.expire(product, 30, TimeUnit.MINUTES);
+        }
+        return list;
+    }
+
+    /**
+     * 缺药登记查询跳页面
+     * @return
+     */
+    @RequestMapping("toDrugList")
+    public String toDrugList(){
+        return "productuyBuyList";
+    }
+
+    /**
+     * 发布缺药登记 没id是新增 有id是修改
+     * @return
+     */
+    @PostMapping("addProduct")
+    @ResponseBody
+    public Boolean addProduct(@RequestBody ProductBuy productBuy){
+        try {
+            drusServicefeign.addProduct(productBuy);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 发布缺药登记跳页面
+     * @return
+     */
+    @RequestMapping("toAddProductuyBuy")
+    public String toAddProductuyBuy(){
+        return "addProductuyBuy";
+    }
+
+    /**
+     * 发布缺药登记 根据id查询 回显
+     */
+    @RequestMapping("queryProductuyBuy")
+    @ResponseBody
+    public ProductBuy queryProductuyBuy(@RequestParam("drug_Id")Integer drug_Id){
+        return drusServicefeign.queryProductuyBuy(drug_Id);
+    }
+
+    /**
+     * 根据Id删除缺药登记数据
+     */
+    @RequestMapping("delProductuyBuy")
+    @ResponseBody
+    public Boolean delProductuyBuy(@RequestParam("id")Integer id){
+        try {
+            drusServicefeign.delProductuyBuy(id);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

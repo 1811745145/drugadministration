@@ -43,7 +43,6 @@
         <div class="form-group">
         </div>
     </form>
-    <button type="button" Class="btn btn-info glyphicon glyphicon-plus" onclick="addDialog()">评论</button>
 </div>
 
 <table id="myTablke"></table>
@@ -105,11 +104,7 @@
                         }else if (dispatching_Type == 2) {
                             return "交易完成";
                         }
-                    }},
-                {field: "123", title: "操作", width: '10%', formatter: function (value, row, index) {
-                            return '<input type="button" Class="btn btn-info glyphicon glyphicon-plus"  value="查看" onclick="removeUser(\''+row.id+'\')">';
-                    }
-                }
+                    }}
             ]
         })
     }

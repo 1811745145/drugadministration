@@ -21,8 +21,47 @@
     </update>
 
     <select id="queryProductList" resultType="com.jk.pojo.ProductBuy">
-        select * from product_buy
+        select * from register_drug
     </select>
 
+    <insert id="addProduct" parameterType="com.jk.pojo.ProductBuy">
+        insert into register_drug
+          (
+          drug_Name,
+          manufacturers_Name,
+          specifications,
+          area,
+          contacts,
+          phone
+          )
+        values
+          (
+          #{drug_Name},
+          #{manufacturers_Name},
+          #{specifications},
+          #{area},
+          #{contacts},
+          #{phone}
+          )
+    </insert>
 
+    <select id="queryProductuyBuy" resultType="com.jk.pojo.ProductBuy">
+        select * from register_drug where drug_Id = #{value}
+    </select>
+    
+    <update id="updeteProductuyBuy" parameterType="com.jk.pojo.ProductBuy">
+        update register_drug set
+          drug_Name = #{drug_Name},
+          manufacturers_Name = #{manufacturers_Name},
+          specifications = #{specifications},
+          area = #{area},
+          contacts = #{contacts},
+          phone = #{phone}
+        where drug_Id = #{drug_Id}
+
+    </update>
+
+    <delete id="delProductuyBuy" parameterType="int">
+        delete from register_drug where drug_Id = #{value}
+    </delete>
 </mapper>
