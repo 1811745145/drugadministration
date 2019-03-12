@@ -9,9 +9,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableEurekaClient
 @MapperScan("com.jk.mapper")
 public class RugpurchaseServerApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(RugpurchaseServerApplication.class, args);
     }
-
 }

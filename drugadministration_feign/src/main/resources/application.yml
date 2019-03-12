@@ -20,4 +20,4 @@ redis:
     max-idle: 8      # 连接池中的最大空闲连接
     min-idle: 0       # 连接池中的最小空闲连接
   mongodb:
-    uri: mongodb://name:password@localhost:27017/test
+    uri: mongodb://name:password@//192.168.101.64:27017/test

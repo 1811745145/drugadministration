@@ -71,7 +71,7 @@ public class DrusController {
      */
     @RequestMapping("PageDrugPurchase")
     public String PageDrugPurchase(){
-        return "DrugPurchase/DrugPurchaseShow";
+        return "DrugPurchaseShow";
     }
 
     /**

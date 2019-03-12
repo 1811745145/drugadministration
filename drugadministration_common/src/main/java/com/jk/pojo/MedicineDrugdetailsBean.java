@@ -15,6 +15,7 @@ public class MedicineDrugdetailsBean {
     private     String           expiryDate;                  //有效期限；
     private     Integer          drugdetailsquantity;        //包装数量
     private     Integer          drugdetailsnventory;         //库存
+    private     String           type;                  //药品类U型；
 
     public Integer getDrugdetailsid() {
         return drugdetailsid;
@@ -96,6 +97,14 @@ public class MedicineDrugdetailsBean {
         this.drugdetailsnventory = drugdetailsnventory;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "MedicineDrugdetailsBean{" +
@@ -109,6 +118,7 @@ public class MedicineDrugdetailsBean {
                 ", expiryDate='" + expiryDate + '\'' +
                 ", drugdetailsquantity=" + drugdetailsquantity +
                 ", drugdetailsnventory=" + drugdetailsnventory +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

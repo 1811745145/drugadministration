@@ -1,12 +1,14 @@
 package com.jk.service;
 
 import com.jk.pojo.MedicineDrugdetailsBean;
+import com.jk.pojo.MedicineOrderlistBean;
 import com.jk.pojo.MedicineSupplierBean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -18,4 +20,15 @@ public interface DrugPurchaseService {
     /* 查询厂商信息*/
     @RequestMapping("QuerySupplierBean")
     List<MedicineSupplierBean> QuerySupplierBean();
+    /*新增购物车*/
+    @RequestMapping("AddShoppingCart")
+    void AddShoppingCart(@RequestParam("supplierId")Integer supplierId,@RequestParam("boxCount") Integer boxCount,@RequestParam("drugdetailsid")Integer drugdetailsid);
+
+    /*查询购物车*/
+    @RequestMapping("SelectShoppingCart")
+    HashMap<String, Object> SelectShoppingCart();
+
+   /*查询采购订单*/
+    @RequestMapping("SelectDrugPurchaseList")
+    List<MedicineOrderlistBean> SelectDrugPurchaseList(MedicineOrderlistBean medicineOrderlistBean);
 }
