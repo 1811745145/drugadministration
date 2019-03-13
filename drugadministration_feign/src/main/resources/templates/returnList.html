@@ -31,8 +31,8 @@
         margin-top: 5px;
     }
 </style>
-<button type="button" Class="btn btn-danger glyphicon glyphicon-minus" onclick="delUser()">删除</button>
-<button type="button" Class="btn btn-info glyphicon glyphicon-plus" onclick="addDialog()">新增</button>
+<!--<button type="button" Class="btn btn-danger glyphicon glyphicon-minus" onclick="delUser()">删除</button>
+<button type="button" Class="btn btn-info glyphicon glyphicon-plus" onclick="addDialog()">新增</button>-->
 <body>
 <table id="myTablke"></table>
 
@@ -84,24 +84,21 @@
                         }
                     }
                 },
-                /*{field:'returnImg',title:'商品图片',width: '7%',formatter:function(value,row,index){
-                        return '<img width="70px" height="50px" src="'+value+'"/>'
-                }},*/
-                /* 图片 */
-                {field:'returnImg',title:'商品图片',align:'center',sortable:true,
+                {field:'returnImg',title:'商品图片',formatter:function(value,row,index){
+                        return '<img width="40px" height="20px" src="'+value+'" />'
+                }},
+                /*{field:'returnImg',title:'商品图片',align:'center',sortable:true,
                     formatter: function(value,row,index){
                         console.info(index)
                         return "<img src='/"+value+"' width='100px'/>";
                     }
-                },
+                },*/
                 {field: "123", title: "操作", width: '10%', formatter: function (value, row, index) {
                         var returnType = row.returnType;
                         if (returnType == 0){/*<a href='javascript:countersign("+row.returnId+");'>确认</a>*/
                             return '' +
-                                '<input type="button" Class="btn btn-info glyphicon glyphicon-plus"  value="确认" onclick="countersign('+row.returnId+')"> | ' +
-                                '<input type="button" Class="btn btn-info glyphicon glyphicon-plus"  value="修改" onclick="updates('+row.returnId+')">' ;
+                                '<input type="button" Class="btn btn-info glyphicon glyphicon-plus"  value="确认" onclick="countersign('+row.returnId+')">';
                         } else if (returnType == 1) {
-                            return '<input type="button" Class="btn btn-info glyphicon glyphicon-plus"  value="修改" onclick="updates('+row.returnId+')">';
                         }
 
                     }
@@ -129,7 +126,7 @@
     }
 
 
-    /*批量删除*/
+   /* /!*批量删除*!/
     function delUser() {
         var arr = $('#myTablke').bootstrapTable('getSelections');
         if (arr.length <= 0) {
@@ -183,7 +180,7 @@
         })
     }
 
-    /* 新曾跳转 */
+    /!* 新曾跳转 *!/
     var res;
 
     function createAddContent(url) {
@@ -214,7 +211,7 @@
                             //新增路径
                             url: '/tree/saveCollege',
                             type: 'post',
-                            /* 新曾页面form ↓*/
+                            /!* 新曾页面form ↓*!/
                             data: $("#addForm").serialize(),
                             dataType: 'json',
                             success: function (data) {
@@ -294,7 +291,7 @@
                 editFileInput(data.img)
             }
         })
-    }
+    }*/
 
 </script>
 </html>

@@ -1,10 +1,7 @@
 package com.jk.mapper;
 
 import com.jk.pojo.*;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -132,4 +129,40 @@ public interface DrusMapper {
      * @return
      */
     List<ProductBuy> queryProductList();
+
+    /**
+     * 根据Id查询用户信息
+     * @return
+     */
+    @Select(" select * from t_user where userId = 1 ")
+    UserBean queryUserBySessionId();
+
+    /**
+     * 根据Id新修改用户密码
+     * @param userId
+     * @param newPassword
+     */
+    void updateUserBySessionId(@Param("userId") Integer userId, @Param("newPassword") String newPassword);
+
+    /**
+     * 发布缺药登记
+     * @return
+     */
+    void addProduct(ProductBuy productBuy);
+
+    /**
+     * 回显发布缺药登记
+     * @param drug_Id
+     * @return
+     */
+    ProductBuy queryProductuyBuy(Integer drug_Id);
+
+    /**
+     * 修改发布缺药登记
+     * @param productBuy
+     * @return
+     */
+    void updeteProductuyBuy(ProductBuy productBuy);
+
+    void delProductuyBuy(Integer drug_Id);
 }

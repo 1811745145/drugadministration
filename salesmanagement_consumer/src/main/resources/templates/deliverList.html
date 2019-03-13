@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入核心js -->
+    <script src="/js/jquery-2.1.1.min.js" ></script>
+    <!-- bootstrap  -->
+    <script src="/js/bootstrap/bootstrap3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap/bootstrap3/css/bootstrap.css"/>
+    <!-- 左侧导航树 -->
+    <link rel="stylesheet" href="/js/bootstrap/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="/js/bootstrap/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+    <!-- 选项卡 -->
+    <link rel="stylesheet" href="/js/bootstrap/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="/js/bootstrap/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap/bootstrap-table/bootstrap-table.css">
+    <script src="/js/bootstrap/bootstrap-table/bootstrap-table.js"></script>
+    <script src="/js/bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="/js/bootstrap/bootstrap-bootbox/bootbox.js"></script>
+    <script src="/js/bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="/js/bootstrap/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script src="/js/bootstrap/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="/js/bootstrap/bootstrap-fileinput/js/locales/zh.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap/bootstrap-fileinput/css/fileinput.css">
+    <title>发货查询</title>
+</head>
+<style>
+    .add-dialog {
+        width: 800px;
+    }
+
+    .row {
+        margin-top: 5px;
+    }
+</style>
+<body>
+<!--条查-->
+<input type="hidden" id="id">
+<div class="form-group" style="float:left;margin-left:10px">
+    <label for="tradeName">商品名称:</label>
+    <input type="text" class="form-control" id="tradeName" placeholder="请输入商品名称">
+</div>
+<div class="form-group" style="float:left;margin-left:10px">
+    <label for="purchaser">采购商:</label>
+    <input type="text" class="form-control" id="purchaser" placeholder="请输入采购商">
+</div>
+<div class="form-group" style="float:left;margin-left:10px">
+    <label for="startDate">下单时间:</label>
+    <input type="text" class="form-control date" id="startDate" placeholder="请输入开始时间">
+</div>
+<div class="form-group" style="float:left;margin-left:10px">
+    <label for="stopDate">至</label>
+    <input type="text" class="form-control date" id="stopDate" placeholder="请输入结束时间">
+</div>
+<div class="form-group" style="float:left;margin-left:10px;margin-top:15px">
+    <button type="button" Class="btn btn-info glyphicon glyphicon-search" onclick="searUser()">查询</button>
+</div>
+
+<!--查询-->
+<table id="myTablke"></table>
+</body>
+<script type="text/javascript">
+
+    /* 页面加载 */
+    $(function () {
+        initMyTable();
+    });
+
+    /* 条件查询 */
+    function searUser(){
+        $('#myTablke').bootstrapTable('refresh');
+    }
+
+    /* 页面查询 */
+    function initMyTable() {
+        $("#myTablke").bootstrapTable({
+            url: '/deliver/getDeliver',
+            pagination: true, //是否展示分页
+            pageList: [1, 3, 10, 20, 50],//分页组件
+            pageNumber: 1,
+            pageSize: 3,//默认每页条数
+            //search:true,//是否显示搜索框
+            //searchText:'试试',//初始化搜索文字
+            showColumns: false,//是否显示 内容列下拉框
+            showToggle: false,//是否显示 切换试图（table/card）按钮
+            showPaginationSwitch: false,//是否显示 数据条数选择框
+            showRefresh: false,//是否显示刷新按钮
+            detailView: false,//设置为 true 可以显示详细页面模式。
+            showFooter: false,//是否显示列脚
+            clickToSelect: true, //是否启用点击选中行
+            sidePagination: 'server',//分页方式：client客户端分页，server服务端分页（*
+            striped: true,
+            queryParams: function () {
+                var name = $("#tradeName").val();
+                var pur = $("#purchaser").val();
+                var startDate = $("#startDate").val();
+                var stopDate = $("#stopDate").val();
+                return {
+                    page: this.pageNumber,
+                    rows: this.pageSize,
+                    tradeName:name,
+                    purchaser:pur,
+                    startDate:startDate,
+                    stopDate:stopDate,
+                }
+            },
+            columns: [
+                {field: 'id', title: '主键ID', width: '5%'},
+                {field: 'tradeName', title: '商品名称', width: '10%'},
+                {field: 'purchaser', title: '采购商', width: '10%'},
+                {field: 'approvalNumber', title: '批准文号', width: '10%'},
+                {field: 'commoditySpecifications', title: '商品规格', width: '10%'},
+                {field: 'purchaseQuantity', title: '购买数量', width: '5%'},
+                {field: 'quantityShipped', title: '发货数量', width: '5%'},
+                {field: 'unitPrice', title: '单价', width: '5%'},
+                {field: 'total', title: '合计', width: '10%'},
+                {field: 'orderTime', title: '下单时间', width: '15%'},
+                {field: 'deliveryTime', title: '发货时间', width: '15%'}
+            ]
+        })
+    }
+
+    $('.date').datetimepicker({
+        language: 'zh-CN',//显示中文
+        format: 'yyyy-mm-dd',//显示格式
+        minView: "month",//设置只显示到月份
+        initialDate: new Date(),//初始化当前日期
+        autoclose: true,//选中自动关闭
+        todayBtn: true//显示今日按钮
+    });
+
+</script>
+</html>

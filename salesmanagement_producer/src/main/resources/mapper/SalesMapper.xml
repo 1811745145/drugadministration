@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.SalesMapper">
+
+<!--销售统计数量 -->
+<select id="querySalesCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+     select count(*) from t_sales t where 1 = 1
+      <include refid="sqlwhere"></include>
+
+</select>
+<!--销售分页查询 -->
+<select id="querySalesList" parameterType="map" resultType="com.jk.pojo.SalesBean">
+      select t.id,t.photo,t.order_number as orderNumber,t.procurement_goods as procurementGoods,
+      t.commodity_specifications as commoditySpecifications,
+      t.order_time as orderTime,t.payment_time as paymentTime,t.purchaser,
+      t.purchase_quantity as purchaseQuantity,t.promote_product as promoteProduct,
+      t.activities_product as activitiesProduct,t.funds_received as fundsReceived,
+      t.order_status as orderStatus from t_sales t
+      where 1 = 1
+      <include refid="sqlwhere"></include>
+      limit #{startIndex},#{endIndex}
+</select>
+<sql id="sqlwhere">
+            <if test="salesBean.orderNumber !=null and salesBean.orderNumber!=''">
+                  and t.order_number like '%${salesBean.orderNumber}%'
+            </if>
+            <if test="salesBean.purchaser !=null and salesBean.purchaser!=''">
+                  and t.purchaser like '%${salesBean.purchaser}%'
+            </if>
+            <if test="salesBean.startDate!=null and salesBean.startDate!=''">
+                  and t.return_time >= STR_TO_DATE(#{salesBean.startDate}, '%Y-%m-%d')
+            </if>
+            <if test="salesBean.stopDate!=null and salesBean.stopDate!=''">
+                  and t.return_time &lt;= STR_TO_DATE(#{salesBean.stopDate}, '%Y-%m-%d')
+            </if>
+</sql>
+</mapper>

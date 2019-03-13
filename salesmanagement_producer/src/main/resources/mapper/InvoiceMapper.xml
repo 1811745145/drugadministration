@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.InvoiceMapper">
+
+<!--发票统计数量 -->
+<select id="queryInvoiceCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select count(*) from t_invoice t
+        where 1 = 1
+        <include refid="sqlwhere"></include>
+</select>
+<!--发票分页查询 -->
+<select id="queryInvoiceList" parameterType="map" resultType="com.jk.pojo.InvoiceBean">
+        select t.id,t.invoice_type as invoiceType,t.order_number as orderNumber,
+        t.order_time as orderTime,t.sourcing_company as sourcingCompany,
+        t.sourcing_name as sourcingName,t.invoice_state as invoiceState,
+        t.invoice_content as invoiceContent,t.invoice_amount as invoiceAmount
+        from t_invoice t
+        where 1 = 1
+        <include refid="sqlwhere"></include>
+        limit #{startIndex},#{endIndex}
+</select>
+        <sql id="sqlwhere">
+                <if test="invoiceBean.orderTime !=null and invoiceBean.orderTime!=''">
+                        and t.order_time like '%${invoiceBean.orderTime}%'
+                </if>
+
+                <if test="invoiceBean.invoiceState != null and invoiceBean.invoiceState != '' and invoiceBean.invoiceState != -1">
+                       and t.invoice_state = #{invoiceBean.invoiceState}
+                </if>
+               <if test="invoiceBean.orderNumber !=null and invoiceBean.orderNumber!=''">
+                        and t.order_number like '%${invoiceBean.orderNumber}%'
+                </if>
+                <if test="invoiceBean.sourcingName !=null and invoiceBean.sourcingName!=''">
+                        and t.sourcing_name like '%${invoiceBean.sourcingName}%'
+                </if>
+        </sql>
+</mapper>

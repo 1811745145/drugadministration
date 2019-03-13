@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.DeliverMapper">
+
+<!--发货统计数量 -->
+<select id="queryDeliverCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select count(*) from t_deliver t
+        where 1 = 1
+        <include refid="sqlwhere"></include>
+
+</select>
+<!--发货分页查询 -->
+<select id="queryDeliverList" parameterType="map" resultType="com.jk.pojo.DeliverBean">
+    select t.id,t.trade_name as tradeName,t.purchaser,t.approval_number as approvalNumber,
+    t.commodity_specifications as commoditySpecifications,
+    t.purchase_quantity as purchaseQuantity,t.quantity_shipped as quantityShipped,
+    t.unit_price as unitPrice,t.total,t.order_time as orderTime,
+    t.delivery_time as deliveryTime
+    from t_deliver t
+    where 1 = 1
+    <include refid="sqlwhere"></include>
+    limit #{startIndex},#{endIndex}
+</select>
+<sql id="sqlwhere">
+    <if test="deliverBean.tradeName !=null and deliverBean.tradeName!=''">
+      and t.trade_name like '%${deliverBean.tradeName}%'
+    </if>
+    <if test="deliverBean.purchaser !=null and deliverBean.purchaser!=''">
+        and t.purchaser like '%${deliverBean.purchaser}%'
+    </if>
+    <if test="deliverBean.startDate!=null and deliverBean.startDate!=''">
+        and t.order_time >= STR_TO_DATE(#{deliverBean.startDate}, '%Y-%m-%d')
+    </if>
+    <if test="deliverBean.stopDate!=null and deliverBean.stopDate!=''">
+        and t.order_time &lt;= STR_TO_DATE(#{deliverBean.stopDate}, '%Y-%m-%d')
+    </if>
+</sql>
+</mapper>

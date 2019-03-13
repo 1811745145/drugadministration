@@ -112,20 +112,9 @@ public class DrusController implements DrusService{
      */
     @Override
     @ResponseBody
-    public List<Commodity> querycommodityList(Commodity commodity) {
-        return drusMapper.querycommodityList();
+    public List<Commodity> querycommodityList(@RequestBody Commodity commodity) {
+        return drusMapper.querycommodityList(commodity);
     }
-
-    /**
-     * 查询商品管理
-     * @return
-     */
-    /*@Override
-    @ResponseBody
-    public List<Commodity> querycommodityList() {
-
-        return drusMapper.querycommodityList();
-    }*/
 
     /**
      * 退货商品状态
@@ -205,6 +194,23 @@ public class DrusController implements DrusService{
         drusMapper.downShelf(ids);
     }
 
+    /**
+     * 查询原始密码
+     * @param session
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public UserBean queryUserBySessionId() {
+
+        return drusMapper.queryUserBySessionId();
+    }
+
+    @Override
+    @ResponseBody
+    public void updateUserBySessionId(@RequestParam("userId") Integer userId,@RequestParam("newPassword")String newPassword) {
+        drusMapper.updateUserBySessionId(userId,newPassword);
+    }
 
     /**
      * 缺药登记查询
@@ -215,5 +221,36 @@ public class DrusController implements DrusService{
     public List<ProductBuy> queryProductList() {
 
         return drusMapper.queryProductList();
+    }
+
+    /**
+     * 发布缺药登记
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public void addProduct(@RequestBody ProductBuy productBuy) {
+        if (productBuy.getDrug_Id()==null) {
+            drusMapper.addProduct(productBuy);
+        } else {
+            drusMapper.updeteProductuyBuy(productBuy);
+        }
+    }
+
+    /**
+     * 回显发布缺药登记
+     * @param drug_Id
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public ProductBuy queryProductuyBuy(@RequestParam("drug_Id") Integer drug_Id) {
+        return drusMapper.queryProductuyBuy(drug_Id);
+    }
+
+    @Override
+    @ResponseBody
+    public void delProductuyBuy(@RequestParam("id") Integer id) {
+        drusMapper.delProductuyBuy(id);
     }
 }
