@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入核心js -->
+    <script src="/js/jquery-2.1.1.min.js" ></script>
+    <!-- bootstrap  -->
+    <script src="/js/bootstrap/bootstrap3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap/bootstrap3/css/bootstrap.css"/>
+    <!-- 左侧导航树 -->
+    <link rel="stylesheet" href="/js/bootstrap/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="/js/bootstrap/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+    <!-- 选项卡 -->
+    <link rel="stylesheet" href="/js/bootstrap/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="/js/bootstrap/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap/bootstrap-table/bootstrap-table.css">
+    <script src="/js/bootstrap/bootstrap-table/bootstrap-table.js"></script>
+    <script src="/js/bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="/js/bootstrap/bootstrap-bootbox/bootbox.js"></script>
+    <script src="/js/bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="/js/bootstrap/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script src="/js/bootstrap/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="/js/bootstrap/bootstrap-fileinput/js/locales/zh.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap/bootstrap-fileinput/css/fileinput.css">
+    <title>店铺设置</title>
+</head>
+<style>
+    .add-dialog {
+        width: 800px;
+    }
+
+    .row {
+        margin-top: 5px;
+    }
+</style>
+
+<body>
+<input type="button" value="常用设置" Class="btn btn-info glyphicon glyphicon-plus" onclick="addDialog()"></input>
+<input type="button" value="模板设置" Class="btn btn-info glyphicon glyphicon-plus" onclick="addDialog()"></input>
+<input type="button" value="公司简介" Class="btn btn-info glyphicon glyphicon-plus" onclick="addDialog()"></input>
+</body>
+<script type="text/javascript">
+    /* 新曾跳转 */
+    var res;
+
+    function createAddContent(url) {
+        $.ajax({
+            url: url,
+            async: false,
+            success: function (data) {
+                res = data;
+            }
+        });
+        return res;
+    }
+
+    function addDialog() {
+        bootbox.dialog({
+            size: "big",
+            title: '添加内容',
+            //跳转到新增页面
+            message: createAddContent("/store/addStore"),
+            closeButton: true,
+            //className:'add-dialog',
+            buttons: {
+                'success': {
+                    "label": "<i class='icon-ok'></i> 提交",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+                        $.ajax({
+                            //新增路径
+                            url: '/store/saveStore',
+                            type: 'post',
+                            /* 新曾页面form ↓*/
+                            data: $("#addForm").serialize(),
+                            dataType: 'json',
+                            success: function (data) {
+                                $('#myTablke').bootstrapTable('refresh', initMyTable());
+                            }
+                        })
+                    }
+                }
+            },
+            'cancel': {
+                "label": "<i class='icon-info'></i> 取消",
+                "className": "btn-sm btn-danger",
+                "callback": function () {
+                }
+            }
+
+        })
+    }
+
+</script>
+</html>
