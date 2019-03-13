@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="../jquery-easyui-1.5/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/default/easyui.css">
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/icon.css">
+    <script src="../jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="../bootstrap3/css/bootstrap.css">
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <link rel="stylesheet" href="../js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-fileinput/css/fileinput.css">
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <script src="../js/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+    <script src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="../js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+
+</head>
+<body>
+采购中心 > 订单管理 > 采购订单
+    <div id="toolbar">
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" onclick="searchPurchaseOrder('')"  value="">全部订单</button>
+            <button type="button" class="btn btn-default" onclick='searchPurchaseOrder(1)' value="1">待支付</button>
+            <button type="button" class="btn btn-default" onclick='searchPurchaseOrder(2)'  value="2">待发货</button>
+            <button type="button" class="btn btn-default" onclick='searchPurchaseOrder(3)'    value="3">待收货</button>
+            <button type="button" class="btn btn-default" onclick='searchPurchaseOrder(4)'  value="4">已完成</button>
+            <button type="button" class="btn btn-default" onclick='searchPurchaseOrder(5)'    value="5">已关闭</button>
+        </div><br><br>
+
+        <table>
+            <input type="hidden"  id="sts">
+            <tr>
+                <td><label for="orderNumber">订单号</label></td>
+                <td><input type="text" class="form-control" id="orderNumber" ></td>
+                <td><label for="deptid">供应商</label></td>
+                <td><select id="deptid" style="width: 200px" class="form-control">
+                </select></td>
+                <td><button type="button" class="btn btn-default" onclick="searchPurchaseOrder()">搜索</button></td>
+            </tr>
+                </table>
+    </div>
+<table class="table" id="myTable"></table>
+</body>
+<script>
+
+    $(function(){
+        initTable("");
+        initSupplierBusiness();
+    })
+    //条件查询
+    function searchPurchaseOrder(sts){
+        $("#sts").val(sts)
+        $('#myTable').bootstrapTable('refresh');
+        initTable()
+    };
+    //初始化快速采购表格
+    function initTable(){
+        $("#myTable").bootstrapTable({
+            toolbar:'#toolbar',
+            url:"http://127.0.0.1:8100/DrugPurchaseController/SelectDrugPurchaseList",
+            /*pagination:true, //开启分页
+            pageList:[1,2,3,4,5,10,15],//分页组件
+            pageNumber:1,
+            pageSize:2,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页
+            striped:true,//条纹表格*/
+            queryParams:function(){
+                var  sts=$("#sts").val()
+                return {
+                    supplierId:$("#deptid").val(),
+                    orderId:$("#orderNumber").val(),
+                    orderStatus:sts
+                }
+            },
+            columns:[
+                {field:"drugdetailsName",title:"商品"},
+                {field:"drugdetailsNameprice",title:"单价",formatter:function(value,row,index){
+                        return "<font color='red'>"+value+"</font>"
+                    }},
+                {field:"ordercount",title:"数量"},
+                {field:"disbursements",title:"实付款",formatter:function(value,row,index){
+                        return "<font color='red'>"+value+"</font>"
+                    }},
+                {field:"orderStatus",title:"订单状态",formatter:function(value,row,index){
+                        if(row.orderStatus==1){
+                            return "待支付";
+                        }
+                        if(row.orderStatus==2){
+                            return "代发货";
+                        }
+                        if(row.orderStatus==3){
+
+                            return "待收货";
+                        }
+                        if(row.orderStatus==4){
+                            return  "待评价";
+                        }
+                        if(row.orderStatus==5){
+                            return  "交易关闭";
+                        }
+                    }},
+                {field:"tools",title:"操作",formatter:function(value,row,index){
+                        if(row.orderStatus==1){
+                            var html =  "<button type='button' class='btn btn-primary'>去支付</button>";
+
+                            html += "<button type='button' class='btn btn-default' disabled>取消订单</button>";
+                                return html;
+                        }
+                        if(row.orderStatus==2){
+                            return  "<button type='button' class='btn btn-primary'>申请退款</button>";
+                        }
+                        if(row.orderStatus==3){
+                             var html = "<button type='button' class='btn btn-primary'>确认收货</button>";
+                                 html += "<button type='button' class='btn btn-primary'>申请售后</button>";
+                                 html += "<button type='button' class='btn btn-default'disabled>查看物流</button>";
+                                 return html;
+                        }
+                        if(row.orderStatus==4){
+                            return  "<button type='button' class='btn btn-primary'>评价</button>";
+                        }
+                        if(row.orderStatus==5){
+                            return  "<button type='button' class='btn btn-primary'>删除订单</button>";
+                        }
+                    }}
+            ]
+        })
+    }
+    //供应商下拉框查询
+    function initSupplierBusiness(){
+        $.ajax({
+            toolbar:'#toolbar',
+            url:"http://127.0.0.1:8100/DrugPurchaseController/QuerySupplierBean",
+            type:'post',
+            success:function (data) {
+                var  html="";
+                for (var i = 0; i < data.length; i++) {
+                    html += '<option value="'+data[i].supplierId +'">'+data[i].supplierName+'</option>'
+                }
+                $("#deptid").html(html);
+            }
+        })
+    }
+
+
+
+
+</script>
+</html>
