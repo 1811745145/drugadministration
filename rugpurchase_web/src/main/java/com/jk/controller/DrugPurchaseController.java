@@ -5,6 +5,7 @@ package com.jk.controller;
 import com.jk.pojo.MedicineDrugdetailsBean;
 import com.jk.pojo.MedicineOrderlistBean;
 import com.jk.pojo.MedicineSupplierBean;
+import com.jk.pojo.ShoppingCartBean;
 import com.jk.service.DrugPurchaseServiceWeb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,8 +53,8 @@ public class DrugPurchaseController {
     /*查询购物车*/
     @ResponseBody
     @RequestMapping("SelectShoppingCart")
-    public HashMap<String,Object> SelectShoppingCart(){
-        HashMap<String,Object> map= drugPurchaseServiceWeb.SelectShoppingCart();
+    public  List<ShoppingCartBean> SelectShoppingCart(){
+        List<ShoppingCartBean> map= drugPurchaseServiceWeb.SelectShoppingCart();
         return   map;
     }
     /*查询药品采购清单*/

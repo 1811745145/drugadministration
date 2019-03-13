@@ -1,10 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-<body>
+    <script src="../jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="../jquery-easyui-1.5/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/default/easyui.css">
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/icon.css">
+    <script src="../jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="../bootstrap3/css/bootstrap.css">
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <link rel="stylesheet" href="../js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-fileinput/css/fileinput.css">
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <script src="../js/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+    <script src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="../js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
 
+</head>
+
+<body style="width:100%;height:auto;">
+<div>
+
+<nav class="navbar navbar-default ">
+    <div class="container">
+        <img src="../img/u113.png" height="35" width="1237"/></div>
+    </div>
+</nav>
+<div  style="margin-top: 25px">
+    <div class="row">
+        <div class="col-md-1">
+            <img src="../img/u119.png" height="75" width="92"/>
+        </div>
+        <div class="col-md-2">
+            <p>
+            <h3>
+                <span>西&nbsp; 北&nbsp; 医&nbsp; 药&nbsp; 网</br>
+                    <font color="#ff7f50">&nbsp;www.xb1y.com</font></span>
+            </h3>
+            </p>
+        </div>
+        <div class="col-md-2">
+            <center><img src="../img/u105.png" height="51" width="196"/></center>
+        </div>
+        <div class="col-md-6">
+            <center>
+            <span> 产品 | 资讯 | 招商 | 企业 | 供求</span></br>
+            <img src="../img/u107.png" height="51" width="512"/></br>
+            <span> 热门搜索：清温败毒散   柴胡抗病毒    阿莫西林</span>
+            </center>
+        </div>
+    </div>
+</div>
+<nav class="navbar  navbar-default"  style="margin-top: 10px">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">全部产品分类</a>
+            <a style="margin-left: 30px" href="#" class="navbar-brand">首页</a>
+            <a style="margin-left: 30px" href="#" class="navbar-brand">快速下单</a>
+            <a style="margin-left: 30px" href="#" class="navbar-brand">品牌活动</a>
+            <a style="margin-left: 30px" href="#" class="navbar-brand">资讯</a>
+            <a style="margin-left: 30px" href="#" class="navbar-brand">数据中心</a>
+            <a style="margin-left: 30px" href="#" class="navbar-brand">招商代理</a>
+            <a style="margin-left: 30px" href="#" class="navbar-brand">积分商城</a>
+            <a style="margin-left: 30px" href="#" class="navbar-brand">电子首营</a>
+            <a style="margin-left: 30px" href="https://www.kugou.com/" class="navbar-brand">退出系统</a>
+        </div>
+    </div>
+</nav>
+
+<font><h1>购物车</h1></font>
+<table id="myTable"  style="border:0;"></table>
+<div style="background: #d4d4d4;margin-left: 20px;margin-top: 20px;margin-right: 20px;height: 70px;">
+    <div style="margin-left: 30px;width: 600px;height: 40px;padding-top:25px;float: left">
+        共选中<font color='red' id="gg"></font>件商品
+    </div>
+    <div style="width: 400px;height: 40px;float: left;padding-top:25px;">
+        消费总金额 <font color='red'></font>
+        <button style="margin-left: 200px" type="button" class="btn btn-primary"  onclick=" initTa()">立即付款</button>
+    </div>
+    <div style="width: 400px;height: 40px;float: left;padding-top:25px;">
+
+    </div>
+</div>
+<table>
+    <img src="../img/u288.png" height="42" width="1011"/>
+</table>
+</div>
 </body>
+
+<script>
+    $(function () {
+        /*初始化购物车*/
+        queryShoppingCart()
+
+    })
+
+    function searchUser(){
+        /**/
+        $('#myTable').bootstrapTable('refresh');
+    }
+    function  queryShoppingCart() {
+        $('#myTable').bootstrapTable({
+            url:"http://127.0.0.1:8100/DrugPurchaseController/SelectShoppingCart",
+            type:'post',
+            columns:[
+                {field:"check",checkbox:true},
+              {field:"img",title:"药品图片",formatter: function (value, row, index){
+                        var   html="<img src=\"'+row.drugdetailsimg+'\" style=\"width: 100px; height: 100px\">"
+                        return  html;
+                    }},
+                {field:"Nameandmanufacturerandpurchaseprice",title:"名字规格分类",formatter: function (value, row, index){
+                        var   html='<font color="#ff7f50">'+row.drugdetailsName+'</font></br>';
+                                html+='规格：'+row.drugdetailsUSL+'</br>';
+                                html+='分类：'+row.type+'</br>';
+
+                        return html
+                    }},
+                {field:"stunitPrice",title:"单价"},
+                {field:"box",title:"数量",formatter: function (value, row, index){
+                        var      htmlnaf='<button type="button"   onclick="subtractbox('+row.drugdetailsid+')" class="btn btn-primary">-</button><input  type="text" size="5px"  name="box"  id="box'+row.drugdetailsid+'"  value="'+row.stCount+'"   disabled>';
+                        htmlnaf+=' <button type="button"  onclick="addbox('+row.drugdetailsid+')" class="btn btn-primary">+</button>'
+                        return htmlnaf
+                    }},
+                      {field:"stsubTotal",title:"小计"},
+                {field:"add to shopping cart",title:"操作",formatter: function (value, row, index){
+                        var  htmlnaf='<a><img src="../img/u1107.png" height="28" width="26"/></a>'
+                        return htmlnaf
+                    }}
+            ]
+        })
+        initTa()
+    }
+    function initTa(){
+        var commoditys = $('#myTable').bootstrapTable("getSelections")
+        $("#gg").html(commoditys.length)
+        var price=0;
+        for (var i=0; i<=commoditys.length; i++){
+
+        }
+    }
+</script>
 </html>

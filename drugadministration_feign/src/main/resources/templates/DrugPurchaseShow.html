@@ -130,7 +130,7 @@ function  queryDrugPurchase() {
     /*点击加入购物车*/             /*出厂商id*/
     function addToShoppingCart(id , suId){
         /*盒数*/
-      var sboxCount=$("#box").val()
+      var sboxCount=$("#box"+id).val()
 
         if (sboxCount<=0){
            alert("请选择商品！！！")

@@ -20,6 +20,8 @@
         <module>products_api</module>
         <module>products_server</module>
         <module>products_server_web</module>
+        <module>salesmanagement_producer</module>
+        <module>salesmanagement_consumer</module>
     </modules>
 
 

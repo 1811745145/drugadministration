@@ -111,8 +111,11 @@ LEFT JOIN t_medicine_drugdetails tmd ON tms.stid = tmd.drugdetailsid
                 and tmo.orderId=#{medicineOrderlistBean.orderId}
             </if>
           <if test="medicineOrderlistBean.supplierId!=null  and  medicineOrderlistBean.supplierId!='' and medicineOrderlistBean.supplierId!=-1 ">
-                and tmo.supplierId=#{medicineOrderlistBean.supplierId}
-            </if>
+          and tmo.supplierId=#{medicineOrderlistBean.supplierId}
+      </if>
+          <if test="medicineOrderlistBean.orderStatus!=null  and  medicineOrderlistBean.orderStatus!='' ">
+              and tmo.orderStatus=#{medicineOrderlistBean.orderStatus}
+          </if>
         </where>
     </select>
 </mapper>

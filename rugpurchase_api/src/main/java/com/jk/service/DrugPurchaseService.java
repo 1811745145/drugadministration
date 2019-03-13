@@ -3,12 +3,10 @@ package com.jk.service;
 import com.jk.pojo.MedicineDrugdetailsBean;
 import com.jk.pojo.MedicineOrderlistBean;
 import com.jk.pojo.MedicineSupplierBean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.jk.pojo.ShoppingCartBean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -26,7 +24,7 @@ public interface DrugPurchaseService {
 
     /*查询购物车*/
     @RequestMapping("SelectShoppingCart")
-    HashMap<String, Object> SelectShoppingCart();
+    List<ShoppingCartBean> SelectShoppingCart();
 
    /*查询采购订单*/
     @RequestMapping("SelectDrugPurchaseList")

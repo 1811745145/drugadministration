@@ -364,4 +364,16 @@ public class DrusController {
             return false;
         }
     }
+
+    /*跳转购物车*/
+    @RequestMapping("theShoppingCart")
+    public String theShoppingCart(){
+        return "theShoppingCart";
+    }
+
+    /*跳转采购页面*/
+    @RequestMapping("queryPurchaseOrderList")
+    public String queryPurchaseOrderList(){
+        return "queryPurchaseOrderList";
+    }
 }

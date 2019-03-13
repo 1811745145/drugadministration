@@ -12,13 +12,10 @@ import com.jk.utils.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 public class DrugPurchaseController implements DrugPurchaseService {
@@ -86,12 +83,9 @@ public class DrugPurchaseController implements DrugPurchaseService {
     /*查询购物车*/
     @ResponseBody
     @Override
-    public HashMap<String, Object> SelectShoppingCart() {
-        HashMap<String, Object> map=new HashMap<>();
+    public List<ShoppingCartBean> SelectShoppingCart() {
         List<ShoppingCartBean>  list=drugPurchaseMapper.SelectShoppingCart();
-        map.put("list",list);
-        map.put("gcount",list.size());
-        return map;
+        return list;
     }
 
     /*查询采购订单*/
