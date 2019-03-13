@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="../jquery-easyui-1.5/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/default/easyui.css">
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/icon.css">
+    <script src="../jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="../bootstrap3/css/bootstrap.css">
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <link rel="stylesheet" href="../js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-fileinput/css/fileinput.css">
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <script src="../js/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+    <script src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="../js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+
+    <script type="text/javascript" src="../kindeditor-4.1.10/kindeditor-all.js"></script>
+    <link rel="styleSheet" href="../kindeditor-4.1.10/themes/default/default.css"/>
+</head>
+<body>
+<div class="container-fluid" style="margin-top:20px">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10">
+
+            <table class="table" id="tablePage"></table>
+        </div>
+    </div>
+<span id="gkyugbkyu">
+<form id="userFrom" >
+
+    <table class="table table-bordered">
+        <tr>
+
+        <div class="row myrow">
+            <td><div class="col-md-12">
+                <label for="investmentClass">所属分类</label>
+            </div></td>
+            <td><div class="col-md-6">
+                <input type="text" class="form-control" id="investmentClass" name="investmentClass">
+            </div></td>
+        </div>
+    </tr>
+
+        <tr>
+            <div class="row myrow">
+                <td><div class="col-md-12">
+                    <label for="investmentTitle">招商标题</label>
+                </div></td>
+                <td><div class="col-md-6">
+                    <input type="text" class="form-control" id="investmentTitle" name="investmentTitle">
+                </div></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row myrow">
+                <td> <div class="col-md-12">
+                    <label for="expirationDate">过期时间</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control date" id="expirationDate" name="expirationDate">
+                </div></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="investmentRegion">招商区域</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="investmentRegion" name="investmentRegion">
+                </div></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="investmentAmount">投资额度</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="investmentAmount" name="investmentAmount">
+                </div></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="depositRequired">需交保证金</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="depositRequired" name="depositRequired">
+                </div></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="investmentName">商品名称</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="investmentName" name="investmentName">
+                </div></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="investmentSpecifications">规格</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="investmentSpecifications" name="investmentSpecifications">
+                </div></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="medicineQuasiCharacter">国药准字</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="medicineQuasiCharacter" name="medicineQuasiCharacter">
+                </div></td>
+            </div></tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="manufacturer">生产厂家</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="manufacturer" name="manufacturer">
+                </div></td>
+            </div></tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="drugNumber">药品编号</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="drugNumber" name="drugNumber">
+                </div></td>
+            </div></tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="pieceCount">件装数</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="pieceCount" name="pieceCount">
+                </div></td>
+            </div></tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="trademark">商标</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="trademark" name="trademark">
+                </div></td>
+            </div></tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="medicalType">医保类型</label>
+                </div></td><td>
+                <div class="col-md-2">
+                    <input type="radio" name="medicalType" value=1>城镇职工医疗保险
+                    <input type="radio" name="medicalType" value=2>新农村合作社医疗保险
+                </div></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="drugList">基药目录</label>
+                </div></td><td>
+                <div class="col-md-2">
+                    <input type="radio" name="drugList" value=1>国家基本医药目录
+                    <input type="radio" name="drugList" value=2>国家基本医药目录
+                </div></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row myrow"><td>
+                <div class="col-md-12">
+                    <label for="hideDetail">简介</label>
+                </div></td><td>
+                <div class="col-md-6">
+                    <textarea name="investmentInfo" id="hideDetail" style="display: none;"></textarea>
+                    <textarea  id="content" style="width: 700px"></textarea>
+                </div></td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row myrow">
+                <td>
+                <div class="col-md-12">
+                    <input type="button" value="提交"  onclick="tijiao()">
+                </div>
+                </td>
+            </div>
+        </tr>
+    </table>
+</form>
+</span><table class="table" id="myTable"></table>
+    </div>
+</body>
+<script type="text/javascript">
+
+    function tijiao(){
+        $("#hideDetail").html(editor.html())
+        var investmentClass = $("#investmentClass").val();
+        var investmentTitle = $("#investmentTitle").val();
+        var expirationDate = $("#expirationDate").val();
+        var investmentRegion = $("#investmentRegion").val();
+        var investmentAmount = $("#investmentAmount").val();
+        var depositRequired = $("#depositRequired").val();
+        var investmentName = $("#investmentName").val();
+        var investmentSpecifications = $("#investmentSpecifications").val();
+        var medicineQuasiCharacter = $("#medicineQuasiCharacter").val();
+        var manufacturer = $("#manufacturer").val();
+        var drugNumber = $("#drugNumber").val();
+        var pieceCount = $("#pieceCount").val();
+        var trademark = $("#trademark").val();
+        var medicalType = $("input[name='medicalType']").val();
+        var drugList = $("input[name='drugList']").val();
+        var investmentInfo = $("#hideDetail").val()
+        $.ajax({
+            url:'../saveInvestment',
+            type:'post',
+            data:JSON.stringify({
+                "investmentClass":investmentClass,
+                "investmentTitle":investmentTitle,
+                "expirationDate":expirationDate,
+                "investmentRegion":investmentRegion,
+                "investmentAmount":investmentAmount,
+                "depositRequired":depositRequired,
+                "investmentName":investmentName,
+                "investmentSpecifications":investmentSpecifications,
+                "medicineQuasiCharacter":medicineQuasiCharacter,
+                "manufacturer":manufacturer,
+                "drugNumber":drugNumber,
+                "pieceCount":pieceCount,
+                "trademark":trademark,
+                "medicalType":medicalType,
+                "drugList":drugList,
+                "investmentInfo":investmentInfo
+            }),
+            headers:{
+                "Content-Type":"application/json"
+            },
+            success:function(data){
+                if(data){
+                    location.href="../toAdd";
+                }
+            }
+        });
+    }
+    $(function(){
+        $('.date').datetimepicker({
+            language: 'zh-CN',//显示中文
+            //format: 'yyyy-mm-dd hh:ii:ss',//显示格式
+            format: 'yyyy-mm-dd',//显示格式
+            minView: "month",//设置只显示到月份
+            initialDate: new Date(),//初始化当前日期
+            autoclose: true,//选中自动关闭
+            todayBtn: true//显示今日按钮
+        });
+    })
+    var res;
+    function createAddContent(url){
+        $.ajax({
+            url:url,
+            async:false,
+            success:function(data){
+                res = data;
+            }
+        });
+        return res;
+    }
+    var editor = null;
+    KindEditor.ready(function(K) {//将编辑器添加到文档中
+        editor = K.create('#content', {
+            cssPath : '<%=request.getContextPath()%>/js/kindeditor/plugins/code/prettify.css',//指定编辑器iframe document的CSS文件，用于设置可视化区域的样式。
+            uploadJson : '<%=request.getContextPath()%>/js/kindeditor/jsp/upload_json.jsp', //指定上传文件的服务器端程序。
+            fileManagerJson : '<%=request.getContextPath()%>/js/kindeditor/jsp/file_manager_json.jsp',//指定浏览远程图片的服务器端程序。
+            allowFileManager : true,  //true时显示浏览远程服务器按钮 ;默认值: false
+            afterCreate : function() {
+                var self = this;
+                K.ctrl(document, 13, function() {
+                    self.sync();
+                    document.forms['example'].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function() {
+                    self.sync();
+                    document.forms['example'].submit();
+                });
+            }
+        });
+        prettyPrint();
+    });
+</script>
+</html>

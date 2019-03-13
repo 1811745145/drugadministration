@@ -25,6 +25,98 @@ public class DrusController {
     private RedisTemplate redisTemplate;
 
     /**
+     * 编辑不通过
+     */
+    @RequestMapping("updateDownInvestment")
+    @ResponseBody
+    public Boolean updateDownInvestment(@RequestBody InvestmentBean investmentBean){
+        try {
+            drusServicefeign.updateDownInvestment(investmentBean);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
+     * 编辑通过
+     */
+    @RequestMapping("updateUpInvestment")
+    @ResponseBody
+    public Boolean updateUpInvestment(@RequestBody InvestmentBean investmentBean){
+        try {
+            drusServicefeign.updateUpInvestment(investmentBean);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
+     * 回显招商数据
+     */
+    @RequestMapping("selectInvestmentById")
+    @ResponseBody
+    public InvestmentBean selectInvestmentById(@RequestParam("id") Integer id){
+        return drusServicefeign.selectInvestmentById(id);
+    }
+    /**
+     * 跳转招商信息编辑页面
+     * @return
+     */
+    @RequestMapping("toUpdateInvestment")
+    public String toUpdateInvestment(){
+        return "updateInvestment";
+    }
+    /**
+     * 删除商品信息
+     */
+    @DeleteMapping("deleteInvset")
+    @ResponseBody
+    public Boolean deleteInvset(@RequestParam("id") Integer id){
+        try {
+            drusServicefeign.deleteInvset(id);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
+     * 查询招商信息
+     */
+    @RequestMapping("selectInvestment")
+    @ResponseBody
+    public List<InvestmentBean> selectInvestment(@RequestParam("status") String status){
+       return drusServicefeign.selectInvestment(status);
+    }
+
+    /**
+     * 跳转招商页面
+     */
+    @RequestMapping("add")
+    public String add(){
+        return "add";
+    }
+    @RequestMapping("toAdd")
+    public String toAdd(){
+        return "adds";
+    }
+    /**
+     * 新增商品信息
+     */
+    @RequestMapping("saveInvestment")
+    @ResponseBody
+    public Boolean saveInvestment(@RequestBody InvestmentBean investmentBean){
+        try {
+            drusServicefeign.saveInvestment(investmentBean);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
      * 根据Id修改密码
      */
     @RequestMapping("updateUserBySessionId")

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="../jquery-easyui-1.5/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/default/easyui.css">
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/icon.css">
+    <script src="../jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="../bootstrap3/css/bootstrap.css">
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <link rel="stylesheet" href="../js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-fileinput/css/fileinput.css">
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <script src="../js/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+    <script src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="../js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+
+    <script type="text/javascript" src="../kindeditor-4.1.10/kindeditor-all.js"></script>
+    <link rel="styleSheet" href="../kindeditor-4.1.10/themes/default/default.css"/>
+</head>
+<body>
+<div class="container-fluid" style="margin-top:20px">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10">
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" onclick="initSearch(1)" class="btn btn-default">&nbsp;&nbsp;&nbsp;待审核&nbsp;&nbsp;&nbsp;</button>
+                <button type="button" onclick="initSearch(2)" class="btn btn-default">&nbsp;&nbsp;&nbsp;未通过&nbsp;&nbsp;&nbsp;</button>
+                <button type="button" onclick="initSearch(0)" class="btn btn-default">&nbsp;&nbsp;&nbsp;已通过&nbsp;&nbsp;&nbsp;</button>
+            </div>
+            <div id="toolbar">
+                <button type="button" class="btn btn-primary" style="width: 160px" onclick="openAdd()">新增</button>
+            </div>
+            <table class="table" id="tablePage"></table>
+        </div>
+    </div>
+    <table class="table" id="myTable"></table>
+</div>
+</body>
+<script>
+    $(function(){
+        initTable();//初始化表格
+    })
+
+    function openAdd(){
+        location.href="../add";
+    }
+    //订单状态条查
+    function initSearch(state){
+        $("#myTable").bootstrapTable('refresh',{
+            query:{
+                "status":state
+            }
+        });
+    }
+
+    function initTable(){
+        $("#myTable").bootstrapTable({
+            url:"../selectInvestment",
+            type:"json",
+            striped:true,//条纹表格
+            columns:[
+                {field:'investmentTitle',title:'招商标题'},
+                {field:'investmentName',title:'招商产品'},
+                {field:'investmentRegion',title:'招商区域'},
+                {field:'id',title:'浏览数量'},
+                {field:'state',title:'操作',formatter:function(value,row,index){
+                        return '<button type="button" class="btn btn-primary" onclick="update('+row.id+')">编辑</button>'+'<button type="button" class="btn btn-primary" onclick="delone('+row.id+')">删除</button>'
+                    }}
+            ]
+        })
+    }
+
+    var res;
+    function createAddContent(url){
+        $.ajax({
+            url:url,
+            async:false,
+            success:function(data){
+                res = data;
+            }
+        });
+        return res;
+    }
+    //编辑
+    function update(id){
+        bootbox.dialog({
+            title:'编辑',
+            message: createAddContent("../toUpdateInvestment"),
+            closeButton: true,//是否显示关闭按钮
+            buttons : {
+                "success" : {
+                    "label" : "<i class='icon-ok'></i> 通过",
+                    "className" : "btn-sm btn-success",
+                    "callback" : function() {
+                       var id = $("#id").val();
+                       var investmentClass = $("#investmentClass").val();
+                       var investmentTitle = $("#investmentTitle").val();
+                       var investmentRegion = $("#investmentRegion").val();
+                       var investmentName = $("#investmentName").val();
+                       var investmentInfo = $("#hideDetail").val();
+                        $.ajax({
+                            url:'../updateUpInvestment',
+                            type:'post',
+                            data:JSON.stringify({
+                                "id":id,
+                                "investmentClass":investmentClass,
+                                "investmentTitle":investmentTitle,
+                                "investmentRegion":investmentRegion,
+                                "investmentName":investmentName,
+                                "investmentInfo":investmentInfo
+                            }),
+                            headers:{
+                                "Content-Type":"application/json"
+                            },
+                            success:function(data){
+                                if(data){
+                                    $("#myTable").bootstrapTable('refresh',{
+                                        query:{
+                                            "status":0
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                },
+                "cancel" : {
+                    "label" : "<i class='icon-info'></i> 不通过",
+                    "className" : "btn-sm btn-danger",
+                    "callback" : function() {
+                        var id = $("#id").val();
+                        var investmentClass = $("#investmentClass").val();
+                        var investmentTitle = $("#investmentTitle").val();
+                        var investmentRegion = $("#investmentRegion").val();
+                        var investmentName = $("#investmentName").val();
+                        var investmentInfo = $("#hideDetail").val();
+                        $.ajax({
+                            url:'../updateDownInvestment',
+                            type:'post',
+                            data:JSON.stringify({
+                                "id":id,
+                                "investmentClass":investmentClass,
+                                "investmentTitle":investmentTitle,
+                                "investmentRegion":investmentRegion,
+                                "investmentName":investmentName,
+                                "investmentInfo":investmentInfo
+                            }),
+                            headers:{
+                                "Content-Type":"application/json"
+                            },
+                            success:function(data){
+                                if(data){
+                                    $("#myTable").bootstrapTable('refresh',{
+                                        query:{
+                                            "status":2
+                                        }
+                                    });
+                                }
+                            }
+                        });
+
+                    }
+                }
+            }
+
+        });
+        //回显数据
+        $.ajax({
+            url:'../selectInvestmentById',
+            type:'post',
+            async:false,//同步
+            data:{id:id},
+            success:function(data){
+                $("#id").val(data.id);
+                $("#investmentClass").val(data.investmentClass);
+                $("#investmentTitle").val(data.investmentTitle);
+                $("#investmentRegion").val(data.investmentRegion);
+                $("#investmentName").val(data.investmentName);
+                $("#hideDetail").val(data.investmentInfo);
+                $("#content").val(data.investmentInfo);
+            }
+        });
+
+
+    }
+
+    //删除
+    function delone(id){
+        bootbox.confirm("你确定要删除吗?", function(result) {
+            if(result){
+                $.ajax({
+                    url:'../deleteInvset',
+                    type:'DELETE',
+                    data:{
+                        id:id
+                    },
+                    dataType:'json',
+                    success:function(data){
+                        if(data){
+                            $("#myTable").bootstrapTable('refresh',{
+                                query:{
+                                    "status":1
+                                }
+                            });
+                        }
+                    }
+                })
+            }
+        })
+    }
+</script>
+</html>

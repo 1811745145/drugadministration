@@ -139,4 +139,22 @@ public interface DrusService {
      */
     @RequestMapping("updateUserBySessionId")
     void updateUserBySessionId(@RequestParam("userId") Integer userId,@RequestParam("newPassword") String newPassword);
+
+    @RequestMapping("investmentBean")
+    void saveInvestment(InvestmentBean investmentBean);
+
+    @RequestMapping("selectInvestment")
+    List<InvestmentBean> selectInvestment(@RequestParam("status")String status);
+
+    @DeleteMapping("deleteInvset")
+    void deleteInvset(@RequestParam("id") Integer id);
+
+    @RequestMapping("selectInvestmentById")
+    InvestmentBean selectInvestmentById(@RequestParam("id") Integer id);
+
+    @RequestMapping("updateUpInvestment")
+    void updateUpInvestment(InvestmentBean investmentBean);
+
+    @RequestMapping("updateDownInvestment")
+    void updateDownInvestment(InvestmentBean investmentBean);
 }

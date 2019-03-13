@@ -5,10 +5,7 @@ import com.jk.pojo.*;
 import com.jk.service.DrusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -206,10 +203,66 @@ public class DrusController implements DrusService{
         return drusMapper.queryUserBySessionId();
     }
 
+    /**
+     * 修改密码
+     * @param userId
+     * @param newPassword
+     */
     @Override
     @ResponseBody
     public void updateUserBySessionId(@RequestParam("userId") Integer userId,@RequestParam("newPassword")String newPassword) {
         drusMapper.updateUserBySessionId(userId,newPassword);
+    }
+
+    /**
+     * 新增招商数据
+     * @param investmentBean
+     */
+    @Override
+    @ResponseBody
+    public void saveInvestment(@RequestBody InvestmentBean investmentBean) {
+        investmentBean.setStatus("1");
+        drusMapper.saveInvestment(investmentBean);
+    }
+
+    /**
+     * 查询招商信息
+     * @param status
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public List<InvestmentBean> selectInvestment(@RequestParam("status")String status) {
+
+        return drusMapper.selectInvestment(status);
+    }
+
+    /**
+     * 删除招商信息
+     * @param id
+     */
+    @Override
+    @ResponseBody
+    public void deleteInvset(@RequestParam("id") Integer id) {
+        drusMapper.deleteInvset(id);
+    }
+
+    @Override
+    @ResponseBody
+    public InvestmentBean selectInvestmentById(@RequestParam("id") Integer id) {
+        return drusMapper.selectInvestmentById(id);
+    }
+
+    @Override
+    @ResponseBody
+    public void updateUpInvestment(@RequestBody InvestmentBean investmentBean) {
+        drusMapper.updateUpInvestment(investmentBean);
+    }
+
+    @Override
+    @ResponseBody
+    public void updateDownInvestment(@RequestBody InvestmentBean investmentBean) {
+        drusMapper.updateDownInvestment(investmentBean);
     }
 
     /**

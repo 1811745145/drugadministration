@@ -165,4 +165,24 @@ public interface DrusMapper {
     void updeteProductuyBuy(ProductBuy productBuy);
 
     void delProductuyBuy(Integer drug_Id);
+
+    //保存招商
+    @Insert("insert into t_investment(investmentTitle,investmentClass,expirationDate,investmentRegion,investmentAmount,depositRequired,investmentName,investmentSpecifications, medicineQuasiCharacter,manufacturer,drugNumber,pieceCount,trademark,medicalType,drugList,investmentInfo,status)values(#{investmentTitle},#{investmentClass},#{expirationDate}, #{investmentRegion},#{investmentAmount},#{depositRequired},#{investmentName},#{investmentSpecifications},#{medicineQuasiCharacter},#{manufacturer},#{drugNumber},#{pieceCount},#{trademark},#{medicalType},#{drugList},#{investmentInfo},#{status})")
+    void saveInvestment(InvestmentBean investmentBean);
+
+    //查询招商
+    @Select(" select * from  t_investment where status = #{value}")
+    List<InvestmentBean> selectInvestment(String status);
+
+    @Delete(" delete from t_investment where id = #{value} ")
+    void deleteInvset(Integer id);
+
+    @Select(" select * from  t_investment where id = #{value}")
+    InvestmentBean selectInvestmentById(Integer id);
+
+    @Update(" update t_investment set investmentClass = #{investmentClass},investmentTitle = #{investmentTitle},investmentRegion = #{investmentRegion},investmentName = #{investmentName},investmentInfo = #{investmentInfo},status = 0 where id = #{id} ")
+    void updateUpInvestment(InvestmentBean investmentBean);
+
+    @Update(" update t_investment set investmentClass = #{investmentClass},investmentTitle = #{investmentTitle},investmentRegion = #{investmentRegion},investmentName = #{investmentName},investmentInfo = #{investmentInfo},status = 2 where id = #{id} ")
+    void updateDownInvestment(InvestmentBean investmentBean);
 }
