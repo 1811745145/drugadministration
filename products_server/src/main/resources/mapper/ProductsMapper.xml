@@ -4,4 +4,65 @@
     <select id="findProductsAll" resultType="com.jk.pojo.ProductsBean">
         select * from t_products
     </select>
+    <select id="findProductsStatusList" resultType="com.jk.pojo.ProductsBean">
+          select
+        pr.productsId,pr.productsName,pr.productsType,
+        pr.productsCommonName,pr.productsManufacturer,
+        pr.productsBrand,pr.productsDistrict,pr.productsChannel,
+        pr.productsIndate,pr.productsImg,pr.productsDetail,
+        pr.productsLinkman,pr.productsPhone,pr.productsArea,pr.productsStatus
+        from t_products pr where pr.productsStatus =#{productsStatus}
+    </select>
+
+    <insert id="saveProducts" parameterType="com.jk.pojo.ProductsBean">
+        insert INTO  t_products
+        (productsName,productsType,productsCommonName,productsManufacturer,
+        productsBrand,productsDistrict,productsChannel,productsIndate,productsImg,
+        productsDetail,productsLinkman,productsPhone,productsArea,productsStatus)
+         values(#{productsName},#{productsType},#{productsCommonName},#{productsManufacturer},
+         #{productsBrand},#{productsDistrict},#{productsChannel},#{productsIndate},#{productsImg},
+         #{productsDetail},#{productsLinkman},#{productsPhone},#{productsArea},1)
+    </insert>
+
+    <delete id="delProduct">
+        DELETE from  t_products where productsId=#{productsId}
+    </delete>
+
+    <select id="findProductsById" resultType="com.jk.pojo.ProductsBean">
+       select
+        pr.productsId,pr.productsName,pr.productsType,
+        pr.productsCommonName,pr.productsManufacturer,
+        pr.productsBrand,pr.productsDistrict,pr.productsChannel,
+        pr.productsIndate,pr.productsImg,pr.productsDetail,
+        pr.productsLinkman,pr.productsPhone,pr.productsArea,pr.productsStatus
+         from t_products pr where pr.productsId=#{productsId}
+    </select>
+
+    <update id="updateProducts" parameterType="com.jk.pojo.ProductsBean">
+        update t_products set productsName= #{productsName},productsType=#{productsType},
+        productsCommonName=#{productsCommonName},productsManufacturer=#{productsManufacturer},
+        productsBrand=#{productsBrand},productsDistrict =#{productsDistrict},productsChannel =#{productsChannel},
+        productsIndate=#{productsIndate},productsImg =#{productsImg},productsDetail=#{productsDetail},
+        productsLinkman=#{productsLinkman},productsPhone =#{productsPhone},productsArea =#{productsArea}
+         where productsId=#{productsId}
+
+    </update>
+
+    <insert id="saveEnterprise" parameterType="com.jk.pojo.EnterpriseBean">
+    insert into t_enterprise
+    (enterpriseType,enterpriseName,businessNumber,enterpriseLinkman,
+    enterprisePhone,enterpriseArea,enterpriseAddress,districtId,provinceId,cityId
+   ) values
+    (#{enterpriseType},#{enterpriseName},#{businessNumber},#{enterpriseLinkman}
+    ,#{enterprisePhone},#{enterpriseArea},#{enterpriseAddress},#{districtId},#{provinceId},
+    #{cityId})
+    </insert>
+
+    <insert id="saveCertificate" parameterType="com.jk.pojo.CertificateBean">
+    INSERT into t_certificate
+     (certificateBianhao,certificateName,certificateCerateTime,certificateImg,
+      ,certificateIndate,enterpriseId)
+     values(#{certificateBianhao},#{certificateName},#{certificateCerateTime},#{certificateImg}
+     ,#{certificateIndate},#{enterpriseId})
+    </insert>
 </mapper>
