@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jk.mapper.DrusMapper">
-<select id="querycommodityList" resultType="com.jk.pojo.Commodity">
-select * from commodity
-<include refid="commodityWhere"></include>
-</select>
+
     <sql id="commodityWhere">
         <where>
-            <if test="commodityname != null and commodityname != ''">
-                and commodityname like '%${commodityname}%'
+            <if test="commodity.commodityname != null and commodity.commodityname != ''">
+                and commodityname like '%${commodity.commodityname}%'
             </if>
-            <if test="id != null and id != ''">
-                and id = #{id}
+            <if test="commodity.id != null and commodity.id != ''">
+                and id = #{commodity.id}
             </if>
-            <if test="approvalnumber != null and approvalnumber != ''">
-                and approvalnumber = #{approvalnumber}
+            <if test="commodity.approvalnumber != null and commodity.approvalnumber != ''">
+                and approvalnumber = #{commodity.approvalnumber}
             </if>
-            <if test="commodityspecifications != null and commodityspecifications != ''">
-                and commodityspecifications = #{commodityspecifications}
+            <if test="commodity.commodityspecifications != null and commodity.commodityspecifications != ''">
+                and commodityspecifications = #{commodity.commodityspecifications}
             </if>
-            <if test="commoditystatus != null and commoditystatus != ''">
-                and commoditystatus = #{commoditystatus}
+            <if test="commodity.commoditystatus != null and commodity.commoditystatus != ''">
+                and commoditystatus = #{commodity.commoditystatus}
             </if>
-            <if test="auditstatus != null and auditstatus != ''">
-                and auditstatus = #{auditstatus}
+            <if test="commodity.auditstatus != null and commodity.auditstatus != ''">
+                and auditstatus = #{commodity.auditstatus}
             </if>
         </where>
     </sql>
@@ -42,4 +39,24 @@ select * from commodity
     <update id="updateUserBySessionId">
       update t_user set userPassword = #{newPassword} where userId = #{userId}
 </update>
+<select id="queryaddressCount" resultType="int">
+select count(1) from addressmanagement
+</select>
+<select id="queryaddressList" resultType="com.jk.pojo.Address">
+select t.*,p.name as province,c.name as city from addressmanagement t left join t_area p
+on t.area_province = p.Id left join t_area c on t.area_city = c.Id limit #{start},#{rows}
+
+</select>
+
+    <!--商品分页-->
+<select id="querycommodityCount" resultType="int">
+    select count(1) from commodity
+    <include refid="commodityWhere"></include>
+</select>
+
+    <select id="querycommodityList" resultType="com.jk.pojo.Commodity">
+        select * from commodity
+        <include refid="commodityWhere"></include>
+        limit #{start},#{rows}
+    </select>
 </mapper>

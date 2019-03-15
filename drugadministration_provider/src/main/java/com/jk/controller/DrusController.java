@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -32,8 +33,15 @@ public class DrusController implements DrusService{
      */
     @Override
     @ResponseBody
-    public List<Address> queryaddressList() {
-        return drusMapper.queryaddressList();
+    public HashMap<String, Object> queryaddressList(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows) {
+        HashMap<String, Object> params = new HashMap<>();
+        int count = drusMapper.queryaddressCount();
+        //分页查询
+        int start = (page-1)*rows;//开始条数
+        List<Address> list = drusMapper.queryaddressList(start,rows);
+        params.put("total", count);
+        params.put("rows", list);
+        return params;
     }
 
     /**
@@ -109,8 +117,15 @@ public class DrusController implements DrusService{
      */
     @Override
     @ResponseBody
-    public List<Commodity> querycommodityList(@RequestBody Commodity commodity) {
-        return drusMapper.querycommodityList(commodity);
+    public HashMap<String,Object> querycommodityList(@RequestBody Commodity commodity,@RequestParam("page") Integer page,@RequestParam("rows")Integer rows) {
+        HashMap<String, Object> params = new HashMap<>();
+        int count = drusMapper.querycommodityCount(commodity);
+        //分页查询
+        int start = (page-1)*rows;//开始条数
+        List<Commodity> list = drusMapper.querycommodityList(commodity,start,rows);
+        params.put("total", count);
+        params.put("rows", list);
+        return params;
     }
 
     /**
@@ -247,22 +262,41 @@ public class DrusController implements DrusService{
         drusMapper.deleteInvset(id);
     }
 
+    /**
+     * 回显
+     * @param id
+     * @return
+     */
     @Override
     @ResponseBody
     public InvestmentBean selectInvestmentById(@RequestParam("id") Integer id) {
         return drusMapper.selectInvestmentById(id);
     }
 
+    /**
+     * 批量上架
+     * @param investmentBean
+     */
     @Override
     @ResponseBody
     public void updateUpInvestment(@RequestBody InvestmentBean investmentBean) {
         drusMapper.updateUpInvestment(investmentBean);
     }
 
+    /**
+     * 批量下架
+     * @param investmentBean
+     */
     @Override
     @ResponseBody
     public void updateDownInvestment(@RequestBody InvestmentBean investmentBean) {
         drusMapper.updateDownInvestment(investmentBean);
+    }
+
+    @Override
+    @ResponseBody
+    public List<Area> findProvinceSelect(@RequestParam("id") Integer id) {
+        return drusMapper.findProvinceSelect(id);
     }
 
     /**

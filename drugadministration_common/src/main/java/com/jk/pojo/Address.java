@@ -11,6 +11,11 @@ public class Address implements Serializable {
     private String detailedaddress;
     private String zipcode;
     private String phone;
+    private String province;
+    private String city;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getAddress_Id() {
         return address_Id;
@@ -58,5 +63,21 @@ public class Address implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

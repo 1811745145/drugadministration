@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +24,16 @@ public class DrusController {
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+
+    /**
+     * 查询地区
+     */
+    @RequestMapping("findProvinceSelect")
+    @ResponseBody
+    public List<Area> findProvinceSelect(@RequestParam("id") Integer id){
+        return drusServicefeign.findProvinceSelect(id);
+    }
 
     /**
      * 编辑不通过
@@ -103,7 +114,7 @@ public class DrusController {
         return "adds";
     }
     /**
-     * 新增商品信息
+     * 新增招商信息
      */
     @RequestMapping("saveInvestment")
     @ResponseBody
@@ -218,9 +229,9 @@ public class DrusController {
      */
     @RequestMapping("querycommodityList")
     @ResponseBody
-    public List<Commodity> querycommodityList(Commodity commodity){
+    public HashMap<String,Object> querycommodityList(Commodity commodity,@RequestParam("page") Integer page,@RequestParam("rows")Integer rows){
 
-        return drusServicefeign.querycommodityList(commodity);
+        return drusServicefeign.querycommodityList(commodity,page,rows);
     }
     /**
      * 跳转商品管理页面
@@ -327,8 +338,8 @@ public class DrusController {
      */
     @RequestMapping("queryaddressList")
     @ResponseBody
-    public List<Address> queryaddressList(){
-        return drusServicefeign.queryaddressList();
+    public HashMap<String, Object> queryaddressList(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows){
+        return drusServicefeign.queryaddressList(page,rows);
     }
 
 
