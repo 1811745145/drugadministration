@@ -33,7 +33,7 @@ public interface DrusMapper {
      * 新增
      * @param address
      */
-    @Insert(" insert into addressmanagement(address_name,address_area,detailedaddress,zipcode,phone)values(#{address_name},#{address_area},#{detailedaddress},#{zipcode},#{phone}) ")
+    @Insert(" insert into addressmanagement(address_name,detailedaddress,zipcode,phone,area_city,area_province)values(#{address_name},#{detailedaddress},#{zipcode},#{phone},#{area_city},#{area_province}) ")
     void saveAddress(Address address);
 
     /**
