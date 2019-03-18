@@ -67,12 +67,6 @@
         $('#myTable').bootstrapTable({
             toolbar:'#toolbar',
             url:'../querycommodityList',//获取数据地址
-            pagination:true, //开启分页
-            method:"get",
-            pageList:[1, 3, 5, 7],//分页组件
-            pageNumber:1,
-            pageSize:3,//默认每页条数
-            sidePagination:'server',//分页方式：client客户端分页，server服务端分页
             queryParams: function () {
                 var name = $("#name").val()
                 var comId = $("#comId").val()
@@ -86,9 +80,7 @@
                     approvalnumber:number,
                     commodityspecifications:specifications,
                     commoditystatus:comdstatus,
-                    auditstatus:audstatus,
-                    page:this.pageNumber,
-                    rows:this.pageSize
+                    auditstatus:audstatus
                 }
             },
             columns:[
