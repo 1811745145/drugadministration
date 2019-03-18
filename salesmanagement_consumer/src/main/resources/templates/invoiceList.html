@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <!-- 引入核心js -->
-    <script src="/js/jquery-2.1.1.min.js" ></script>
+    <script src="/jss/jquery-2.1.1.min.js" ></script>
     <!-- bootstrap  -->
-    <script src="/js/bootstrap/bootstrap3/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="/js/bootstrap/bootstrap3/css/bootstrap.css"/>
+    <script src="/jss/bootstrap/bootstrap3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap3/css/bootstrap.css"/>
     <!-- 左侧导航树 -->
-    <link rel="stylesheet" href="/js/bootstrap/bootstrap-treeview/bootstrap-treeview.min.css">
-    <script src="/js/bootstrap/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="/jss/bootstrap/bootstrap-treeview/bootstrap-treeview.min.js"></script>
     <!-- 选项卡 -->
-    <link rel="stylesheet" href="/js/bootstrap/bootStrap-addTabs/bootstrap.addtabs.css">
-    <script src="/js/bootstrap/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
-    <link rel="stylesheet" href="/js/bootstrap/bootstrap-table/bootstrap-table.css">
-    <script src="/js/bootstrap/bootstrap-table/bootstrap-table.js"></script>
-    <script src="/js/bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
-    <script src="/js/bootstrap/bootstrap-bootbox/bootbox.js"></script>
-    <script src="/js/bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-    <script src="/js/bootstrap/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-    <link rel="stylesheet" href="/js/bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
-    <script src="/js/bootstrap/bootstrap-fileinput/js/fileinput.js"></script>
-    <script src="/js/bootstrap/bootstrap-fileinput/js/locales/zh.js"></script>
-    <link rel="stylesheet" href="/js/bootstrap/bootstrap-fileinput/css/fileinput.css">
+    <link rel="stylesheet" href="/jss/bootstrap/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="/jss/bootstrap/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-table/bootstrap-table.css">
+    <script src="/jss/bootstrap/bootstrap-table/bootstrap-table.js"></script>
+    <script src="/jss/bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="/jss/bootstrap/bootstrap-bootbox/bootbox.js"></script>
+    <script src="/jss/bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="/jss/bootstrap/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script src="/jss/bootstrap/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="/jss/bootstrap/bootstrap-fileinput/js/locales/zh.js"></script>
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-fileinput/css/fileinput.css">
     <title>发票列表</title>
 </head>
 <style>
@@ -125,7 +125,11 @@
                     }
                 },
                 {field: 'invoiceContent', title: '发票内容', width: '5%'},
-                {field: '发票内容', title: '发票金额', width: '10%'},
+                {field: '444', title: '发票金额', width: '5%', formatter: function (value, row, index) {
+                        var  html="";
+                        html='<font color="red">'+row.invoiceAmount+'</font>'
+                        return html
+                    }},
                 {field: "123", title: "操作", width: '10%', formatter: function (value, row, index) {
                         var invoiceState = row.invoiceState;
                         if (invoiceState == 0) {
