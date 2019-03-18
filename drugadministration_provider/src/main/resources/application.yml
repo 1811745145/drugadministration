@@ -9,9 +9,9 @@ spring:
     name: provider-drus
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.101.64:3306/1808?characterEncoding=utf-8
+    url: jdbc:mysql://192.168.101.109:3306/yiyao?characterEncoding=utf-8
     username: root
-    password:
+    password: root
 
     thymeleaf:
       encoding: UTF-8

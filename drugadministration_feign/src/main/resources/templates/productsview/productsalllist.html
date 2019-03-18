@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="../jquery-easyui-1.5/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/default/easyui.css">
+    <link rel="stylesheet" href="../jquery-easyui-1.5/themes/icon.css">
+    <script src="../jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="../bootstrap3/css/bootstrap.css">
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <link rel="stylesheet" href="../js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-fileinput/css/fileinput.css">
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <script src="../js/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+    <script src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="../js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+</head>
+<body>
+<div id="register-shead" class="btn-group" role="group">
+    <button id="allAgency_btn" class="btn btn-default  btn-lg"  onclick="allAgency_click(0)">全部代理信息</button>
+    <button id="space_btn" class="btn btn-default btn-lg"  onclick="space_click(1)">待审核()</button>
+    <button id="approve_btn" class="btn btn-default btn-lg"  onclick="approve_click(2)">审核通过</button>
+    <button id="lose_btn" class="btn btn-default btn-lg"  onclick="lose_click(3)">失效/撤回</button>
+    <button id="approveNo_btn" class="btn btn-default btn-lg"  onclick="approveNo_click(4)">审核未通过</button>
+</div>
+<div id="register-head" class="btn-group" role="group" style="float:right;">
+    <button id="approveNos_btn" class="btn btn-warning btn-lg"  onclick="openAdd()">发布代理需求</button>
+</div>
+<div><table  id="myTable"></table></div>
+</body>
+<script type="text/javascript">
+    $(function(){
+
+    })
+
+    function allAgency_click(param) {
+        $('#myTable').bootstrapTable('refresh');
+        refreshTable(param);
+        document.getElementById("allAgency_btn").className = "btn btn-primary btn-lg";
+        document.getElementById("space_btn").className = "btn btn-default btn-lg";
+        document.getElementById("approve_btn").className = "btn btn-default btn-lg";
+        document.getElementById("lose_btn").className = "btn btn-default btn-lg";
+        document.getElementById("approveNo_btn").className = "btn btn-default btn-lg";
+
+
+    }
+    function space_click(param) {
+        $('#myTable').bootstrapTable('refresh');
+        refreshTable(param);
+        document.getElementById("allAgency_btn").className = "btn btn-default btn-lg";
+        document.getElementById("space_btn").className = "btn btn-primary btn-lg";
+        document.getElementById("approve_btn").className = "btn btn-default btn-lg";
+        document.getElementById("lose_btn").className = "btn btn-default btn-lg";
+        document.getElementById("approveNo_btn").className = "btn btn-default btn-lg";
+
+    }
+    function approve_click(param) {
+        refreshTable(param);
+        document.getElementById("allAgency_btn").className = "btn btn-defaul btn-lg";
+        document.getElementById("space_btn").className = "btn btn-default btn-lg";
+        document.getElementById("approve_btn").className = "btn btn-primary btn-lg";
+        document.getElementById("lose_btn").className = "btn btn-default btn-lg";
+        document.getElementById("approveNo_btn").className = "btn btn-default btn-lg";
+
+    }
+    function lose_click(param) {
+        refreshTable(param);
+        document.getElementById("allAgency_btn").className = "btn btn-default btn-lg";
+        document.getElementById("space_btn").className = "btn btn-default btn-lg";
+        document.getElementById("approve_btn").className = "btn btn-default btn-lg";
+        document.getElementById("lose_btn").className = "btn btn-primary btn-lg";
+        document.getElementById("approveNo_btn").className = "btn btn-default btn-lg";
+
+    }
+    function approveNo_click(param) {
+        refreshTable(param);
+        document.getElementById("allAgency_btn").className = "btn btn-default btn-lg";
+        document.getElementById("space_btn").className = "btn btn-default btn-lg";
+        document.getElementById("approve_btn").className = "btn btn-default btn-lg";
+        document.getElementById("lose_btn").className = "btn btn-default btn-lg";
+        document.getElementById("approveNo_btn").className = "btn btn-primary btn-lg";
+
+    }
+
+    function refreshTable(param){
+        var url="";
+        if(param==0){
+            url ='/findProductsAll';
+        }else{
+            url ='/findProductsStatusList?productsStatus='+param;
+        }
+
+        $("#myTable").bootstrapTable({
+            url:url,
+            striped:true,//条纹表格
+            showRefresh: true,//是否显示刷新按钮
+            columns:[
+                {field:"check",checkbox:true},
+                {field:"productsId",title:"id"},
+                {field:"productsName",title:"代理名称"},
+                {field:"productsManufacturer",title:"生产厂家"},
+                {field:"productsDistrict",title:"代理人"},
+                {field:"productsLinkman",title:"联系人"},
+                {field:"productsPhone",title:"联系电话"},
+                {field:"tools",title:"操作",formatter:function(value,row,index){
+                        return "<a href='javascript:openUpdate("+row.productsId+")'>修改</a> <a href='javascript:deleteOne("+row.productsId+")'>删除</a>";
+                    }}
+            ]
+        })
+
+    }
+
+    //单删
+    function deleteOne(productsId){
+        alert(productsId);
+        bootbox.confirm({
+            message: "你确定要删除吗?",
+            buttons: {
+                confirm: {
+                    label: '确定',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: '取消',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if(result){
+                    $.ajax({
+                        url:'/delProduct',
+                        data:{
+                            productsId:productsId
+                        },
+                        success:function(data){
+                            if(data){
+                                $('#myTable').bootstrapTable('refresh');
+                            }else{
+                                bootbox.alert("删除失败！")
+                            }
+                        }
+                    })
+                }
+            }
+        });
+    }
+
+
+
+    var res;
+    function createAddContent(url){
+        $.ajax({
+            url:url,
+            async:false,
+            success:function(data){
+                res = data;
+            }
+        });
+        return res;
+    }
+    //打开新增弹框
+    function openAdd(){
+        bootbox.dialog({
+            title:'添加',
+            message: createAddContent("/tosaveproducts"),//跳转路径的方法
+            closeButton: true,//是否显示关闭按钮
+            buttons : {
+                "success" : {
+                    "label" : "<i class='icon-ok'></i> 保存",
+                    "className" : "btn-sm btn-success",
+                    "callback" : function() {
+                        $.ajax({
+                            url:'/saveProducts',//新增方法
+                            type:'post',
+                            dataType:'json',
+                            data:$("#agencyFrom").serialize(),
+                            success:function(data){
+                                if (data) {
+                                    $('#myTable').bootstrapTable('refresh');
+                                }else {
+                                    bootbox.alert("失败！")
+                                }
+                            }
+                        });
+                    }
+                },
+                "cancel" : {
+                    "label" : "<i class='icon-info'></i> 取消",
+                    "className" : "btn-sm btn-danger",
+                    "callback" : function() {
+
+                    }
+                }
+            }
+
+        });
+    }
+
+
+    //打开修改弹框
+    function openUpdate(productsId){
+        bootbox.dialog({
+            title:'修改',
+            message: createAddContent("/toUpdateAgencyList"),
+            closeButton: true,//是否显示关闭按钮
+            buttons : {
+                "success" : {
+                    "label" : "<i class='icon-ok'></i> 保存",
+                    "className" : "btn-sm btn-success",
+                    "callback" : function() {
+                        $.ajax({
+                            url:'/saveProducts',
+                            type:'post',
+                            dataType:'json',
+                            data:$("#poductsFrom").serialize(),
+                            success:function(data){
+                                if(data){
+                                    $('#myTable').bootstrapTable('refresh');
+                                }else{
+                                    bootbox.alert("修改失败！")
+                                }
+                            }
+                        });
+                    }
+                },
+                "cancel" : {
+                    "label" : "<i class='icon-info'></i> 取消",
+                    "className" : "btn-sm btn-danger",
+                    "callback" : function() {
+
+                    }
+                }
+            }
+
+        });
+        //回显数据
+        $.ajax({
+            url:'/findProductsById',
+            type:'get',
+            async:false,//同步
+            data:{productsId:productsId},
+            success:function(data){
+                $("#productsId").val(data.productsId);
+                $("#productsName").val(data.productsName);
+                $("#productsDistrict").val(data.productsDistrict);
+                $("#productsDetail").val(data.productsDetail);
+                $("#productsLinkman").val(data.productsLinkman);
+                $("#productsPhone").val(data.productsPhone)
+            }
+        });
+    }
+</script>
+</html>
