@@ -8,7 +8,7 @@ import java.util.List;
 public interface DrusMapper {
     /**
      * 查询树
-     * @param id
+     * @param
      * @return
      */
     @Select(" select * from purchase_centre_tree where pid = #{value} ")
@@ -18,9 +18,10 @@ public interface DrusMapper {
      * 查询地址管理列表
      * @return
      */
-    @Select(" select * from addressmanagement ")
-    List<Address> queryaddressList();
+    int queryaddressCount();
 
+
+    List<Address> queryaddressList(@Param("start") int start,@Param("rows") Integer rows);
     /**
      * 根据id删除
      * @param addressId
@@ -32,7 +33,7 @@ public interface DrusMapper {
      * 新增
      * @param address
      */
-    @Insert(" insert into addressmanagement(address_name,address_area,detailedaddress,zipcode,phone)values(#{address_name},#{address_area},#{detailedaddress},#{zipcode},#{phone}) ")
+    @Insert(" insert into addressmanagement(address_name,detailedaddress,zipcode,phone,area_city,area_province)values(#{address_name},#{detailedaddress},#{zipcode},#{phone},#{area_city},#{area_province}) ")
     void saveAddress(Address address);
 
     /**
@@ -66,7 +67,7 @@ public interface DrusMapper {
      * 查询商品管理
      * @return
      */
-    List<Commodity> querycommodityList(Commodity commodity);
+    List<Commodity> querycommodityList(@Param("commodity") Commodity commodity,@Param("start") int start,@Param("rows") Integer rows);
 
     /**
      * 新增商品管理数据
@@ -174,15 +175,44 @@ public interface DrusMapper {
     @Select(" select * from  t_investment where status = #{value}")
     List<InvestmentBean> selectInvestment(String status);
 
+    /**
+     * 删除招商信息
+     * @param id
+     */
     @Delete(" delete from t_investment where id = #{value} ")
     void deleteInvset(Integer id);
 
+    /**
+     * 回显招商信息
+     * @param id
+     * @return
+     */
     @Select(" select * from  t_investment where id = #{value}")
     InvestmentBean selectInvestmentById(Integer id);
 
+    /**
+     * 批量上架
+     * @param investmentBean
+     */
     @Update(" update t_investment set investmentClass = #{investmentClass},investmentTitle = #{investmentTitle},investmentRegion = #{investmentRegion},investmentName = #{investmentName},investmentInfo = #{investmentInfo},status = 0 where id = #{id} ")
     void updateUpInvestment(InvestmentBean investmentBean);
 
+    /**
+     * 批量下架
+     * @param investmentBean
+     */
     @Update(" update t_investment set investmentClass = #{investmentClass},investmentTitle = #{investmentTitle},investmentRegion = #{investmentRegion},investmentName = #{investmentName},investmentInfo = #{investmentInfo},status = 2 where id = #{id} ")
     void updateDownInvestment(InvestmentBean investmentBean);
+
+    /**
+     * 查询地区
+     * @param id
+     * @return
+     */
+    @Select(" select * from t_area where pid = #{id} ")
+    List<Area> findProvinceSelect(Integer id);
+
+
+
+    int querycommodityCount(@Param("commodity") Commodity commodity);
 }

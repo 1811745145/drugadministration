@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <!-- 引入核心js -->
-    <script src="/js/jquery-2.1.1.min.js" ></script>
+    <script src="/jss/jquery-2.1.1.min.js" ></script>
     <!-- bootstrap  -->
-    <script src="/js/bootstrap/bootstrap3/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="/js/bootstrap/bootstrap3/css/bootstrap.css"/>
+    <script src="/jss/bootstrap/bootstrap3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap3/css/bootstrap.css"/>
     <!-- 左侧导航树 -->
-    <link rel="stylesheet" href="/js/bootstrap/bootstrap-treeview/bootstrap-treeview.min.css">
-    <script src="/js/bootstrap/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script src="/jss/bootstrap/bootstrap-treeview/bootstrap-treeview.min.js"></script>
     <!-- 选项卡 -->
-    <link rel="stylesheet" href="/js/bootstrap/bootStrap-addTabs/bootstrap.addtabs.css">
-    <script src="/js/bootstrap/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
-    <link rel="stylesheet" href="/js/bootstrap/bootstrap-table/bootstrap-table.css">
-    <script src="/js/bootstrap/bootstrap-table/bootstrap-table.js"></script>
-    <script src="/js/bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
-    <script src="/js/bootstrap/bootstrap-bootbox/bootbox.js"></script>
-    <script src="/js/bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-    <script src="/js/bootstrap/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-    <link rel="stylesheet" href="/js/bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
-    <script src="/js/bootstrap/bootstrap-fileinput/js/fileinput.js"></script>
-    <script src="/js/bootstrap/bootstrap-fileinput/js/locales/zh.js"></script>
-    <link rel="stylesheet" href="/js/bootstrap/bootstrap-fileinput/css/fileinput.css">
+    <link rel="stylesheet" href="/jss/bootstrap/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script src="/jss/bootstrap/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-table/bootstrap-table.css">
+    <script src="/jss/bootstrap/bootstrap-table/bootstrap-table.js"></script>
+    <script src="/jss/bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="/jss/bootstrap/bootstrap-bootbox/bootbox.js"></script>
+    <script src="/jss/bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="/jss/bootstrap/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script src="/jss/bootstrap/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="/jss/bootstrap/bootstrap-fileinput/js/locales/zh.js"></script>
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-fileinput/css/fileinput.css">
     <title>销售订单</title>
 </head>
 <style>
@@ -35,15 +35,20 @@
     }
 </style>
 <body>
-<div>
-<input type="button" Class="btn btn-info glyphicon glyphicon-plus" value="全部订单" onclick=""></input>
-<input type="button" Class="btn btn-info glyphicon glyphicon-plus" value="待支付" onclick=""></input>
-<input type="button" Class="btn btn-info glyphicon glyphicon-plus" value="待发货" onclick=""></input>
-<input type="button" Class="btn btn-info glyphicon glyphicon-plus" value="配送中" onclick=""></input>
-<input type="button" Class="btn btn-info glyphicon glyphicon-plus" value="待收货" onclick=""></input>
-<input type="button" Class="btn btn-info glyphicon glyphicon-plus" value="已完成" onclick=""></input>
-<input type="button" Class="btn btn-info glyphicon glyphicon-plus" value="已关闭" onclick=""></input>
-</div>
+    <nav class="navbar  navbar-default"  style="margin-top: 10px">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <!--<input type="button" Class="btn btn-info glyphicon glyphicon-plus" value="全部订单" onclick=""></input>-->
+                <a style="margin-left: 30px" href="#" class="navbar-brand">全部订单</a>
+                <a style="margin-left: 30px" href="#" class="navbar-brand">待支付</a>
+                <a style="margin-left: 30px" href="#" class="navbar-brand">待发货</a>
+                <a style="margin-left: 30px" href="#" class="navbar-brand">配送中</a>
+                <a style="margin-left: 30px" href="#" class="navbar-brand">待收货</a>
+                <a style="margin-left: 30px" href="#" class="navbar-brand">已完成</a>
+                <a style="margin-left: 30px" href="#" class="navbar-brand">已关闭</a>
+            </div>
+        </div>
+    </nav>
 <!--条查-->
 <input type="hidden" id="id">
 <div class="form-group" style="float:left;margin-left:10px">
@@ -146,7 +151,11 @@
                         }
                     }
                 },
-                {field: 'fundsReceived', title: '实收款', width: '5%'},
+                {field: '444', title: '实收款', width: '5%', formatter: function (value, row, index) {
+                        var  html="";
+                        html='<font color="red">'+row.fundsReceived+'</font>'
+                        return html
+                    }},
                 {field: 'orderStatus', title: '订单状态', width: '10%', formatter: function (value, row, index) {
                         var orderStatus = row.orderStatus;
                         if (orderStatus == 1) {

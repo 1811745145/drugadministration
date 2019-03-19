@@ -19,7 +19,7 @@ public class ReturnController {
     //跳转退货页面
     @RequestMapping("toReturn")
     public String toReturn(){
-        return "returnList";
+        return "returnList1";
     }
 
     //退货查询
