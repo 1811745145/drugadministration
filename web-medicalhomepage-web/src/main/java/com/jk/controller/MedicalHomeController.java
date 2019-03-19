@@ -15,7 +15,11 @@ public class MedicalHomeController {
 
     @RequestMapping("junmpMedicalHome")
     public   String  junmpMedicalHome(){
-       return   "西北医药网-更专业的医药交易服务平台";
+       return "home";
+    }
+    @RequestMapping("junmpclassify")
+    public   String  junmpclassify(){
+        return "classify";
     }
 
 }

@@ -286,7 +286,7 @@
                             <div class="leftdiv">
                                 <dl>
                                     <dt>
-                                        <a href="#">家庭常备</a>
+                                        <a href="javascript:inithtml()">家庭常备</a>
                                     </dt>
                                     <dd>
                                         <a href="#">风热感冒</a>
@@ -2204,10 +2204,10 @@
 
             }
         })
-
-
         var   html1="";
-       html1= '<li class="cp-list" style="position:relative">'+
+
+for (var i=0;i<3;i++){
+    html1+= '<li class="cp-list" style="position:relative">'+
         '<a href="" target="_blank">'+
         '<img src="../西北医药网-更专业的医药交易服务平台_files/1541667516E2DUUslk.png"><h3></h3>'+
         '<span style="text-indent: 10px;">规格：颗粒剂，每袋装15克，15g*10袋</span>'+
@@ -2227,12 +2227,22 @@
         '</p>'+
         '<p style="text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap;position:absolute;right:20px;bottom:10px;">'+
         '<a style=" float:left;width:100%;text-align:right;color:#fff;padding:3px 0;margin-top:2px;"   href=""  target="_blank">查看详情 &gt;</a>'+
-         '</p></div></li>'
-
-
-            $(".goods-box").append(html1)
+        '</p></div></li>'
+    $(".goods-box").append(html1)
+}
         /*不要动*/
         initaaa()
+    }
+/*加入分类页面*/
+    function inithtml(){
+      $.ajax({
+          url:"http://127.0.0.1:8200/MedicalHomeController/junmpclassify",
+          type:"post",
+          data:{},
+          success:function(data){
+              $(".content-wrapper").html(data)
+          }
+      })
     }
 </script>
 </body>
