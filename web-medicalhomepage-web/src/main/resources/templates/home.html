@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0051) -->
-<html   lang="en">
+<html   lang="en"   xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -286,7 +286,7 @@
                             <div class="leftdiv">
                                 <dl>
                                     <dt>
-                                        <a href="javascript:inithtml()">家庭常备</a>
+                                        <a href="javascript:inithtml('家庭常备')">家庭常备</a>
                                     </dt>
                                     <dd>
                                         <a href="#">风热感冒</a>
@@ -2234,11 +2234,11 @@ for (var i=0;i<3;i++){
         initaaa()
     }
 /*加入分类页面*/
-    function inithtml(){
+    function inithtml(name){
       $.ajax({
           url:"http://127.0.0.1:8200/MedicalHomeController/junmpclassify",
           type:"post",
-          data:{},
+          data:{name:name},
           success:function(data){
               $(".content-wrapper").html(data)
           }
