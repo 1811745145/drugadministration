@@ -3,6 +3,7 @@ package com.jk.service;
 import com.jk.pojo.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 @RequestMapping("drus")
 public interface DrusService {
@@ -18,7 +19,7 @@ public interface DrusService {
      * @return
      */
     @RequestMapping("queryaddressList")
-    List<Address> queryaddressList();
+    HashMap<String, Object> queryaddressList(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows);
 
     /**
      * 根据id删除数据
@@ -54,7 +55,7 @@ public interface DrusService {
      * @return
      */
     @RequestMapping("querycommodityList")
-    List<Commodity> querycommodityList(Commodity commodity);
+    HashMap<String,Object> querycommodityList(Commodity commodity,@RequestParam("page") Integer page,@RequestParam("rows")Integer rows);
     /**
      * 退货商品状态
      * @return
@@ -140,21 +141,54 @@ public interface DrusService {
     @RequestMapping("updateUserBySessionId")
     void updateUserBySessionId(@RequestParam("userId") Integer userId,@RequestParam("newPassword") String newPassword);
 
+    /**
+     * 新增商品管理
+     * @param investmentBean
+     */
     @RequestMapping("investmentBean")
     void saveInvestment(InvestmentBean investmentBean);
 
+    /**
+     * 拆线呢商品管理
+     * @param status
+     * @return
+     */
     @RequestMapping("selectInvestment")
     List<InvestmentBean> selectInvestment(@RequestParam("status")String status);
 
+    /**
+     * 删除商品管理
+     * @param id
+     */
     @DeleteMapping("deleteInvset")
     void deleteInvset(@RequestParam("id") Integer id);
 
+    /**
+     * 回显
+     * @param id
+     * @return
+     */
     @RequestMapping("selectInvestmentById")
     InvestmentBean selectInvestmentById(@RequestParam("id") Integer id);
-
+    /**
+     * 批量上架
+     * @param investmentBean
+     */
     @RequestMapping("updateUpInvestment")
     void updateUpInvestment(InvestmentBean investmentBean);
 
+    /**
+     * 批量下架
+     * @param investmentBean
+     */
     @RequestMapping("updateDownInvestment")
     void updateDownInvestment(InvestmentBean investmentBean);
+
+    /**
+     * 查询地区
+     * @param id
+     * @return
+     */
+    @RequestMapping("findProvinceSelect")
+    List<Area> findProvinceSelect(@RequestParam("id") Integer id);
 }

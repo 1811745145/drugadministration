@@ -4,10 +4,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8080/eureka/
-spring:
-  application:
-    name: fegin-drus
-    #此为spring cloud配置文件格式
   redis:
     database: 0
     host: 127.0.0.1
