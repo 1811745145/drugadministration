@@ -15,6 +15,7 @@ public class DcWebBean {
     private long    purchasePrice;//  采购价
     private long   interimPrice ;// 临时价
 
+
     public Integer getDurgId() {
         return durgId;
     }
