@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.RecruitMapper">
+
+    <!--招商信息统计数量 -->
+    <select id="queryRecruitCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select count(*) from t_recruit t
+        where 1 = 1
+        <include refid="sqlwhere"></include>
+    </select>
+    <!--招商信息查询 -->
+    <select id="queryRecruitList" parameterType="map" resultType="com.jk.pojo.RecruitBean">
+        select t.id,t.code,t.product_name as productName,
+        t.specifications,t.manufacturer,t.province,t.city,t.area,
+        t.release_date as releaseDate,t.commodity_price as commodityPrice,
+        t.transaction_volume as transactionVolume,t.recruit_picture as recruitPicture,
+        t.recruit_type as recruitType,t.details
+        from t_recruit t  where 1 = 1
+        <include refid="sqlwhere"></include>
+        limit #{startIndex},#{endIndex}
+    </select>
+    <sql id="sqlwhere">
+        <if test="recruitBean.code !=null and recruitBean.code!=''">
+            and t.code like '%${recruitBean.code}%'
+        </if>
+    </sql>
+    <!--查询招商商品 -->
+    <select id="queryRecruit" parameterType="map" resultType="com.jk.pojo.RecruitBean">
+        select t.id,t.code,t.product_name as productName,
+        t.specifications,t.manufacturer,t.province,t.city,t.area,
+        t.release_date as releaseDate,t.commodity_price as commodityPrice,
+        t.transaction_volume as transactionVolume,t.recruit_picture as recruitPicture,
+        t.recruit_type as recruitType,t.details
+        from t_recruit t
+    </select>
+</mapper>
