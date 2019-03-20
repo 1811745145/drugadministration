@@ -25,6 +25,7 @@
         <module>web-medicalhomepage-api</module>
         <module>web-medicalhomepage-server</module>
         <module>web-medicalhomepage-web</module>
+
     </modules>
 
 
