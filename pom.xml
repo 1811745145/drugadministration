@@ -22,9 +22,10 @@
         <module>products_server_web</module>
         <module>salesmanagement_producer</module>
         <module>salesmanagement_consumer</module>
-        <module>web_product_api</module>
-        <module>web_product_server</module>
-        <module>web_product_server_web</module>
+        <module>web-medicalhomepage-api</module>
+        <module>web-medicalhomepage-server</module>
+        <module>web-medicalhomepage-web</module>
+
     </modules>
 
 
