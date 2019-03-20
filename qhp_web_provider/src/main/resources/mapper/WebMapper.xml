@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.mapper.WebMapper">
+    <select id="queryCount" resultType="int">
+        select count(1) from t_daili
+    </select>
+
+    <select id="findUserList" resultType="com.jk.pojo.Daili">
+        select * from t_daili
+         <include refid="dailiWhere"></include>
+         limit #{start},#{rows}
+    </select>
+
+    <sql id="dailiWhere">
+        <where>
+            <if test="daili.name != null and daili.name != ''">
+               and name like '%${daili.name}%'
+            </if>
+            <if test="daili.area != null and daili.area != ''">
+                and area like '%${daili.area}%'
+            </if>
+            <if test="daili.yiji != null and daili.yiji != ''">
+                and yiji = #{daili.yiji}
+            </if>
+            <if test="daili.erji != null and daili.erji != ''">
+                and erji = #{daili.erji}
+            </if>
+        </where>
+            <if test="daili.pricepaixu != null and daili.pricepaixu != '' and daili.pricepaixu == 1">
+                 order by pricepaixu desc
+            </if>
+        <if test="daili.pricepaixu != null and daili.pricepaixu != '' and daili.pricepaixu == 2">
+            order by pricepaixu asc
+        </if>
+        <if test="daili.countpaixu != null and daili.countpaixu != '' and daili.countpaixu == 1">
+            order by pricepaixu asc
+        </if>
+        <if test="daili.countpaixu != null and daili.countpaixu != '' and daili.countpaixu == 2">
+            order by pricepaixu desc
+        </if>
+    </sql>
+
+    <!--供应商-->
+    <select id="findGongyingCount" resultType="int">
+        select count(1) from t_gongying
+    </select>
+
+    <select id="findGongyingList" resultType="com.jk.pojo.Gongying">
+        select * from t_gongying
+         <include refid="gongyingWhere"></include>
+         limit #{start},#{rows}
+    </select>
+    <sql id="gongyingWhere">
+        <where>
+            <if test="gongying.fenlei != null and gongying.fenlei != ''">
+                and fenlei = #{gongying.fenlei}
+            </if>
+            <if test="gongying.name != null and gongying.name != ''">
+                and name like '%${gongying.name}%'
+            </if>
+        </where>
+
+        <if test="gongying.riqi != null and gongying.riqi != '' and gongying.riqi ==1 ">
+            order by riqi desc
+        </if>
+        <if test="gongying.count != null and gongying.count != '' and gongying.count ==1 ">
+            order by count desc
+        </if>
+    </sql>
+
+
+    <!--求购商-->
+    <select id="findQiuGouCount" resultType="int">
+        select count(1) from t_qiugou
+    </select>
+
+    <select id="findQiuGouList" resultType="com.jk.pojo.QiuGou">
+        select * from t_qiugou
+        <include refid="qiugouWhere"></include>
+        limit #{start},#{rows}
+    </select>
+
+    <sql id="qiugouWhere">
+        <where>
+            <if test="qiuGou.fenlei != null and qiuGou.fenlei != ''">
+                and fenlei = #{qiuGou.fenlei}
+            </if>
+            <if test="qiuGou.name != null and qiuGou.name != ''">
+                and name like '%${qiuGou.name}%'
+            </if>
+        </where>
+
+        <if test="qiuGou.riqi != null and qiuGou.riqi != '' and qiuGou.riqi ==1 ">
+            order by riqi desc
+        </if>
+        <if test="qiuGou.count != null and qiuGou.count != '' and qiuGou.count ==1 ">
+            order by count desc
+        </if>
+    </sql>
+</mapper>
