@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.jk.mapper.PharMapper">
+
+    <select id="pharList"  resultType="com.jk.pojo.Tenterprise">
+        select
+          *
+        from
+          t_enterprise
+    </select>
+    <select id="famousList"  resultType="com.jk.pojo.Tenterprise">
+        select
+          *
+        from
+          t_enterprise
+        where type='知名企业'
+    </select>
+    <select id="chineseList"  resultType="com.jk.pojo.Tenterprise">
+        select
+          *
+        from
+          t_enterprise
+        where type='中西医药'
+    </select>
+    <select id="medicalList"  resultType="com.jk.pojo.Tenterprise">
+        select
+          *
+        from
+          t_enterprise
+        where type='医疗器械'
+    </select>
+    <select id="nourishingList"  resultType="com.jk.pojo.Tenterprise">
+        select
+          *
+        from
+          t_enterprise
+        where type='滋补保健'
+    </select>
+    <select id="adultList"  resultType="com.jk.pojo.Tenterprise">
+        select
+          *
+        from
+          t_enterprise
+        where type='成人用品'
+    </select>
+    <select id="herbList"  resultType="com.jk.pojo.Tenterprise">
+        select
+          *
+        from
+          t_enterprise
+        where type='草药专区'
+    </select>
+    <select id="useList"  resultType="com.jk.pojo.Tenterprise">
+        select
+          *
+        from
+          t_enterprise
+        where type='日用商超'
+    </select>
+
+    <!--<update id="countersign" parameterType="int">
+        update drug_no_return set return_Type = 1 where return_Id = #{value}
+    </update>
+
+    <select id="queryProductList" resultType="com.jk.pojo.ProductBuy">
+        select * from register_drug
+    </select>
+
+    <insert id="addProduct" parameterType="com.jk.pojo.ProductBuy">
+        insert into register_drug
+          (
+          drug_Name,
+          manufacturers_Name,
+          specifications,
+          area,
+          contacts,
+          phone
+          )
+        values
+          (
+          #{drug_Name},
+          #{manufacturers_Name},
+          #{specifications},
+          #{area},
+          #{contacts},
+          #{phone}
+          )
+    </insert>
+
+    <select id="queryProductuyBuy" resultType="com.jk.pojo.ProductBuy">
+        select * from register_drug where drug_Id = #{value}
+    </select>
+    
+    <update id="updeteProductuyBuy" parameterType="com.jk.pojo.ProductBuy">
+        update register_drug set
+          drug_Name = #{drug_Name},
+          manufacturers_Name = #{manufacturers_Name},
+          specifications = #{specifications},
+          area = #{area},
+          contacts = #{contacts},
+          phone = #{phone}
+        where drug_Id = #{drug_Id}
+
+    </update>
+
+    <delete id="delProductuyBuy" parameterType="int">
+        delete from register_drug where drug_Id = #{value}
+    </delete>-->
+</mapper>
