@@ -7,12 +7,14 @@ import com.jk.pojo.Commodity;
 import com.jk.pojo.DrugNoReturn;
 import com.jk.pojo.TreeBean;
 import com.jk.service.DrusServicefeign;
+import feign.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +25,7 @@ public class DrusController {
 
     @Autowired
     private RedisTemplate redisTemplate;
+
 
     /**
      * 编辑不通过
@@ -476,6 +479,25 @@ public class DrusController {
         }
     }
 
+
+    @RequestMapping("queryaddressList")
+    @ResponseBody
+    public HashMap<String,Object>queryaddressList(@Param("page") Integer page,@Param("rows") Integer rows){
+        return drusServicefeign.queryaddressList(page,rows);
+    }
+
+    @RequestMapping("querycommodityList")
+    @ResponseBody
+    public HashMap<String,Object>querycommodityList(Commodity commodity,@Param("page") Integer page,@Param("rows") Integer rows){
+        return drusServicefeign.querycommodityList(commodity,page,rows);
+    }
+
+
+    @RequestMapping("findProvinceSelect")
+    @ResponseBody
+    public List<Area>findProvinceSelect(@RequestParam("id")Integer id){
+        return drusServicefeign.findProvinceSelect(id);
+    }
     /*跳转购物车*/
     @RequestMapping("theShoppingCart")
     public String theShoppingCart() {
