@@ -57,6 +57,40 @@
           t_enterprise
         where type='日用商超'
     </select>
+    <select id="drugList"  resultType="com.jk.pojo.Tstore">
+        select
+          *
+        from
+          t_store
+    </select>
+    <select id="tangYaoList"  resultType="com.jk.pojo.Tstore">
+        select
+          *
+        from
+          t_store
+        where drugType='汤药'
+    </select>
+    <select id="chinesePatentMedicineList"  resultType="com.jk.pojo.Tstore">
+        select
+          *
+        from
+          t_store
+        where drugType='中成药'
+    </select>
+    <select id="traditionalChineseMedicineList"  resultType="com.jk.pojo.Tstore">
+        select
+          *
+        from
+          t_store
+        where drugType='中药'
+    </select>
+    <select id="westernMedicineList"  resultType="com.jk.pojo.Tstore">
+        select
+          *
+        from
+          t_store
+        where drugType='西药'
+    </select>
 
     <!--<update id="countersign" parameterType="int">
         update drug_no_return set return_Type = 1 where return_Id = #{value}

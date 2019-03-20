@@ -2,9 +2,11 @@ package com.jk.controller;
 
 import com.jk.mapper.PharMapper;
 import com.jk.pojo.Tenterprise;
+import com.jk.pojo.Tstore;
 import com.jk.service.PharService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -99,5 +101,55 @@ public class PharController implements PharService {
     @ResponseBody
     public List<Tenterprise> useList() {
         return pharMapper.useList();
+    }
+
+    /**
+     * 旗舰店
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public List<Tstore> drugList() {
+        return pharMapper.drugList();
+    }
+
+    /**
+     * 汤药
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public List<Tstore> tangYaoList() {
+        return pharMapper.tangYaoList();
+    }
+
+    /**
+     * 中成药
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public List<Tstore> chinesePatentMedicineList() {
+        return pharMapper.chinesePatentMedicineList();
+    }
+
+    /**
+     * 中药
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public List<Tstore> traditionalChineseMedicineList() {
+        return pharMapper.traditionalChineseMedicineList();
+    }
+
+    /**
+     * 西药
+     * @return
+     */
+    @Override
+    @ResponseBody
+    public List<Tstore> westernMedicineList() {
+        return pharMapper.westernMedicineList();
     }
 }

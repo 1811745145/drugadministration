@@ -1,6 +1,7 @@
 package com.jk.service;
 
 import com.jk.pojo.Tenterprise;
+import com.jk.pojo.Tstore;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
@@ -68,4 +69,39 @@ public interface PharService {
      */
     @GetMapping("useList")
     List<Tenterprise> useList();
+
+    /**
+     * 旗舰店
+     * @return
+     */
+    @GetMapping("drugList")
+    List<Tstore> drugList();
+
+    /**
+     * 汤药
+     * @return
+     */
+    @GetMapping("tangYaoList")
+    List<Tstore> tangYaoList();
+
+    /**
+     * 中成药
+     * @return
+     */
+    @GetMapping("chinesePatentMedicineList")
+    List<Tstore> chinesePatentMedicineList();
+
+    /**
+     * 中药
+     * @return
+     */
+    @GetMapping("traditionalChineseMedicineList")
+    List<Tstore> traditionalChineseMedicineList();
+
+    /**
+     * 西药
+     * @return
+     */
+    @GetMapping("westernMedicineList")
+    List<Tstore> westernMedicineList();
 }

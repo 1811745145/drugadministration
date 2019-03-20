@@ -1,6 +1,7 @@
 package com.jk.mapper;
 
 import com.jk.pojo.Tenterprise;
+import com.jk.pojo.Tstore;
 
 import java.util.List;
 
@@ -27,4 +28,14 @@ public interface PharMapper {
     List<Tenterprise> herbList();
 
     List<Tenterprise> useList();
+
+    List<Tstore> drugList();
+
+    List<Tstore> tangYaoList();
+
+    List<Tstore> chinesePatentMedicineList();
+
+    List<Tstore> traditionalChineseMedicineList();
+
+    List<Tstore> westernMedicineList();
 }

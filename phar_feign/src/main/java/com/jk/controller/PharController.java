@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.jk.pojo.Tenterprise;
+import com.jk.pojo.Tstore;
 import com.jk.service.PharServiceFingn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -142,6 +143,87 @@ public class PharController {
     @RequestMapping("toUse")
     public String toUse(){
         return "useQueryList";
+    }
+
+
+    /**
+     * 旗舰店
+     * @return
+     */
+    @GetMapping("drugList")
+    @ResponseBody
+    public List<Tstore> drugList(){
+
+        return pharServiceFingn.drugList();
+    }
+
+    @RequestMapping("toDrug")
+    public String toDrug(){
+        return "drugList";
+    }
+
+    /**
+     * 汤药
+     * @return
+     */
+    @GetMapping("tangYaoList")
+    @ResponseBody
+    public List<Tstore> tangYaoList(){
+
+        return pharServiceFingn.tangYaoList();
+    }
+
+    @RequestMapping("toTangYao")
+    public String toTangYao(){
+        return "tangYaoList";
+    }
+
+    /**
+     * 中成药
+     * @return
+     */
+    @GetMapping("chinesePatentMedicineList")
+    @ResponseBody
+    public List<Tstore> chinesePatentMedicineList(){
+
+        return pharServiceFingn.chinesePatentMedicineList();
+    }
+
+    @RequestMapping("toChinesePatentMedicine")
+    public String toChinesePatentMedicine(){
+        return "chinesePatentMedicineList";
+    }
+
+    /**
+     * 中药
+     * @return
+     */
+    @GetMapping("traditionalChineseMedicineList")
+    @ResponseBody
+    public List<Tstore> traditionalChineseMedicineList(){
+
+        return pharServiceFingn.traditionalChineseMedicineList();
+    }
+
+    @RequestMapping("toTraditionalChineseMedicine")
+    public String toTraditionalChineseMedicine(){
+        return "traditionalChineseMedicineList";
+    }
+
+    /**
+     * 西药
+     * @return
+     */
+    @GetMapping("westernMedicineList")
+    @ResponseBody
+    public List<Tstore> westernMedicineList(){
+
+        return pharServiceFingn.westernMedicineList();
+    }
+
+    @RequestMapping("toWesternMedicine")
+    public String toWesternMedicine(){
+        return "westernMedicineList";
     }
 
 }
