@@ -7,12 +7,16 @@ import com.jk.pojo.Commodity;
 import com.jk.pojo.DrugNoReturn;
 import com.jk.pojo.TreeBean;
 import com.jk.service.DrusServicefeign;
-import feign.Param;
+import com.jk.service.IOssService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +30,8 @@ public class DrusController {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @Autowired
+    private IOssService iOssService;
 
     /**
      * 编辑不通过
@@ -479,25 +485,6 @@ public class DrusController {
         }
     }
 
-
-    @RequestMapping("queryaddressList")
-    @ResponseBody
-    public HashMap<String,Object>queryaddressList(@Param("page") Integer page,@Param("rows") Integer rows){
-        return drusServicefeign.queryaddressList(page,rows);
-    }
-
-    @RequestMapping("querycommodityList")
-    @ResponseBody
-    public HashMap<String,Object>querycommodityList(Commodity commodity,@Param("page") Integer page,@Param("rows") Integer rows){
-        return drusServicefeign.querycommodityList(commodity,page,rows);
-    }
-
-
-    @RequestMapping("findProvinceSelect")
-    @ResponseBody
-    public List<Area>findProvinceSelect(@RequestParam("id")Integer id){
-        return drusServicefeign.findProvinceSelect(id);
-    }
     /*跳转购物车*/
     @RequestMapping("theShoppingCart")
     public String theShoppingCart() {
@@ -542,6 +529,7 @@ public class DrusController {
         return "salesList";
     }
 
+
     /**
      * 跳转店铺设置（徐飞）
      */
@@ -550,12 +538,18 @@ public class DrusController {
         return "storeList";
     }
 
+
     /**
-     * 跳转新增
+     * OSS阿里云上传图片（徐飞）
      */
-    @RequestMapping("addStore")
-    public String addStore() {
-        return "addStore";
+    @PostMapping("updaloadImg")
+    @ResponseBody
+    public HashMap<String, Object> updaloadImg(HttpServletRequest request, HttpServletResponse response, MultipartFile img) throws IOException {
+        HashMap<String, Object> result = new HashMap<>();
+        String img2 = iOssService.uploadImg(img);
+        result.put("path",img2);
+        return result;
     }
+
 
 }

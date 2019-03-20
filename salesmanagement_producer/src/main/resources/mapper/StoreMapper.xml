@@ -5,7 +5,7 @@
     <!-- 店铺新增 -->
     <insert id="saveStore" parameterType="com.jk.pojo.StoreBean">
         insert into t_store
-        (id,shop_name,store_contact,store_chone,store_logo)
+        (id,shop_name,store_contact,store_phone,store_logo)
         values(#{id},#{shopName},#{storeContact},#{storePhone},
         #{storeLogo})
     </insert>

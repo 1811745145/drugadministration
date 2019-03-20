@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="drugadministration_api" />
+        <module name="drugadministration_common" />
+        <module name="drugadministration_eureka" />
+        <module name="drugadministration_feign" />
+        <module name="drugadministration_provider" />
+        <module name="frontend_consumer" />
+        <module name="frontend_producer" />
+        <module name="products_api" />
+        <module name="products_server" />
+        <module name="products_server_web" />
+        <module name="rugpurchase_api" />
+        <module name="rugpurchase_server" />
+        <module name="rugpurchase_web" />
+        <module name="salesmanagement_consumer" />
+        <module name="salesmanagement_producer" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dru" target="1.5" />
+      <module name="drugadministration_api" target="1.8" />
+      <module name="drugadministration_common" target="1.7" />
+      <module name="drugadministration_eureka" target="1.8" />
+      <module name="drugadministration_feign" target="1.8" />
+      <module name="drugadministration_provider" target="1.8" />
+      <module name="frontend_consumer" target="1.8" />
+      <module name="frontend_producer" target="1.8" />
+      <module name="products_api" target="1.8" />
+      <module name="products_server" target="1.8" />
+      <module name="products_server_web" target="1.8" />
+      <module name="rugpurchase_api" target="1.8" />
+      <module name="rugpurchase_server" target="1.8" />
+      <module name="rugpurchase_web" target="1.8" />
+      <module name="salesmanagement_consumer" target="1.8" />
+      <module name="salesmanagement_producer" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
