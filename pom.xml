@@ -25,6 +25,9 @@
         <module>web-medicalhomepage-api</module>
         <module>web-medicalhomepage-server</module>
         <module>web-medicalhomepage-web</module>
+        <module>qhp_web_provider</module>
+        <module>qhp_web_feign</module>
+        <module>qhp_web_api</module>
 
     </modules>
 
