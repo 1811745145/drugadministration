@@ -2,6 +2,7 @@ package com.jk.pojo;
 
 import java.util.Date;
 
+
 public class WebDrugBean {
     private Integer id;//序号
 
@@ -36,6 +37,15 @@ public class WebDrugBean {
     private String drugefficacy;//药品功效
 
     private String drugimg;//药品图片
+    private Integer acount;//数量
+
+    public Integer getAcount() {
+        return acount;
+    }
+
+    public void setAcount(Integer acount) {
+        this.acount = acount;
+    }
 
     public Integer getId() {
         return id;
