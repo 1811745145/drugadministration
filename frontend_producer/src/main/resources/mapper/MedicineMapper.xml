@@ -9,7 +9,7 @@
         t.approval_number as approvalNumber,RAND() as r
         from t_medicine t ORDER BY r LIMIT 0,10
     </select>
-    <!--查询药品精选 -->
+    <!--查询药品精选详情 -->
     <select id="queryMedicine"  resultType="com.jk.pojo.MedicineBean">
         select t.id,t.picture,t.commodity_information as commodityInformation,
         t.specifications,t.manufacturer,t.unit_price as unitPrice,t.number,t.discount,

@@ -18,4 +18,7 @@ public interface RecruitMapper {
 
     //查询最新招商
     List<RecruitBean> queryInvestment(RecruitBean recruitBean);
+
+    //查询最新招商详情（代理）
+    RecruitBean queryAgent(String id);
 }

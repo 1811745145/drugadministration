@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.pojo.MedicineBean;
 import com.jk.pojo.RecruitBean;
 import com.jk.service.RecruitService;
 import com.jk.util.PageResult;
@@ -36,6 +37,14 @@ public class RecruitController {
     public List<RecruitBean> queryInvestment(RecruitBean recruitBean){
         List<RecruitBean> queryInvestment = recruitService.queryInvestment(recruitBean);
         return queryInvestment;
+    }
+
+    //查询最新招商详情（代理）
+    @PostMapping("queryAgent")
+    @ResponseBody
+    public RecruitBean queryAgent(@RequestBody String id){
+        RecruitBean queryAgent = recruitService.queryAgent(id);
+        return queryAgent;
     }
 
 }

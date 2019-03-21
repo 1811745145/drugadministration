@@ -44,5 +44,11 @@ public class RecruitServiceImpl implements RecruitService {
         return recruitMapper.queryInvestment(recruitBean);
     }
 
+    //查询最新招商详情（代理）
+    @Override
+    public RecruitBean queryAgent(String id) {
+        return recruitMapper.queryAgent(id);
+    }
+
 
 }
