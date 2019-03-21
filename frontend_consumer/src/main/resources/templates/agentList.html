@@ -269,7 +269,7 @@
             <div class="location-now">
                 <div class="location-text">
                     <img src="/jss/bootstrap/bootstrap-fileinput/img/pro-info_03.png" >
-                    当前位置：<a href="#">首页</a>&nbsp;>
+                    当前位置：<a href="#">首页</a>&nbsp;>代理详情
                 </div>
             </div>
 
@@ -293,24 +293,12 @@
                                 '                        <!--左边的图片展示-->\n' +
                                 '                        <div class="proinfotop-img">\n' +
                                 '                            <div class="page-imgpro">\n' +
-                                '                                <div class="sp-wrap">\n' +
-                                '                                    <a href="#"><img src="'+item.recruitImg+'"></a><a href="/Uploads/Goods/20170111/50/A1020012/20160513_211321_016.jpg"><img src="'+item.recruitImg+'"></a><a href="#"><img src="'+item.recruitImg+'"></a>                    </div>\n' +
-                                '                                <ul class="proiinfo-imgbtn">\n' +
-                                '                                    <li style="width: 70%">\n' +
-                                '                                        <div class="share-dialog">\n' +
-                                '                                            <div class="share-dialog-cont">\n' +
-                                '                                                <div class="share-platform">\n' +
-                                '                                                </div>\n' +
-                                '                                            </div>\n' +
-                                '                                        </div>\n' +
-                                '                                    </li>\n' +
-                                '                                </ul>\n' +
+                                '                                    <a href="#"><img src="'+item.recruitImg+'" width="360px" height="450px">    \n' +
                                 '                            </div>\n' +
                                 '                        </div>\n' +
                                 '                        <!--右边的内容展示-->\n' +
                                 '                        <div class="proinfotop-rt">\n' +
                                 '                            <div class="proinfo-rttop">\n' +
-                                '                        <h2><img src="'+item.recruitImg+'" width="200px" height="230px"> </h2>\n' +
                                 '                                <h2>'+item.productName+'</h2>\n' +
                                 '                                <p>'+item.details+'</p>\n' +
                                 '                            </div>\n' +
@@ -354,11 +342,54 @@
                                 '                </div>\n' +
                                 '\n' +
                                 '\n' +
-                                '                <!--右边的内容 -->\n' +
+                                '              <!--右边的内容 -->\n' +
                                 '                <div class="pro-info-rt">\n' +
+                                '                <div class="pro-info-rt">\n' +
+                                '                    <!--店铺信息-->\n' +
+                                '                    <div class="dianpuinfobox">\n' +
+                                '                        <h1>店铺信息</h1>\n' +
+                                '                        <div class="dianpu-name">\n' +
+                                '                            <a href="#">西北药业有限公司</a>\n' +
+                                '                            <ul>\n' +
+                                '                                <li><img src="/jss/bootstrap/bootstrap-fileinput/img/pro-info_07.png" alt=""></li>\n' +
+                                '                                <li><img src="/jss/bootstrap/bootstrap-fileinput/img/pro-info_07.png" alt=""></li>\n' +
+                                '                                <li><img src="/jss/bootstrap/bootstrap-fileinput/img/pro-info_07.png" alt=""></li>\n' +
+                                '                                <li><img src="/jss/bootstrap/bootstrap-fileinput/img/pro-info_07.png" alt=""></li>\n' +
+                                '                                <li><img src="/jss/bootstrap/bootstrap-fileinput/img/pro-info_07.png" alt=""></li>\n' +
+                                '                            </ul>\n' +
+                                '                        </div>\n' +
+                                '                        <ul class="wuliulist">\n' +
+                                '                            <li>描述<br>0.00分</li>\n' +
+                                '                            <li>服务<br>0.00分</li>\n' +
+                                '                            <li style="border-right: 0;">物流<br>0.00分</li>\n' +
+                                '                        </ul>\n' +
+                                '                        <dl class="pro-contactlink">\n' +
+                                '                            <dt>联系客服：</dt>\n' +
+                                '                            <dd>\n' +
+                                '                                <a href="javascript:void(0);" onclick="service()">在线客服</a>\n' +
+                                '                            </dd>\n' +
+                                '                        </dl>\n' +
+                                '                        <ul class="pro-colectlink">\n' +
+                                '                            <li><a href="javascript:void(0);" id="store"><img src="/jss/bootstrap/bootstrap-fileinput/img/pro-info_18.png">收藏店铺</a></li>\n' +
+                                '                            <li><a href="#"><img src="/jss/bootstrap/bootstrap-fileinput/img/pro-info_15.png">进入店铺</a></li>\n' +
+                                '                        </ul>\n' +
+                                '\n' +
+                                '                    </div>\n' +
+                                '                    <!--店铺药品分类-->\n' +
+                                '                    <div class="pro-classfiy">\n' +
+                                '                        <h2>店铺药品分类</h2>\n' +
+                                '                        <ul>\n' +
+                                '                            <li><a href="#">中成药<span>&gt;</span></a></li>\n' +
+                                '                            <li><a href="#">中成药<span>&gt;</span></a></li>\n' +
+                                '                            <li><a href="#">中成药<span>&gt;</span></a></li>\n' +
+                                '                            <li><a href="#">中成药<span>&gt;</span></a></li>\n' +
+                                '                        </ul>\n' +
+                                '                    </div>\n' +
                                 '                    <!--店铺药品推荐-->\n' +
                                 '                    <div class="prohottuijian">\n' +
-                                '                        <h3>同类药品推荐</h3>\n' +
+                                '                        <h3>店铺药品推荐</h3>\n' +
+                                '                        <ul>\n' +
+                                '                        </ul>\n' +
                                 '                    </div>\n' +
                                 '                </div>'
                             $("#xiangqing").html(content);

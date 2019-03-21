@@ -45,4 +45,6 @@ public class MedicineContoller {
         MedicineBean queryMedicine = medicineClinet.queryMedicine(id);
         return queryMedicine;
     }
+
+
 }
