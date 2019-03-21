@@ -12,7 +12,6 @@
 </style>
 <body>
 <form id="userFrom">
-    <input type="hidden" name="orderId" >
     <div class="row myrow">
 
         <div class="form-group">
@@ -24,10 +23,11 @@
                 <input type="text" class="form-control" id="address_name" name="address_name">
             </div>
             <div class="col-md-2">
-                <label for="address_area">所在地区</label>
+                <label for="provinceSelect">所在地区</label>
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="address_area" name="address_area">
+                <select style="width:80px; " id="provinceSelect" name="province" class="easyui-combobox"></select>
+                <select style="width:80px; " id="citySelect" name="city" class="easyui-combobox"></select>
             </div>
         </div>
     </div>
@@ -56,7 +56,25 @@
 </form>
 </body>
 <script>
-
-
+    $(function(){
+        initArea();
+    })
+    function initArea(){
+        //查询地区
+        $("#provinceSelect").combobox({
+            url:'../findProvinceSelect?id=0',
+            valueField:'id',
+            textField:'name',
+            editable:false,
+            onChange:function(newValue,oldValue){
+                $("#citySelect").combobox({
+                    url:'../findProvinceSelect?id='+newValue,
+                    valueField:'id',
+                    textField:'name',
+                    editable:false
+                })
+            }
+        })
+    }
 </script>
 </html>

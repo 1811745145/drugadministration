@@ -85,7 +85,8 @@
             data:{addressId:addressId},
             success:function(data){
                 $("#address_name").val(data.address_name);
-                $("#address_area").val(data.address_area);
+                $("#provinceSelect").combobox("setValue",data.area_province);
+                $("#citySelect").combobox("setValue",data.area_city);
                 $("#detailedaddress").val(data.detailedaddress);
                 $("#zipcode").val(data.zipcode);
                 $("#phone").val(data.phone);
@@ -118,14 +119,23 @@
         $('#myTable').bootstrapTable({
             toolbar:'#toolbar',
             url:'../queryaddressList',//获取数据地址
+            pagination:true, //是否展示分页
+            pageList:[1, 10, 20, 50],//分页组件
+            pageNumber:1,
+            pageSize:1,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,
             queryParams:function(){
                 return {
-
+                    page:this.pageNumber,
+                    rows:this.pageSize
                 };
             },
             columns:[
                 {field:"address_name",width:80,align:'center',title:"收货人"},
-                {field:"address_area",width:80,align:'center',title:"所在地区"},
+                {field:"address_area",width:80,align:'center',title:"所在地区",formatter(value,row,index){
+                    return row.province+"-"+row.city;
+                    }},
                 {field:"detailedaddress",width:80,align:'center',title:"详细地址"},
                 {field:"zipcode",width:80,align:'center',title:"邮编"},
                 {field:"phone",width:80,align:'center',title:"电话"},
@@ -161,7 +171,8 @@
                     "className" : "btn-sm btn-success",
                     "callback" : function() {
                         var address_name = $("#address_name").val();
-                        var address_area = $("#address_area").val();
+                        var area_province = $("#provinceSelect").combobox("getValue");
+                        var area_city = $("#citySelect").combobox("getValue");
                         var detailedaddress = $("#detailedaddress").val();
                         var zipcode = $("#zipcode").val();
                         var phone = $("#phone").val();
@@ -169,7 +180,7 @@
                             url:'../saveAddress',
                             type:'post',
                             data:JSON.stringify(
-                                {'address_name':address_name,'address_area':address_area,'detailedaddress':detailedaddress,'zipcode':zipcode,'phone':phone}),
+                                {'address_name':address_name,'area_province':area_province,'area_city':area_city,'detailedaddress':detailedaddress,'zipcode':zipcode,'phone':phone}),
                             headers: {
                               "Content-Type": "application/json"
                             },

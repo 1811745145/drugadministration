@@ -4,6 +4,7 @@ import com.jk.pojo.StoreBean;
 import com.jk.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,7 +17,7 @@ public class StoreController {
     //店铺新增
     @RequestMapping("saveStore")
     @ResponseBody
-    public Boolean saveStore(StoreBean storeBean) {
+    public Boolean saveStore(@RequestBody StoreBean storeBean) {
         if(storeBean.getId() == null) {
             try {
                 //如果有id则修改，没有则新增

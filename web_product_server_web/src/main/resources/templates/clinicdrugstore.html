@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)http://www.xb1y.com/index.php/Home/Information/clinic.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>药店诊所平台</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="./药店诊所_files/common.css">
+    <link rel="stylesheet" href="./药店诊所_files/css.css">
+    <script src="./药店诊所_files/jQuery-2.2.0.min.js.下载"></script>
+    <script src="./药店诊所_files/layer.js.下载"></script><link rel="stylesheet" href="./药店诊所_files/layer.css" id="layui_layer_skinlayercss" style="">
+    <!--[if lt IE 9]>
+    <script src="/Public/houtai/bootstrap/js/html5shiv.min.js"></script>
+    <script src="/Public/houtai/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut  icon" type="image/x-icon" href="http://www.xb1y.com/index.php/Home/Information/favicon.ico" media="screen">
+
+
+    <link rel="stylesheet" href="./药店诊所_files/common.css">
+    <link rel="stylesheet" href="./药店诊所_files/navregister.css">
+
+    <link rel="shortcut  icon" type="image/x-icon" href="http://www.xb1y.com/index.php/Home/Information/favicon.ico" media="screen">
+
+    <!-- 引入juquery -->
+    <!-- 引入bootstrap的css、js -->
+    <link rel="stylesheet" href="../bootstrap3/css/bootstrap.css">
+    <script type="text/javascript" src="../bootstrap3/js/bootstrap.js"></script>
+    <!-- 引入table的css、js -->
+    <link rel="stylesheet" href="../js/bootstrap-table/bootstrap-table.css">
+    <script type="text/javascript" src="../js/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <!-- 引入bootbox的js -->
+    <script type="text/javascript" src="../js/bootstrap-bootbox/bootbox.js"></script>
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini" id="app">
+<div class="wrapper">
+    <header class="main-header">
+        <div class="logotop">
+            <div class="logotop-bar">
+                <div class="logotop-lf">
+                    Hi,欢迎来到西北医药网
+                    <span>
+                【
+                <a href="http://www.xb1y.com/index.php/Home/Member/Member_login.html" style="color: #e57816;">请先登录</a>
+                |
+                <a href="http://www.xb1y.com/index.php/Home/Member/Member_register.html">注册</a>
+                                】
+            </span>
+                </div>
+                <ul class="logotop-rt">
+                    <li>服务热线：400-0097-600</li>
+                    <li><a href="http://www.xb1y.com/index.php/Home/MemberBuyer/MyOrder.html">我的订单 </a></li>
+                    <li><a href="http://www.xb1y.com/index.php/Home/Goods/user_cart.html">我的购物车</a></li>
+                    <li><a href="http://www.xb1y.com/index.php/Home/Information/clinic.html#">帮助中心</a></li>
+                    <li><a href="http://www.xb1y.com/index.php/Home/Information/clinic.html#">收藏网站</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--logo栏目-->
+        <div class="logobox" style="overflow:initial;height:120px;">
+            <div class="logoimg">
+                <a href="http://www.xb1y.com/index.php/Home/Index/index.html">
+                    <img src="./药店诊所_files/index_03.png" width="303" height="125">
+                </a>
+            </div>
+            <div class="logobox-rt" style="overflow:initial">
+                <form action="http://www.xb1y.com/index.php/Home/Index/search.html" method="get">
+                    <div class="search-box" style="overflow:initial">
+                        <input type="text" class="ss-input" name="key" value="" placeholder="请输入关键字进行搜索">
+                        <button type="submit">搜索</button>
+                        <div class="input-xlbox" id="zhaode">
+
+
+
+                        </div>
+                    </div>
+                </form>
+                <script>
+
+                    $("body").on("input propertychange",".ss-input",function(){
+                        var name=$(".ss-input").val();
+                        // alert(name);
+                        $.ajax({
+                            type:'post',
+                            url:"/index.php/Home/Index/see.html",
+                            data:{'name':name},
+                            success:function(data){
+                                if(data.state=='1'){
+                                    var html="";
+                                    //console.log(data.temp)
+                                    for(var i=0;i<data.temp.length;i++){
+                                        html +="<div class='xl-list' inclick>"+data.temp[i].goods_name +"</div>";
+                                    }
+
+                                    $("#zhaode").html(html);
+
+                                }
+                            }
+                        });
+
+                    })
+                    var text22 = '';
+                    $("#zhaode").on('mouseover',"div", function(){
+                        text22 = $(this).html()
+                        //$('.ss-input').val()
+                    })
+                    $('.ss-input').focus(function(){
+                        $('.input-xlbox').show();
+                        $('.input-xlbox').css('zIndex','999');
+                        $('.input-xlbox').css('opacity','1');
+                    });
+                    $('.ss-input').blur(function(){
+                        $('.input-xlbox').css('zIndex','-1');
+                        $('.input-xlbox').css('opacity','0');
+                        $(this).val(text22)
+                    });
+
+                </script>
+                <style>
+                    .input-xlbox{position: absolute;width:350px;top:41px;left:-1px;background:#fff;border:1px solid #ff912f;display:none;}
+                    .xl-list{width:100%;padding:5px;box-sizing:border-box;}
+                    .xl-list:hover{background:#f2f2f2}
+                </style>
+                <div style="float:right;">
+
+                    <a href="http://www.xb1y.com/index.php/Home/MemberBuyer/MemberBuyer_lackmedicine_add.html" class="drug-register">
+                        <img src="./药店诊所_files/index_06.png"> 缺药登记
+                    </a>
+
+                    <a href="http://www.xb1y.com/index.php/Home/Goods/user_cart.html" class="myshopping">
+                        <img src="./药店诊所_files/index_08.png">
+                        我的购物车
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--导航-->
+        <div class="navbar">
+            <div class="navbox">
+                <h3>药品分类</h3>
+                <ul class="navbar-list">
+                    <li><a href="http://www.xb1y.com/index.php/Home/Index/index.html">首页</a></li>
+                    <li><a href="http://www.xb1y.com/index.php/Home/Agent/index.html">招商/代理</a></li>
+                    <li><a href="http://www.xb1y.com/index.php/Home/Board/index.html">上榜企业</a></li>
+                    <li><a href="http://www.xb1y.com/index.php/Home/Information/index.html">数据中心</a></li>
+                    <li><a href="http://www.xb1y.com/index.php/Home/Article/index.html">资讯平台</a></li>
+                    <li><a href="http://www.xb1y.com/index.php/Home/Drugshow/index.html">医药会展</a></li>
+                    <li><a href="http://www.xb1y.com/index.php/Home/Activityzone/index.html">活动专区</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="xb-rightbox">
+        <a href="/toClinicDrugstore">
+            <div class="xb-right_list">
+                <img alt="" src="./药店诊所_files/gr.png">
+                我的
+            </div>
+        </a>
+        <a href="http://www.xb1y.com/index.php/Home/MemberBuyer/MyOrder.html">
+            <div class="xb-right_list">
+                <img alt="" src="./药店诊所_files/dd.png">
+                订单
+            </div>
+        </a>
+        <a href="http://www.xb1y.com/index.php/Home/Goods/user_cart.html">
+            <div class="xb-right_list">
+                <img alt="" src="./药店诊所_files/gwc.png">
+                购物车
+
+            </div>
+        </a>
+        <a href="http://www.xb1y.com/index.php/Home/Information/clinic.html#">
+            <div class="xb-right_list">
+                <img alt="" src="./药店诊所_files/tw.png">
+                帮助
+            </div>
+        </a>
+        <a href="http://www.xb1y.com/index.php/Home/Information/clinic.html#">
+            <div class="xb-right_list">
+                <img alt="" src="./药店诊所_files/sc.png">
+                收藏
+            </div>
+        </a>
+    </div>
+    <style>
+        .xb-rightbox{width:50px;height:655px;position: fixed;right:0;top:15%;background: #377bee;border-radius: 5px;padding:0 2.5px;box-sizing:border-box;color:#fff;text-align:center;}
+        .xb-right_list{color:#fff;margin-top:50px;}
+        .xb-right_list img{width:36px;}
+        .xb-qq{margin:5px auto;width:20px;height:20px;border-radius:50%;background:#ff5a00;line-height:20px;font-size:12px;}
+    </style>
+    <div class="content-wrapper">
+        <section class="content-header">
+
+
+        </section>
+        <section class="content">
+
+            <!--位置导航-->
+            <div class="location-now">
+                <div class="location-text">
+                    <img src="./药店诊所_files/compang_03.png">
+                    当前位置： 首页 &gt;  数据中心
+                </div>
+            </div>
+            <!--数据中心-->
+            <div class="databig-box">
+                <!--数据栏目顶部列表-->
+                <div class="info-box">
+                    <ul class="data-top-list">
+                        <li style="background-color:#28aadc;">
+                            <a href="/toDataCentre">
+                                <img src="./药店诊所_files/dataimg_03.png">
+                                <p>中标数据药品库 </p>
+                            </a>
+                        </li>
+                        <li style="background-color:#219fd0;">
+                            <a href="/toClinicDrugstore">
+                                <img src="./药店诊所_files/dataimg_05.png">
+                                <p>药店、诊所大全 </p>
+                            </a>
+                        </li>
+                        <li style="background-color:#1b93c1;">
+                            <a href="/toHospital">
+                                <img src="./药店诊所_files/dataimg_07.png">
+                                <p>医院大全</p>
+                            </a>
+                        </li>
+                        <li style="background-color:#dc7316;">
+                            <a href="http://www.xb1y.com/index.php/Home/Information/investment.html">
+                                <img src="./药店诊所_files/zhaoshangdown.png">
+                                <p>招商信息下载</p>
+                            </a>
+                        </li>
+                        <li style="background-color:#e3812b;">
+                            <a href="http://www.xb1y.com/index.php/Home/Information/zizhi_goods.html">
+                                <img src="./药店诊所_files/dataimg_09.png">
+                                <p>资质下载</p>
+                            </a>
+                        </li>
+
+                        <li style="background-color:#ef9545;">
+                            <a href="http://www.xb1y.com/index.php/Home/Information/exposition.html">
+                                <img src="./药店诊所_files/dataimg_11.png">
+                                <p>国药会展资料下载</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--筛选列表-->
+                <center>
+                    <form class="form-inline"  >
+                        <div class="form-group">
+                            <label for="drugstoreNames">药品名称</label>
+                            <input type="text" class="form-control" id="drugstoreNames" placeholder="请输入药品名称">
+                            <label for="provinceSelect">地址</label>
+                            <select id="provinceSelect"  class="form-control">
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary glyphicon glyphicon-search" onclick="searchUser()">搜索</button>
+                    </form>
+                </center>
+                <!--医院大全-->
+                <div class="table-box-list">
+                    <table cellspacing="0" cellpadding="0" border="0" class="hospital-box" id="myTable">
+
+                    </table>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(function(){
+                    initTable();
+                    queryArea ();
+                })
+                function initTable(){
+                    $("#myTable").bootstrapTable({
+                        toolbar:'#toolbar',
+                        url:"/findClinicDrugstoreAllPage",
+                        pagination:true, //开启分页
+                        pageList:[1, 10, 20, 50],//分页组件
+                        pageNumber:1,
+                        pageSize:1,//默认每页条数
+                        sidePagination:'server',//分页方式：client客户端分页，server服务端分页
+                        striped:true,//条纹表格
+                        queryParams:function(){
+                            return {
+                                page:this.pageNumber,
+                                rows:this.pageSize,
+                                drugstoreNames:$("#drugstoreNames").val(),
+                                provinceId:$("#provinceSelect").val()
+                            };
+                        },
+                        columns:[
+                            {field:"check",checkbox:true},
+
+                            {field:"drugstoreNames",title:"药品名称"},
+                            {field:"provinceName",title:"地址"},
+                            {field:"contactWay",title:"联系方式"}
+
+                        ]
+                    })
+                }
+
+                function searchUser(){
+                   var a= $("#provinceSelect").val();
+                   alert(a)
+                    $('#myTable').bootstrapTable('refresh');
+                }
+                function queryArea (){
+                    $.ajax({
+                        url:'/findArea',
+                        type:'get',
+                        async:false,
+                        data:{},
+                        dataType:'json',
+                        success:function(data){
+
+                            var html = "<option value='-1'>请选择</option>";
+                            for(var i = 0 ; i < data.length; i++){
+                                html += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
+                            }
+                            $("#provinceSelect").html(html)
+                        },
+                        error:function(){
+                            alert("初始数据失败")
+                        }
+                    })
+                }
+
+                $(function() {
+                    $("#prov").find("option[value='']").attr("selected",true);
+                });
+            </script>
+
+        </section>
+    </div>
+
+</div>
+<!--底部内容-->
+<div class="footer-box">
+    <div class="footer-link" style="height:215px;">
+        <ul class="footer-linka">
+            <li style="font-size:18px;border-bottom:1.5px solid #fff">采购指南  </li>
+
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/shrz.html">商户入驻</a></li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/dllc.html">代理流程</a></li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/mjgmlc.html">购买流程</a></li>
+        </ul>
+        <ul class="footer-linka">
+            <li style="font-size:18px; border-bottom:1.5px solid #fff">支付方式 </li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/zxzf.html">在线支付</a></li>
+        </ul>
+        <ul class="footer-linka">
+            <li style="font-size:18px;border-bottom:1.5px solid #fff">配送服务 </li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/smzt.html">上门自提</a></li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/xsps.html">限时配送</a></li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/psfwcx.html">配送服务查询</a></li>
+        </ul>
+        <ul class="footer-linka">
+            <li style="font-size:18px;border-bottom:1.5px solid #fff">售后服务 </li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/thgz.html">退货规则</a></li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/thlc.html">退货流程</a></li>
+        </ul>
+        <ul class="footer-linka">
+            <li style="font-size:18px;border-bottom:1.5px solid #fff">商家合作</li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/qycg.html">企业采购</a></li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/xs.html">销售</a></li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/dlr.html">代理人</a></li>
+        </ul>
+        <ul class="footer-linka">
+            <li style="font-size:18px;border-bottom:1.5px solid #fff">关于我们</li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/lxwm.html">联系我们</a></li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/qyjj.html">企业简介</a></li>
+        </ul>
+        <ul class="footer-linka">
+            <li style="font-size:18px;border-bottom:1.5px solid #fff">帮助中心</li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/mmzh.html">密码找回</a></li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/helpCenter/flag/mmxg.html">密码修改</a></li>
+            <li><a href="http://www.xb1y.com/index.php/Home/Index/liuyan.html">意见与反馈</a></li>
+        </ul>
+        <div class="erweima-box">
+            <img src="./药店诊所_files/erweima_03.png">
+            <p>扫描关注，微信二维码</p>
+        </div>
+    </div>
+    <div style="padding:15px;font-size:15px;text-align: center;color:#fff">备案号；陕ICP备18007246号-1</div>
+</div>
+<div class="footer-bottom">
+    <p>Copyright ©   西北医药网版权所有</p>
+</div>
+<script>
+   /* $(function(){
+        $.ajax({
+            'url':"/index.php/Home/AjaxMessage/index.html",
+            type:'get',
+            dataType:'json',
+            success:function(data){
+                if(data.status==1) {
+                    if(data.type===1){
+                        layer.msg(data.message,{icon:1});
+                    }else{
+                        layer.alert(data.message,{icon:2});
+                    }
+                }
+            }
+        })
+    })
+*/
+</script>
+
+</body></html>

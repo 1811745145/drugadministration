@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商品详情</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-fileinput/css/common.css">
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-fileinput/css/css.css">
+    <script src="/jss/jQuery-2.2.0.min.js"></script>
+    <script src="/jss/layer/layer.js"></script>
+    <link rel="shortcut  icon" type="image/x-icon" href="favicon.ico" media="screen"  />
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-fileinput/css/common.css">
+
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-fileinput/css/classification-style.css">
+    <!--商品图片展示代码-->
+    <link rel="stylesheet" href="/jss/bootstrap/bootstrap-fileinput/css/smoothproducts.css">
+    <script src="/jss/js/jquery.min.js"></script>
+    <script src="/jss/js/jquery.zclip.min.js"></script>
+    <link rel="shortcut  icon" type="image/x-icon" href="favicon.ico" media="screen"  />
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini" id="app">
+<div class="wrapper">
+    <header class="main-header">
+        <div class="logotop">
+            <div class="logotop-bar">
+                <div class="logotop-lf">
+                    Hi,欢迎来到西北医药网
+                    <span>
+                【
+                <a href="#" style="color: #e57816;">请先登录</a>
+                |
+                <a href="#">注册</a>
+                                】
+                   </span>
+                </div>
+                <ul class="logotop-rt">
+                    <li>服务热线：400-0097-600</li>
+                    <li><a href="#">我的订单 </a></li>
+                    <li><a href="#">我的购物车</a></li>
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">收藏网站</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--logo栏目-->
+        <div class="logobox" style="overflow:initial;height:120px;">
+            <div class="logoimg">
+                <a href="#">
+                    <img src="/jss/bootstrap/bootstrap-fileinput/img/index_03.png" width="303" height="125">
+                </a>
+            </div>
+            <div class="logobox-rt" style="overflow:initial">
+                <form action="/index.php/Home/Index/search.html" method="get">
+                    <div class="search-box" style="overflow:initial">
+                        <input type="text" class="ss-input" name="key"  value=""  placeholder="请输入关键字进行搜索">
+                        <button type="submit">搜索</button>
+                    </div>
+                </form>
+                <div style="float:right;">
+
+                    <a href="#" class="drug-register">
+                        <img src="/jss/bootstrap/bootstrap-fileinput/img/index_06.png"> 缺药登记
+                    </a>
+
+                    <a href="#" class="myshopping">
+                        <img src="/jss/bootstrap/bootstrap-fileinput/img/index_08.png">
+                        我的购物车
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--导航-->
+        <div class="navbar">
+            <div class="navbox">
+                <h3>药品分类</h3>
+                <ul class="navbar-list">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="/recruit/toRecruit">招商/代理</a></li>
+                    <li><a href="#">上榜企业</a></li>
+                    <li><a href="#">数据中心</a></li>
+                    <li><a href="#">资讯平台</a></li>
+                    <li><a href="/medicine/toMedicine">医药会展</a></li>
+                    <li><a href="#">活动专区</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="xb-rightbox">
+        <a href="#">
+            <div class="xb-right_list">
+                <img alt="" src="/jss/bootstrap/bootstrap-fileinput/img/gr.png">
+                我的
+            </div>
+        </a>
+        <a href="#">
+            <div class="xb-right_list">
+                <img alt="" src="/jss/bootstrap/bootstrap-fileinput/img/dd.png">
+                订单
+            </div>
+        </a>
+        <a href="#">
+            <div class="xb-right_list">
+                <img alt="" src="/jss/bootstrap/bootstrap-fileinput/img/gwc.png">
+                购物车
+
+            </div>
+        </a>
+        <a href="#">
+            <div class="xb-right_list">
+                <img alt="" src="/jss/bootstrap/bootstrap-fileinput/img/tw.png">
+                帮助
+            </div>
+        </a>
+        <a href="#">
+            <div class="xb-right_list">
+                <img alt="" src="/jss/bootstrap/bootstrap-fileinput/img/sc.png">
+                收藏
+            </div>
+        </a>
+    </div>
+    <style>
+        .xb-rightbox{width:50px;height:655px;position: fixed;right:0;top:15%;background: #377bee;border-radius: 5px;padding:0 2.5px;box-sizing:border-box;color:#fff;text-align:center;}
+        .xb-right_list{color:#fff;margin-top:50px;}
+        .xb-right_list img{width:36px;}
+        .xb-qq{margin:5px auto;width:20px;height:20px;border-radius:50%;background:#ff5a00;line-height:20px;font-size:12px;}
+    </style>
+
+    <script type="text/javascript">
+        /* 页面加载 */
+        $(function () {
+            initMyTableRecruit();
+        });
+        var ids=[[${param.id}]]
+        /* 页面查询 */
+        function initMyTableRecruit() {
+            var  content="";
+            $.ajax({
+                url: "/medicine/queryMedicine",
+                data:{id:ids},
+                success: function (item) {
+
+                        content='  <!--左边的内容-->\n' +
+                            '        <div class="pro-infobox">\n' +
+                            '            <!--商品图片内容-->\n' +
+                            '            <div class="pro-info-top">\n' +
+                            '                <!--左边的图片展示-->\n' +
+                            '                <div class="proinfotop-img">\n' +
+                            '                    <div class="page-imgpro">\n' +
+                            '                        <div class="sp-wrap">\n' +
+                            '                            <a href="#"><img src="'+item.picture+'"></a>                    </div>\n' +
+                            '                        <ul class="proiinfo-imgbtn">\n' +
+                            '                            <li style="width: 70%">\n' +
+                            '\n' +
+                            '                                <div class="share-dialog">\n' +
+                            '                                    <div class="share-dialog-cont">\n' +
+                            '                                        <div class="share-platform">\n' +
+                            '                                            <div class="share-platform-r">\n' +
+                            '                                                <div class="bdsharebuttonbox">\n' +
+                            '                                                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>\n' +
+                            '                                                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>\n' +
+                            '                                                    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>\n' +
+                            '                                                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>\n' +
+                            '                                                </div>\n' +
+                            '                                            </div>\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>\n' +
+                            '                                </div>\n' +
+                            '                            </li>\n' +
+                            '                        </ul>\n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '                <!--右边的内容展示-->\n' +
+                            '                <div class="proinfotop-rt">\n' +
+                            '                    <div class="proinfo-rttop">\n' +
+                            '                        <h2><img src="'+item.picture+'" width="200px" height="230px"> </h2>\n' +
+                            '                        <h2> '+item.commodityInformation+'       \t                    \t                    \t                    \t                    </h2>\n' +
+                            '                        <p> '+item.briefIntroduction+'                    \t                    </p>\n' +
+                            '                    </div>\n' +
+                            '                    <div class="proinfotop-price">\n' +
+                            '                        <dl>\n' +
+                            '                            <dt>优惠价格：</dt>\n' +
+                            '                            <dd>'+item.discount+'</dd>                    </dl>\n' +
+                            '                        <dl>\n' +
+                            '                            <dt>市场价：</dt>\n' +
+                            '                            <dd style="color: #666;text-decoration: line-through">'+item.unitPrice+'</dd>                    </dl>\n' +
+                            '                        <p class="procuxiaoiinfo">现在购买将在7天后送达</p>\n' +
+                            '                    </div>\n' +
+                            '                    <div class="proinfo-xq">\n' +
+                            '\n' +
+                            '                        <!--<dl>\n' +
+                            '                            <dt>生产批号：  </dt>\n' +
+                            '                            <dd></dd>\n' +
+                            '                        </dl>-->\n' +
+                            '                        <dl>\n' +
+                            '                            <dt>生产日期：  </dt>\n' +
+                            '                            <dd>'+item.commodityInformation+' </dd>\n' +
+                            '                        </dl>\n' +
+                            '                        <dl>\n' +
+                            '                            <dt>有效期:</dt>\n' +
+                            '                            <dd>'+item.termValidity+'</dd>\n' +
+                            '                        </dl>\n' +
+                            '                        <dl>\n' +
+                            '                            <dt>批准文号：  </dt>\n' +
+                            '                            <dd>'+item.approvalNumber+'<a href="#" target="_blank" style="padding-left: 20px;color: #ff7800">前往国家药监局查询</a>\n' +
+                            '                            </dd>\n' +
+                            '                        </dl>\n' +
+                            '\n' +
+                            '                        <dl>\n' +
+                            '                            <dt>数量：   </dt>\n' +
+                            '                            <dd>\n' +
+                            '                                <div class="proinfobox-numadd">\n' +
+                            '                                    <a href="javascript:void(0);" id="min">-</a>\n' +
+                            '                                    <input id="text_box" type="text" value="1"/>\n' +
+                            '                                    <a href="javascript:void(0);" id="add">+</a>\n' +
+                            '                                </div>\n' +
+                            '                                <span id="kucun" style="float: left;padding-left: 20px;color: #666;">库存：9999件</span>\n' +
+                            '                            </dd>\n' +
+                            '                        </dl>\n' +
+                            '                        <p class="little-notice">\n' +
+                            '                            小提示：收货时确认药检报告和随货通行单。\n' +
+                            '                        </p>\n' +
+                            '                        <div class="proiinfo-btnbox">\n' +
+                            '                            <a href="javascript:void(0);" id="buyNow">立即购买</a>\n' +
+                            '                            <a href="javascript:void(0);" id="add_cart" class="proinfo-addcarlink">加入购物车</a>\n' +
+                            '                        </div>\n' +
+                            '\n' +
+                            '                    </div>\n' +
+                            '\n' +
+                            '                </div>\n' +
+                            '            </div>\n' +
+                            '        </div>'
+
+                    $("#xiangqing").html(content);
+                }
+
+            })
+
+        }
+    </script>
+    <script>
+        $(document).ready(function(){
+//获得文本框对象
+            var t = $("#text_box");
+//初始化数量为1,并失效减
+            $('#min').attr('disabled',true);
+            var h="9999";
+
+            //数量增加操作
+            $("#add").click(function(){
+                if(t.val()==''){
+                    t.val(1);
+                    return false;
+                }
+
+                if(t.val() == h){
+                    $('#add').attr('disabled',true);
+                    return false;
+                }
+                t.val(parseInt(t.val())+1);
+
+
+
+            })
+            //数量减少操作
+            $("#min").click(function(){
+                if(t.val()==''){
+                    t.val(1);
+                    return false;
+                }
+                if (t.val()==1){
+                    $('#min').attr('disabled',true);
+                    return false;
+                }
+                t.val(parseInt(t.val())-1);
+            })
+
+        });
+    </script>
+
+    <!--商品详情-->
+    <div class="pro-infobigbox" id="xiangqing">
+    </div>
+
+    <!--底部内容-->
+    <div class="footer-box">
+        <div class="footer-link" style="height:215px;">
+            <ul class="footer-linka">
+                <li style="font-size:18px;border-bottom:1.5px solid #fff">采购指南  </li>
+
+                <li><a href="#">商户入驻</a></li>
+                <li><a href="#">代理流程</a></li>
+                <li><a href="#">购买流程</a></li>
+            </ul>
+            <ul class="footer-linka">
+                <li style="font-size:18px; border-bottom:1.5px solid #fff">支付方式 </li>
+                <li><a href="#">在线支付</a></li>
+            </ul>
+            <ul class="footer-linka">
+                <li style="font-size:18px;border-bottom:1.5px solid #fff">配送服务 </li>
+                <li><a href="#">上门自提</a></li>
+                <li><a href="#">限时配送</a></li>
+                <li><a href="#">配送服务查询</a></li>
+            </ul>
+            <ul class="footer-linka">
+                <li style="font-size:18px;border-bottom:1.5px solid #fff">售后服务 </li>
+                <li><a href="#">退货规则</a></li>
+                <li><a href="#">退货流程</a></li>
+            </ul>
+            <ul class="footer-linka">
+                <li style="font-size:18px;border-bottom:1.5px solid #fff">商家合作</li>
+                <li><a href="#">企业采购</a></li>
+                <li><a href="#">销售</a></li>
+                <li><a href="#">代理人</a></li>
+            </ul>
+            <ul class="footer-linka">
+                <li style="font-size:18px;border-bottom:1.5px solid #fff">关于我们</li>
+                <li><a href="#">联系我们</a></li>
+                <li><a href="#">企业简介</a></li>
+            </ul>
+            <ul class="footer-linka">
+                <li style="font-size:18px;border-bottom:1.5px solid #fff">帮助中心</li>
+                <li><a href="#">密码找回</a></li>
+                <li><a href="#">密码修改</a></li>
+                <li><a href="#">意见与反馈</a></li>
+            </ul>
+            <div class="erweima-box">
+                <img src="/jss/bootstrap/bootstrap-fileinput/img/erweima_03.png">
+                <p>扫描关注，微信二维码</p>
+            </div>
+        </div>
+        <div style="padding:15px;font-size:15px;text-align: center;color:#fff">备案号；陕ICP备18007246号-1</div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright ©   西北医药网版权所有</p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.webmapper.WebDrugMapper">
+    <select id="findDrugListCount" resultType="int">
+        select count(*) from t_dc
+        <include refid="drugWhere"></include>
+    </select>
+
+    <select id="findDrugListAllPage" resultType="com.jk.pojo.DcWebBean">
+        select d.durgId,d.drugNumber,d.commonName,d.dosageForm,d.drugCharacteristics,d.specification,d.conversionCoefficient,d.packingUnit,
+        d.directoryType,d.manufacturerName,d.purchasePrice,d.interimPrice from t_dc d
+        <include refid="drugWhere"></include>
+        limit #{start},#{rows}
+    </select>
+
+    <sql id="drugWhere">
+        <where>
+            <if test="dcWebBean.commonName !=null and dcWebBean.commonName != '' ">
+              and commonName like '%${dcWebBean.commonName}%'
+            </if>
+            <if test="dcWebBean.manufacturerName !=null and dcWebBean.manufacturerName != '' ">
+                and manufacturerName like '%${dcWebBean.manufacturerName}%'
+            </if>
+            <if test="dcWebBean.directoryType  !=null and dcWebBean.directoryType  != '' ">
+                and directoryType like '%${dcWebBean.directoryType}%'
+            </if>
+        </where>
+    </sql>
+
+
+    <select id="findClinicDrugstoreAllCount" resultType="int">
+        select count(*) from t_clinicdrugstore
+        <include refid="clinicDrugstoreWhere"></include>
+    </select>
+
+    <select id="findClinicDrugstoreAllPage" resultType="com.jk.pojo.ClinicDrugstoreBean">
+       select c.clinicId,c.drugstoreNames,c.contactWay ,a.name as provinceName
+        from t_clinicdrugstore c LEFT JOIN t_area a on c.provinceId=a.id
+        <include refid="clinicDrugstoreWhere"></include>
+        limit #{start},#{rows}
+    </select>
+
+    <sql id="clinicDrugstoreWhere">
+        <where>
+            <if test="clinicDrugstoreBean.drugstoreNames !=null and clinicDrugstoreBean.drugstoreNames != '' ">
+                and drugstoreNames like '%${clinicDrugstoreBean.drugstoreNames}%'
+            </if>
+            <if test="clinicDrugstoreBean.provinceId !=null and clinicDrugstoreBean.provinceId != '' ">
+                and provinceId = #{clinicDrugstoreBean.provinceId}
+            </if>
+        </where>
+    </sql>
+
+
+    <select id="findHospitalAllCount" resultType="int">
+        select count(*) from t_hospital h
+        <include refid="hospitalWhere"></include>
+    </select>
+
+    <select id="findHospitalAllPage" resultType="com.jk.pojo.HospitalBean">
+        select h.hospitalId,h.hospitalName,h.contactWay,h.hospitalLevel,a.name as provinceName  from t_hospital h  LEFT JOIN t_area a on h.hospitalId=a.id
+        <include refid="hospitalWhere"></include>
+        limit #{start},#{rows}
+    </select>
+
+    <sql id="hospitalWhere">
+        <where>
+            <if test="hospitalBean.hospitalName !=null and hospitalBean.hospitalName != '' ">
+                and h.hospitalName like '%${hospitalBean.hospitalName}%'
+            </if>
+            <if test="hospitalBean.hospitalId !=null and hospitalBean.hospitalId != '' ">
+                and h.hospitalId = #{hospitalBean.hospitalId}
+            </if>
+        </where>
+    </sql>
+
+    <select id="findArea" resultType="com.jk.pojo.Area">
+        select id,name from t_area where pid=0
+    </select>
+</mapper>
