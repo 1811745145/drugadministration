@@ -1,12 +1,15 @@
 package com.jk.controller;
 
 import com.jk.mapper.PharMapper;
+import com.jk.pojo.LoginPojo;
 import com.jk.pojo.Tenterprise;
 import com.jk.pojo.Tstore;
 import com.jk.service.PharService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -151,5 +154,15 @@ public class PharController implements PharService {
     @ResponseBody
     public List<Tstore> westernMedicineList() {
         return pharMapper.westernMedicineList();
+    }
+
+
+
+    @Override
+    @ResponseBody
+    public LoginPojo findUserByName(@RequestBody LoginPojo loginPojo) {
+
+
+        return pharMapper.findUserByName(loginPojo.getUserName());
     }
 }

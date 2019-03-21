@@ -1,7 +1,9 @@
 package com.jk.mapper;
 
+import com.jk.pojo.LoginPojo;
 import com.jk.pojo.Tenterprise;
 import com.jk.pojo.Tstore;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -38,4 +40,7 @@ public interface PharMapper {
     List<Tstore> traditionalChineseMedicineList();
 
     List<Tstore> westernMedicineList();
+
+    @Select("  select * from t_user where userName = #{value} ")
+    LoginPojo findUserByName(String userName);
 }

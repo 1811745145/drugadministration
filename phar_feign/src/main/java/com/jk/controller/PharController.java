@@ -1,15 +1,17 @@
 package com.jk.controller;
 
+import com.jk.Contants.ContangUtils;
+import com.jk.pojo.LoginPojo;
 import com.jk.pojo.Tenterprise;
 import com.jk.pojo.Tstore;
 import com.jk.service.PharServiceFingn;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program: dru
@@ -22,6 +24,13 @@ public class PharController {
 
     @Autowired
     private PharServiceFingn pharServiceFingn;
+
+
+
+
+    /*跳转住页面*/
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     /**
      * 上榜企业
@@ -224,6 +233,30 @@ public class PharController {
     @RequestMapping("toWesternMedicine")
     public String toWesternMedicine(){
         return "westernMedicineList";
+    }
+
+    @RequestMapping("loginDrul")
+    @ResponseBody
+    public String loginDrul(LoginPojo loginPojo){
+        LoginPojo userInfo = pharServiceFingn.findUserByName(loginPojo);
+        String user = ContangUtils.CACHE_USER_LOGIN;
+        if(userInfo == null){
+            return "1";
+        }
+        if(!userInfo.getPassWord().equals(loginPojo.getPassWord())){
+            return "2";
+        }
+
+        redisTemplate.opsForValue().set("user",userInfo);
+        LoginPojo users = (LoginPojo) redisTemplate.opsForValue().get("user");
+        System.out.println(users);
+        return "0";
+
+    }
+
+    @RequestMapping("tiao")
+    public String loginDrul(){
+        return "loginDrul";
     }
 
 }

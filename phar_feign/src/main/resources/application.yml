@@ -4,3 +4,14 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8080/eureka/
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 500
+    pool:
+    max-active: 20
+    max-wait: -1
+    max-idle: 8
+    min-idle: 0
