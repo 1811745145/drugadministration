@@ -24,7 +24,9 @@ public class RecruitBean {
 
     private Integer transactionVolume; //交易数量
 
-    private String recruitPicture;     //图片
+    private String recruitPicture;     //招商商品图片
+
+    private String recruitImg;         //最新招商图片
 
     private String recruitType;        //类型
 
@@ -126,6 +128,14 @@ public class RecruitBean {
         this.recruitPicture = recruitPicture;
     }
 
+    public String getRecruitImg() {
+        return recruitImg;
+    }
+
+    public void setRecruitImg(String recruitImg) {
+        this.recruitImg = recruitImg;
+    }
+
     public String getRecruitType() {
         return recruitType;
     }
@@ -157,6 +167,7 @@ public class RecruitBean {
                 ", commodityPrice=" + commodityPrice +
                 ", transactionVolume=" + transactionVolume +
                 ", recruitPicture='" + recruitPicture + '\'' +
+                ", recruitImg='" + recruitImg + '\'' +
                 ", recruitType='" + recruitType + '\'' +
                 ", details='" + details + '\'' +
                 '}';

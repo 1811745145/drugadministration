@@ -24,6 +24,8 @@ public class MedicineBean {
 
     private String approvalNumber;        //批准文号
 
+    private String briefIntroduction;    //简介
+
     public Integer getId() {
         return id;
     }
@@ -112,6 +114,14 @@ public class MedicineBean {
         this.approvalNumber = approvalNumber;
     }
 
+    public String getBriefIntroduction() {
+        return briefIntroduction;
+    }
+
+    public void setBriefIntroduction(String briefIntroduction) {
+        this.briefIntroduction = briefIntroduction;
+    }
+
     @Override
     public String toString() {
         return "MedicineBean{" +
@@ -126,6 +136,7 @@ public class MedicineBean {
                 ", dateManufacture='" + dateManufacture + '\'' +
                 ", termValidity='" + termValidity + '\'' +
                 ", approvalNumber='" + approvalNumber + '\'' +
+                ", briefIntroduction='" + briefIntroduction + '\'' +
                 '}';
     }
 }
