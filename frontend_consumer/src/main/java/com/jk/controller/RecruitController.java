@@ -38,8 +38,15 @@ public class RecruitController {
     public List<RecruitBean> queryRecruit(RecruitBean recruitBean){
         List<RecruitBean> queryRecruit = recruitClient.queryRecruit(recruitBean);
         return queryRecruit;
-
     }
 
+    //查询最新招商
+    @RequestMapping("queryInvestment")
+    @ResponseBody
+    public List<RecruitBean> queryInvestment(RecruitBean recruitBean){
+        List<RecruitBean> queryInvestment = recruitClient.queryInvestment(recruitBean);
+        return queryInvestment;
+
+    }
 
 }

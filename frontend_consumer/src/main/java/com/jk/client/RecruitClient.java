@@ -20,4 +20,8 @@ public interface RecruitClient {
     //查询招商商品
     @PostMapping("queryRecruit")
     List<RecruitBean> queryRecruit(RecruitBean recruitBean);
+
+    //查询最新招商
+    @PostMapping("queryInvestment")
+    List<RecruitBean> queryInvestment(RecruitBean recruitBean);
 }
