@@ -213,19 +213,19 @@
                 <div class="info-box">
                     <ul class="data-top-list">
                         <li style="background-color:#28aadc;">
-                            <a href="http://192.168.235.1:9083/toDataCentre">
+                            <a href="http://192.168.101.94:9083/toDataCentre">
                                 <img src="./资讯平台_files/dataimg_03.png">
                                 <p>中标数据药品库 </p>
                             </a>
                         </li>
                         <li style="background-color:#219fd0;">
-                            <a href="http://192.168.235.1:9083/toClinicDrugstore">
+                            <a href="http://192.168.101.94:9083/toClinicDrugstore">
                                 <img src="./资讯平台_files/dataimg_05.png">
                                 <p>药店、诊所大全 </p>
                             </a>
                         </li>
                         <li style="background-color:#1b93c1;">
-                            <a href="http://192.168.235.1:9083/toHospital">
+                            <a href="http://192.168.101.94:9083/toHospital">
                                 <img src="./资讯平台_files/dataimg_07.png">
                                 <p>医院大全</p>
                             </a>
@@ -282,7 +282,7 @@
                 function initTable(){
                     $("#myTable").bootstrapTable({
                         toolbar:'#toolbar',
-                        url:"http://192.168.235.1:9083/findHospitalAllPage",
+                        url:"http://192.168.101.94:9083/findHospitalAllPage",
                         pagination:true, //开启分页
                         pageList:[1, 10, 20, 50],//分页组件
                         pageNumber:1,
@@ -315,7 +315,7 @@
                 }
                 function queryArea (){
                     $.ajax({
-                        url:'http://192.168.235.1:9083/findArea',
+                        url:'http://192.168.101.94:9083/findArea',
                         type:'get',
                         async:false,
                         data:{},
