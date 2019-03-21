@@ -7,6 +7,7 @@ import com.jk.util.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -47,6 +48,20 @@ public class RecruitController {
         List<RecruitBean> queryInvestment = recruitClient.queryInvestment(recruitBean);
         return queryInvestment;
 
+    }
+
+    //跳转到最新招商详情（代理）
+    @RequestMapping("toAgent")
+    public String toAgent(){
+        return "agentList";
+    }
+
+    //查询最新招商详情（代理）
+    @RequestMapping("queryAgent")
+    @ResponseBody
+    public RecruitBean queryAgent(String id){
+        RecruitBean queryAgent = recruitClient.queryAgent(id);
+        return queryAgent;
     }
 
 }

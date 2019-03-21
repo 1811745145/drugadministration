@@ -196,7 +196,7 @@
                             '                        </dl>-->\n' +
                             '                        <dl>\n' +
                             '                            <dt>生产日期：  </dt>\n' +
-                            '                            <dd>'+item.commodityInformation+' </dd>\n' +
+                            '                            <dd>'+item.dateManufacture+' </dd>\n' +
                             '                        </dl>\n' +
                             '                        <dl>\n' +
                             '                            <dt>有效期:</dt>\n' +
@@ -216,7 +216,7 @@
                             '                                    <input id="text_box" type="text" value="1"/>\n' +
                             '                                    <a href="javascript:void(0);" id="add">+</a>\n' +
                             '                                </div>\n' +
-                            '                                <span id="kucun" style="float: left;padding-left: 20px;color: #666;">库存：9999件</span>\n' +
+                            '                                <span id="kucun" style="float: left;padding-left: 20px;color: #666;">库存：'+item.number+'件</span>\n' +
                             '                            </dd>\n' +
                             '                        </dl>\n' +
                             '                        <p class="little-notice">\n' +
@@ -240,46 +240,6 @@
 
         }
     </script>
-    <script>
-        $(document).ready(function(){
-//获得文本框对象
-            var t = $("#text_box");
-//初始化数量为1,并失效减
-            $('#min').attr('disabled',true);
-            var h="9999";
-
-            //数量增加操作
-            $("#add").click(function(){
-                if(t.val()==''){
-                    t.val(1);
-                    return false;
-                }
-
-                if(t.val() == h){
-                    $('#add').attr('disabled',true);
-                    return false;
-                }
-                t.val(parseInt(t.val())+1);
-
-
-
-            })
-            //数量减少操作
-            $("#min").click(function(){
-                if(t.val()==''){
-                    t.val(1);
-                    return false;
-                }
-                if (t.val()==1){
-                    $('#min').attr('disabled',true);
-                    return false;
-                }
-                t.val(parseInt(t.val())-1);
-            })
-
-        });
-    </script>
-
     <!--商品详情-->
     <div class="pro-infobigbox" id="xiangqing">
     </div>

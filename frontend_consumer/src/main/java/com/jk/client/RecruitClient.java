@@ -24,4 +24,8 @@ public interface RecruitClient {
     //查询最新招商
     @PostMapping("queryInvestment")
     List<RecruitBean> queryInvestment(RecruitBean recruitBean);
+
+    //查询最新招商详情（代理）
+    @PostMapping("queryAgent")
+    RecruitBean queryAgent(String id);
 }

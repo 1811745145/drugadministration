@@ -224,7 +224,7 @@
                                             '                                        <img src="'+obj.picture+'">\n' +
                                             '                                        <p class="prodct-newszs-name">'+obj.commodityInformation+'</p>\n' +
                                             '                                        <p class="prodct-newszs-name" style="color: #999">规格:'+obj.specifications+'</p>\n' +
-                                            '                                        <h3 class="news-index-pricestyle" style="width: 96%">价格：'+obj.unitPrice+'</h3>                        </a>\n' +
+                                            '                                        <h3 class="news-index-pricestyle" style="width: 96%">价格：'+obj.discount+'</h3>                        </a>\n' +
                                             '                                </div>\n' +
                                             '                                <a href="javascript:void(0);" onclick="add_cart(650)" class="zs-shop">加入购物车</a>\n' +
                                             '                            </div>\n' +
@@ -297,10 +297,10 @@
                                         content+=' <li>\n' +
                                             '                        <div class="productzs-imglist">\n' +
                                             '                            <div class="productimg-top">\n' +
-                                            '                            <a href="#">\n' +
+                                            '                            <a href="/recruit/toAgent?id='+obj.id+'">\n' +
                                             '                            <img src="'+obj.recruitImg+'">\n' +
                                             '                            <p class="prodct-newszs-name">'+obj.productName+'</p>\n' +
-                                            '                            <strong>价格：'+obj.commodityPrice+'认证后可见</strong>                        </a>\n' +
+                                            '                            <strong>价格：'+obj.commodityPrice+'</strong>                        </a>\n' +
                                             '                        </div>\n' +
                                             '                        <a href="javascript:void(0);" onclick="layer.confirm(\'确定申请?\', {icon: 3, title:\'提示\'}, function(index){apply(51);layer.close(index);});" class="zs-shop">我要代理</a>\n' +
                                             '                            </div>\n' +
