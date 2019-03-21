@@ -31,6 +31,10 @@
         <module>qhp_web_provider</module>
         <module>qhp_web_feign</module>
         <module>qhp_web_api</module>
+        <module>phar_api</module>
+        <module>phar_common</module>
+        <module>phar_feign</module>
+        <module>phar_provider</module>
 
     </modules>
 
