@@ -23,6 +23,11 @@ public class MedicineServiceImpl implements MedicineService {
         return medicineMapper.queryMedicineList(medicineBean);
     }
 
+    //查询药品精选详情
+    @Override
+    public MedicineBean queryMedicine(String id) {
+        return medicineMapper.queryMedicine(id);
+    }
 
 
 }

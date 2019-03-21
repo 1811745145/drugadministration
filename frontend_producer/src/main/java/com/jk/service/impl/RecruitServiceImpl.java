@@ -38,9 +38,11 @@ public class RecruitServiceImpl implements RecruitService {
         return recruitMapper.queryRecruit(recruitBean);
     }
 
-
-
-
+    //查询最新招商
+    @Override
+    public List<RecruitBean> queryInvestment(RecruitBean recruitBean) {
+        return recruitMapper.queryInvestment(recruitBean);
+    }
 
 
 }

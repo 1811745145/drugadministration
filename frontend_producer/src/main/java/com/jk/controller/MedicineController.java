@@ -5,10 +5,7 @@ import com.jk.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +21,14 @@ public class MedicineController {
     public List<MedicineBean> queryMedicineList(MedicineBean medicineBean){
         List<MedicineBean> queryMedicineList = medicineService.queryMedicineList(medicineBean);
         return queryMedicineList;
+    }
 
+    //查询药品精选详情
+    @PostMapping("queryMedicine")
+    @ResponseBody
+    public MedicineBean queryMedicine(@RequestBody String id){
+        MedicineBean queryMedicine = medicineService.queryMedicine(id);
+        return queryMedicine;
     }
 
 }

@@ -30,7 +30,16 @@
         t.specifications,t.manufacturer,t.province,t.city,t.area,
         t.release_date as releaseDate,t.commodity_price as commodityPrice,
         t.transaction_volume as transactionVolume,t.recruit_picture as recruitPicture,
-        t.recruit_type as recruitType,t.details
-        from t_recruit t
+        t.recruit_type as recruitType,t.details,t.recruit_img as recruitImg
+        from t_recruit t limit 8
+    </select>
+    <!--查询最新招商 -->
+    <select id="queryInvestment" parameterType="map" resultType="com.jk.pojo.RecruitBean">
+        select t.id,t.code,t.product_name as productName,
+        t.specifications,t.manufacturer,t.province,t.city,t.area,
+        t.release_date as releaseDate,t.commodity_price as commodityPrice,
+        t.transaction_volume as transactionVolume,t.recruit_picture as recruitPicture,
+        t.recruit_type as recruitType,t.details,t.recruit_img as recruitImg
+        from t_recruit t limit 10
     </select>
 </mapper>
