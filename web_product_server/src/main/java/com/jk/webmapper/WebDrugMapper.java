@@ -1,9 +1,6 @@
 package com.jk.webmapper;
 
-import com.jk.pojo.Area;
-import com.jk.pojo.ClinicDrugstoreBean;
-import com.jk.pojo.DcWebBean;
-import com.jk.pojo.HospitalBean;
+import com.jk.pojo.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -48,4 +45,6 @@ public interface WebDrugMapper {
      * @return
      */
     List<Area> findArea();
+
+
 }

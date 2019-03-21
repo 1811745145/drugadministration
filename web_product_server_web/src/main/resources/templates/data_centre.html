@@ -207,19 +207,19 @@
                 <div class="info-box">
                     <ul class="data-top-list">
                         <li style="background-color:#28aadc;">
-                            <a href="/toDataCentre">
+                            <a href="http://192.168.235.1:9083/toDataCentre">
                                 <img src="./数据中心_files/dataimg_03.png">
                                 <p>中标数据药品库 </p>
                             </a>
                         </li>
                         <li style="background-color:#219fd0;">
-                            <a href="/toClinicDrugstore">
+                            <a href="http://192.168.235.1:9083/toClinicDrugstore">
                                 <img src="./数据中心_files/dataimg_07.png">
                                 <p>药店、诊所大全 </p>
                             </a>
                         </li>
                         <li style="background-color:#1b93c1;">
-                            <a href="/toHospital">
+                            <a href="http://192.168.235.1:9083/toHospital">
                                 <img src="./数据中心_files/dataimg_07.png">
                                 <p>医院大全</p>
                             </a>
@@ -266,8 +266,6 @@
 
             </div>
 
-
-
             <script>
 
                 $(function(){
@@ -276,11 +274,11 @@
                 function initTable(){
                     $("#myTable").bootstrapTable({
                         toolbar:'#toolbar',
-                        url:"/findDrugListAllPage",
+                        url:"http://192.168.235.1:9083/findDrugListAllPage",
                         pagination:true, //开启分页
                         pageList:[1, 10, 20, 50],//分页组件
                         pageNumber:1,
-                        pageSize:1,//默认每页条数
+                        pageSize:2,//默认每页条数
                         sidePagination:'server',//分页方式：client客户端分页，server服务端分页
                         striped:true,//条纹表格
                         queryParams:function(){

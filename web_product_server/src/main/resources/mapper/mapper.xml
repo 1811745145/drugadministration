@@ -58,7 +58,7 @@
     </select>
 
     <select id="findHospitalAllPage" resultType="com.jk.pojo.HospitalBean">
-        select h.hospitalId,h.hospitalName,h.contactWay,h.hospitalLevel,a.name as provinceName  from t_hospital h  LEFT JOIN t_area a on h.hospitalId=a.id
+        select h.hospitalId,h.hospitalName,h.contactWay,h.hospitalLevel,a.name as provinceName  from t_hospital h  LEFT JOIN t_area a on h.provinceId=a.id
         <include refid="hospitalWhere"></include>
         limit #{start},#{rows}
     </select>
@@ -68,8 +68,8 @@
             <if test="hospitalBean.hospitalName !=null and hospitalBean.hospitalName != '' ">
                 and h.hospitalName like '%${hospitalBean.hospitalName}%'
             </if>
-            <if test="hospitalBean.hospitalId !=null and hospitalBean.hospitalId != '' ">
-                and h.hospitalId = #{hospitalBean.hospitalId}
+            <if test="hospitalBean.provinceId !=null and hospitalBean.provinceId != '' ">
+                and h.provinceId = #{hospitalBean.provinceId}
             </if>
         </where>
     </sql>
@@ -77,4 +77,5 @@
     <select id="findArea" resultType="com.jk.pojo.Area">
         select id,name from t_area where pid=0
     </select>
+
 </mapper>

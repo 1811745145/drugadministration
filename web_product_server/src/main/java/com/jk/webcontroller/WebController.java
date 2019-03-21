@@ -1,9 +1,6 @@
 package com.jk.webcontroller;
 
-import com.jk.pojo.Area;
-import com.jk.pojo.ClinicDrugstoreBean;
-import com.jk.pojo.DcWebBean;
-import com.jk.pojo.HospitalBean;
+import com.jk.pojo.*;
 import com.jk.webmapper.WebDrugMapper;
 import com.jk.webserviceapi.WebServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
@@ -87,4 +85,6 @@ public class WebController implements WebServiceApi {
     public List<Area> findArea() {
         return webDrugMapper.findArea();
     }
+
+
 }

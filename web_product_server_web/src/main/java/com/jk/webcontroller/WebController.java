@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
@@ -98,4 +99,15 @@ public class WebController {
     public List<Area> findArea(){
         return webService.findArea();
     }
+
+    /**
+     * 跳转登录页面
+     * @return
+     */
+    @RequestMapping("toRegister")
+    public String toRegister(){
+        return "register";
+    }
+
+
 }

@@ -213,19 +213,19 @@
                 <div class="info-box">
                     <ul class="data-top-list">
                         <li style="background-color:#28aadc;">
-                            <a href="/toDataCentre">
+                            <a href="http://192.168.235.1:9083/toDataCentre">
                                 <img src="./资讯平台_files/dataimg_03.png">
                                 <p>中标数据药品库 </p>
                             </a>
                         </li>
                         <li style="background-color:#219fd0;">
-                            <a href="/toClinicDrugstore">
+                            <a href="http://192.168.235.1:9083/toClinicDrugstore">
                                 <img src="./资讯平台_files/dataimg_05.png">
                                 <p>药店、诊所大全 </p>
                             </a>
                         </li>
                         <li style="background-color:#1b93c1;">
-                            <a href="/toHospital">
+                            <a href="http://192.168.235.1:9083/toHospital">
                                 <img src="./资讯平台_files/dataimg_07.png">
                                 <p>医院大全</p>
                             </a>
@@ -275,17 +275,18 @@
 
             <script type="text/javascript">
                 $(function(){
+
                     initTable();
                     queryArea ();
                 })
                 function initTable(){
                     $("#myTable").bootstrapTable({
                         toolbar:'#toolbar',
-                        url:"/findHospitalAllPage",
+                        url:"http://192.168.235.1:9083/findHospitalAllPage",
                         pagination:true, //开启分页
                         pageList:[1, 10, 20, 50],//分页组件
                         pageNumber:1,
-                        pageSize:1,//默认每页条数
+                        pageSize:2,//默认每页条数
                         sidePagination:'server',//分页方式：client客户端分页，server服务端分页
                         striped:true,//条纹表格
                         queryParams:function(){
@@ -308,18 +309,20 @@
                 }
 
                 function searchUser(){
+                    var a= $("#provinceSelect").val();
+                    alert(a)
                     $('#myTable').bootstrapTable('refresh');
                 }
                 function queryArea (){
                     $.ajax({
-                        url:'/findArea',
+                        url:'http://192.168.235.1:9083/findArea',
                         type:'get',
                         async:false,
                         data:{},
                         dataType:'json',
                         success:function(data){
 
-                            var html = "<option value='-1'>请选择</option>";
+                            var html = "<option value=''>请选择</option>";
                             for(var i = 0 ; i < data.length; i++){
                                 html += "<option value='"+data[i].id+"'>"+data[i].name+"</option>"
                             }
