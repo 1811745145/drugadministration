@@ -4,13 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class WebShoppingcCart  implements Serializable {
-    
+public class WebShoppingcCart implements Serializable {
+
+    private static final long serialVersionUID = 5557513998008525439L;
     private Integer cartid;//购物车id
 
-    private Integer userid;//用户Id
-
-    private Date adddate;//加入购物车时间
+    private String adddate;//加入购物车时间
 
     private List<WebDrugBean> webDrugBean;
 
@@ -22,19 +21,12 @@ public class WebShoppingcCart  implements Serializable {
         this.cartid = cartid;
     }
 
-    public Integer getUserid() {
-        return userid;
-    }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
-    public Date getAdddate() {
+    public String getAdddate() {
         return adddate;
     }
 
-    public void setAdddate(Date adddate) {
+    public void setAdddate(String adddate) {
         this.adddate = adddate;
     }
 

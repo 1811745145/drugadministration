@@ -2,5 +2,86 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper  namespace="com.jk.mapper.MedicalHomeMapper">
+<select id="selectCar"  parameterType="int"  resultType="com.jk.pojo.WebDrugBean">
+SELECT
+	t.acount               acount,
+	t.characterr       characterr,
+	t.conversionfactor  conversionfactor,
+	t.directorytype     directorytype,
+	t.dosage              dosage,
+	t.drugefficacy   drugefficacy,
+	t.drugimg             drugimg,
+	t.functionRug    functionRug,
+	t.id                 id,
+	t.menterprise   menterprise,
+	t.namee          namee,
+	t.packingunit  packingunit,
+	t.pprice          pprice,
+	t.prprice           prprice,
+	t.repertory          repertory  ,
+	t.scdate              scdate,
+	t.serialNumber   serialNumber,
+	t.sftenterprise   sftenterprise,
+	t.specification  specification,
+	t.yxdate   yxdate
+FROM
+	t_web_drug t
+where t.id=#{spid}
+</select>
 
+	<select id="selectDrupList" resultType="com.jk.pojo.WebDrugBean">
+SELECT
+	t.acount               acount,
+	t.characterr       characterr,
+	t.conversionfactor  conversionfactor,
+	t.directorytype     directorytype,
+	t.dosage              dosage,
+	t.drugefficacy   drugefficacy,
+	t.drugimg             drugimg,
+	t.functionRug    functionRug,
+	t.id                 id,
+	t.menterprise   menterprise,
+	t.namee          namee,
+	t.packingunit  packingunit,
+	t.pprice          pprice,
+	t.prprice           prprice,
+	t.repertory          repertory  ,
+	t.scdate              scdate,
+	t.serialNumber   serialNumber,
+	t.sftenterprise   sftenterprise,
+	t.specification  specification,
+	t.yxdate   yxdate
+FROM
+	t_web_drug t
+ORDER BY t.scdate  desc  LIMIT 13
+    </select>
+
+	<select id="selectTree1"  parameterType="int"  resultType="com.jk.pojo.WebTree">
+		select  t.id  ids,t.pid  pid,t.text texts,t.url url  from  t_web_tree t  where t.pid=#{pid}
+	</select>
+
+	<select id="selectTjsp"  resultType="com.jk.pojo.WebDrugBean">
+SELECT
+ 	t.acount               acount,
+	t.characterr       characterr,
+	t.conversionfactor  conversionfactor,
+	t.directorytype     directorytype,
+	t.dosage              dosage,
+	t.drugefficacy   drugefficacy,
+	t.drugimg             drugimg,
+	t.functionRug    functionRug,
+	t.id                 id,
+	t.menterprise   menterprise,
+	t.namee          namee,
+	t.packingunit  packingunit,
+	t.pprice          pprice,
+	t.prprice           prprice,
+	t.repertory          repertory  ,
+	t.scdate              scdate,
+	t.serialNumber   serialNumber,
+	t.sftenterprise   sftenterprise,
+	t.specification  specification,
+	t.yxdate   yxdate
+ FROM t_web_drug t ORDER BY RAND() LIMIT 5;
+	</select>
 </mapper>

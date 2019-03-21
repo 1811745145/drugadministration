@@ -1,18 +1,20 @@
 package com.jk.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class WebDrugBean {
+public class WebDrugBean implements Serializable {
+    private static final long serialVersionUID = -7928688771547575439L;
     private Integer id;//序号
 
     private Integer serialNumber;//药品编号
 
-    private String name;//通用名
+    private String namee;//通用名
 
     private String dosage;//剂型
 
-    private String character;//药品特征
+    private String characterr;//药品特征characterr
 
     private String specification;//规格
 
@@ -37,15 +39,12 @@ public class WebDrugBean {
     private String drugefficacy;//药品功效
 
     private String drugimg;//药品图片
+
     private Integer acount;//数量
 
-    public Integer getAcount() {
-        return acount;
-    }
+    private String  functionRug;//功能
 
-    public void setAcount(Integer acount) {
-        this.acount = acount;
-    }
+    private Integer repertory;// 库存
 
     public Integer getId() {
         return id;
@@ -63,12 +62,12 @@ public class WebDrugBean {
         this.serialNumber = serialNumber;
     }
 
-    public String getName() {
-        return name;
+    public String getNamee() {
+        return namee;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNamee(String namee) {
+        this.namee = namee;
     }
 
     public String getDosage() {
@@ -79,12 +78,12 @@ public class WebDrugBean {
         this.dosage = dosage;
     }
 
-    public String getCharacter() {
-        return character;
+    public String getCharacterr() {
+        return characterr;
     }
 
-    public void setCharacter(String character) {
-        this.character = character;
+    public void setCharacterr(String characterr) {
+        this.characterr = characterr;
     }
 
     public String getSpecification() {
@@ -181,5 +180,55 @@ public class WebDrugBean {
 
     public void setDrugimg(String drugimg) {
         this.drugimg = drugimg;
+    }
+
+    public Integer getAcount() {
+        return acount;
+    }
+
+    public void setAcount(Integer acount) {
+        this.acount = acount;
+    }
+
+    public String getFunctionRug() {
+        return functionRug;
+    }
+
+    public void setFunctionRug(String functionRug) {
+        this.functionRug = functionRug;
+    }
+
+    public Integer getRepertory() {
+        return repertory;
+    }
+
+    public void setRepertory(Integer repertory) {
+        this.repertory = repertory;
+    }
+
+    @Override
+    public String toString() {
+        return "WebDrugBean{" +
+                "id=" + id +
+                ", serialNumber=" + serialNumber +
+                ", namee='" + namee + '\'' +
+                ", dosage='" + dosage + '\'' +
+                ", characterr='" + characterr + '\'' +
+                ", specification='" + specification + '\'' +
+                ", conversionfactor=" + conversionfactor +
+                ", packingunit='" + packingunit + '\'' +
+                ", directorytype='" + directorytype + '\'' +
+                ", menterprise='" + menterprise + '\'' +
+                ", sftenterprise='" + sftenterprise + '\'' +
+                ", pprice=" + pprice +
+                ", prprice=" + prprice +
+                ", scdate=" + scdate +
+                ", yxdate=" + yxdate +
+                ", drugefficacy='" + drugefficacy + '\'' +
+                ", drugimg='" + drugimg + '\'' +
+                ", acount=" + acount +
+                ", functionRug='" + functionRug + '\'' +
+                ", repertory=" + repertory +
+                '}';
     }
 }

@@ -3,12 +3,33 @@
 <html   lang="en">
 <head>
     <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="../js/layer.js"></script>
+    <script src="../js/jQuery-2.2.0.min.js"></script>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js2/common.js"></script>
+    <script src="../js2/fileinput.js"></script>
+    <script src="../js2/fileinput.min.js"></script>
+    <script src="../js2/jquery.validate.js"></script>
+    <script src="../js2/lhgdialog.js"></script>
+    <script src="../js2/messages_zh.js"></script>
+    <script src="../js2/myFormValidate.js"></script>
+    <script src="../js2/locales/zh.js"></script>
+    <script src="../js2/jquery.tabs.js"></script>
+    <script src="../js2/jquery.lazyload.js"></script>
+    <script src="../js2/jquery.SuperSlide.2.1.1.js"></script>
+    <link rel="stylesheet" href="../js/common.css">
+    <link rel="stylesheet" href="../css/classification-style.css">
+    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="../css/fileinput.css">
+    <link rel="stylesheet" href="../css/fileinput.min.css">
+    <link rel="stylesheet" href="../css/list_page_css.css">
+    <link rel="stylesheet" href="../css/navregister.css">
+    <link rel="stylesheet" href="../css/share.css">
+    <link rel="stylesheet" href="../css/smoothproducts.css">
+    <link rel="stylesheet" href="../js/navregister.css">
 
-    <meta -equiv="X-UA-Compatible" content="IE=edge">
-   <link rel="stylesheet" href="../西北医药网-更专业的医药交易服务平台_files/common.css">
-<link rel="stylesheet" href="../西北医药网-更专业的医药交易服务平台_files/css.css">
-<script src="../西北医药网-更专业的医药交易服务平台_files/jQuery-2.2.0.min.js.下载"></script>
-<script src="../西北医药网-更专业的医药交易服务平台_files/layer.js.下载"></script><link rel="stylesheet" href="../西北医药网-更专业的医药交易服务平台_files/layer.css" id="layui_layer_skinlayercss" style="">
+
 <!--[if lt IE 9]>
 <script src="/Public/houtai/bootstrap/js/html5shiv.min.js"></script>
 <script src="/Public/houtai/bootstrap/js/respond.min.js"></script>
@@ -164,6 +185,8 @@
     <link rel="shortcut  icon" type="image/x-icon" href="://www.xb1y.com/index.php/Home/Index/favicon.ico"
           media="screen">
 
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini" id="app">
 <div class="wrapper">
@@ -183,7 +206,7 @@
                 <ul class="logotop-rt">
                     <li>服务热线：400-0097-600</li>
                     <li><a href="">我的订单 </a></li>
-                    <li><a href="">我的购物车</a></li>
+                    <li><a href="http://127.0.0.1:8200/MedicalHomeController/junmpmycar">我的购物车</a></li>
                     <li><a href="">帮助中心</a></li>
                     <li><a href="">收藏网站</a></li>
                 </ul>
@@ -214,13 +237,25 @@
                         <img src="../西北医药网-更专业的医药交易服务平台_files/index_06.png"> 缺药登记
                     </a>
 
-                    <a href="#" class="myshopping">
+                    <a href="javascript:junmpcar()" class="myshopping">
                         <img src="../西北医药网-更专业的医药交易服务平台_files/index_08.png">
                         我的购物车
                     </a>
                 </div>
             </div>
         </div>
+        <!--引入购物车页面-->
+        <script>
+            function   junmpcar() {
+                $.ajax({
+                    url:"http://192.168.72.1:8200/MedicalHomeController/junmpmycar",
+                    type:"post",
+                    success:function (data) {
+                        $(".content-wrapper").html(data)
+                    }
+                })
+            }
+        </script>
         <!--导航-->
         <div class="navbar">
             <div class="navbox">
@@ -277,11 +312,39 @@
 
         </section>
         <section class="content"  id="login">
+            <script>
+                /*查询左侧树*/
+                $(function(){
+                   selectTree1();
+                })
+                function selectTree1(){
+                    $.ajax({
+                        url:"",
+                        type:"post",
+                        success:function (data) {
 
+                        }
+                    })
+                }
+               function aaaa(){
+
+                   $.ajax({
+                       url:"",
+                       type:"post",
+                       success:function (data) {
+                           var html1="";
+                           for (var i=0;i<=5;i++){
+                               html1+=' <a ONMOUSEOVER="aaaa()" >中西药品</a>'
+                           }
+                           $(".treeli1").append()
+                       }
+                   })
+               }
+            </script>
             <!--导航轮播图片-->
             <div class="navpic-slider">
                 <ul class="topmenu">
-                    <li><a href="#">中西药品</a>
+                    <li  class="treeli1"><a ONMOUSEOVER="aaaa()" >中西药品</a>
                         <div class="submenu">
                             <div class="leftdiv">
                                 <dl>
@@ -627,19 +690,22 @@
                                     </dd>
                                 </dl>
                                 <dl>
-                                    <dt><a href="#">增强机体免疫力</a>
+                                    <dt>
+                                        <a href="#">增强机体免疫力</a>
                                     </dt>
                                     <dd>
                                         <a href="#">免疫力调节药物</a>
                                     </dd>
                                 </dl>
                                 <dl>
-                                    <dt><a href="#">抗生素</a>
+                                    <dt>
+                                        <a href="#">抗生素</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">其他</a><a
-                                            href="#">其他
-                                    </a></dd>
+                                        <a href="#">其他</a>
+                                        <a href="#">其他
+                                    </a>
+                                    </dd>
                                 </dl>
                             </div>
                         </div>
@@ -2101,17 +2167,25 @@
                         $(this).find($('.cp-show')).css('zIndex', -2)
                     })
                 }
+
+                /*加入购物车*/
                 function add_cart(id) {
-                    $.post("/index.php/Home/Goods/add_cart.html", {id: id, num: 1},
-                        function (data) {
-                            data = eval("(" + data + ")");
-                            if (data.status) {
-                                layer.msg(data.msg, {icon: 1});
-                                //按钮不可用 更改颜色、value
-                            } else {
-                                layer.alert(data.msg);
+                    var  sl=1
+                        $.ajax({
+                          url:"http://127.0.0.1:8200/MedicalHomeController/addCar",
+                          type:"post",
+                          data:{
+                              spid:id,
+                                sl:sl
+                          },success:function(data){
+                              if(data==0){
+                                alert("请登录之后加入购物车")
+                              }else{
+                                  alert("添加购物车成功！")
+                              }
                             }
-                        });
+
+                        })
                 }
 
 
@@ -2192,44 +2266,48 @@
     })
 </script>
 <!--查询医药信息-->
+
 <script>
     $(function(){
         selectyiyao();
     })
     function selectyiyao(){/*查询最新发布药品*/
         $.ajax({
-            url:"",
+            url:"../MedicalHomeController/selectDrupList",
             type:"post",
+            dataType:'json',
             success:function(data){
+
+                for (var i = 0; i < data.length; i++) {
+                    var   html1="";
+                    html1+= '<li class="cp-list" style="position:relative">'+
+                        '<a href="" target="_blank">'+
+                        '<img src='+data[i].drugimg+'><h3>'+data[i].namee+'</h3>'+
+                        '<span style="text-indent: 10px;">规格：'+data[i].specification+'</span>'+
+                        '<h3 class="news-index-pricestyle" style="text-indent: 0">价格：'+data[i].prprice+'</h3>'+
+                        '<a href="#">查看详情</a>'+
+                        '</a><a href="javascript:void(0);" onclick="add_cart('+data[i].id+')" class="active-addcars">加入购物车</a>'+
+                       /* '<div class="cp-show"style="position:absolute;width:100%;height:235px;;left:0;top:0;z-index:-1;background-color:rgba(51,57,57,0.8);padding:25px 10px;color:#fff;box-sizing:border-box">'+
+                        '<p style="text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap">'+
+                        '<span style="float:left;width:80px;text-align:right">功能：</span>'+
+                        '<span style="float:left;width:120px;">'+data[i].functionRug+'</span></p>'+
+                        '<p style="text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap">'+
+                        '<span style="float:left;width:80px;text-align:right">规格：</span>'+
+                        '<span style="float:left;width:120px;">'+data[i].specification+'</span>'+
+                        '</p>'+
+                        '<p style="text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap">'+
+                        '<span style="float:left;width:80px;text-align:right">厂商：</span>'+
+                        '<span style="float:left;width:120px;">'+data[i].menterprise+'</span>'+
+                        '</p>'+
+                        '<p style="text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap;position:absolute;right:20px;bottom:10px;">'+
+                        '<a style=" float:left;width:100%;text-align:right;color:#fff;padding:3px 0;margin-top:2px;"   href=""  target="_blank">查看详情 &gt;</a>'+*/
+                        '</p></div></li>'
+                    $(".goods-box").append(html1)
+                }
 
             }
         })
-        var   html1="";
 
-for (var i=0;i<3;i++){
-    html1+= '<li class="cp-list" style="position:relative">'+
-        '<a href="" target="_blank">'+
-        '<img src="../西北医药网-更专业的医药交易服务平台_files/1541667516E2DUUslk.png"><h3></h3>'+
-        '<span style="text-indent: 10px;">规格：颗粒剂，每袋装15克，15g*10袋</span>'+
-        '<h3 class="news-index-pricestyle" style="text-indent: 0">价格：认证后可见</h3>'+
-        '</a><a href="javascript:void(0);" onclick="add_cart(926)" class="active-addcars">加入购物车</a>'+
-        '<div class="cp-show"style="position:absolute;width:100%;height:235px;;left:0;top:0;z-index:-1;background-color:rgba(51,57,57,0.8);padding:25px 10px;color:#fff;box-sizing:border-box">'+
-        '<p style="text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap">'+
-        '<span style="float:left;width:80px;text-align:right">功能：</span>'+
-        '<span style="float:left;width:120px;">用于风热感冒，症见发热头痛，咳嗽口干，咽喉疼痛</span></p>'+
-        '<p style="text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap">'+
-        '<span style="float:left;width:80px;text-align:right">规格：</span>'+
-        '<span style="float:left;width:120px;">颗粒剂，每袋装15克，15g*10袋</span>'+
-        '</p>'+
-        '<p style="text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap">'+
-        '<span style="float:left;width:80px;text-align:right">厂商：</span>'+
-        '<span style="float:left;width:120px;">广西邦琪药业集团</span>'+
-        '</p>'+
-        '<p style="text-align:left;display:flex;justify-content:space-between;flex-wrap:wrap;position:absolute;right:20px;bottom:10px;">'+
-        '<a style=" float:left;width:100%;text-align:right;color:#fff;padding:3px 0;margin-top:2px;"   href=""  target="_blank">查看详情 &gt;</a>'+
-        '</p></div></li>'
-    $(".goods-box").append(html1)
-}
         /*不要动*/
         initaaa()
     }
