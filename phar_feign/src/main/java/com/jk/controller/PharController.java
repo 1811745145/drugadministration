@@ -246,6 +246,7 @@ public class PharController {
         if(!userInfo.getPassWord().equals(loginPojo.getPassWord())){
             return "2";
         }
+
         redisTemplate.opsForValue().set("user",userInfo);
         LoginPojo users = (LoginPojo) redisTemplate.opsForValue().get("user");
         System.out.println(users);
