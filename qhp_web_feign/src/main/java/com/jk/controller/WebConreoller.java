@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,6 +40,26 @@ public class WebConreoller {
         return true;
     }
 
+
+    //登录
+    @RequestMapping("loginDrul")
+    @ResponseBody
+    public String loginDrul(UserBean loginPojo, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserBean userInfo = webService.findUserByName(loginPojo);
+        if(userInfo == null){
+            return "1";
+        }
+        if(!userInfo.getUserPassword().equals(loginPojo.getUserPassword())){
+            return "2";
+        }
+
+        //redisTemplate.opsForValue().set("user",userInfo);
+       //LoginPojo users = (LoginPojo) redisTemplate.opsForValue().get("user");
+        //System.out.println(users);
+        session.setAttribute("user",userInfo);
+        return "0";
+    }
 
 
     //获取验证码

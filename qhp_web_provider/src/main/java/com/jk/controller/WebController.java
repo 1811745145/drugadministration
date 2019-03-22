@@ -3,6 +3,7 @@ package com.jk.controller;
 import com.jk.mapper.WebMapper;
 import com.jk.pojo.*;
 import com.jk.service.WebServiceApi;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -81,6 +82,14 @@ public class WebController implements WebServiceApi {
     @ResponseBody
     public void regSave(@RequestBody UserBean userBean) {
         webMapper.regSave(userBean);
+    }
+
+    @Override
+    @ResponseBody
+    public UserBean findUserByName(@RequestBody UserBean loginPojo) {
+
+
+        return webMapper.findUserByName(loginPojo.getUserName());
     }
 
 

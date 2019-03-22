@@ -31,4 +31,7 @@ public interface WebServiceApi {
 
     @RequestMapping("userBean")
     void regSave(UserBean userBean);
+
+    @RequestMapping("findUserByName")
+    UserBean findUserByName(UserBean loginPojo);
 }

@@ -33,4 +33,7 @@ public interface WebMapper {
 
     @Insert(" insert into t_user(userName,userPassword,email)values(#{userName},#{userPassword},#{email})  ")
     void regSave(UserBean userBean);
+
+    @Select(" select * from t_user where userName = #{value}  ")
+    UserBean findUserByName(String userName);
 }
