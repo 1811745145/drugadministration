@@ -47,7 +47,8 @@
                     "className" : "btn-sm btn-success",
                     "callback" : function() {
                         var address_name = $("#address_name").val();
-                        var address_area = $("#address_area").val();
+                        var area_province = $("#provinceSelect").combobox("getValue");
+                        var area_city = $("#citySelect").combobox("getValue");
                         var detailedaddress = $("#detailedaddress").val();
                         var zipcode = $("#zipcode").val();
                         var phone = $("#phone").val();
@@ -56,7 +57,8 @@
                             url:'../saveAddress',
                             type:'post',
                             data:JSON.stringify(
-                                {'address_Id':address_Id,'address_name':address_name,'address_area':address_area,'detailedaddress':detailedaddress,'zipcode':zipcode,'phone':phone}),
+                                {'address_Id':address_Id,'address_name':address_name,'area_province':area_province,'area_city':area_city,'detailedaddress':detailedaddress,'zipcode':zipcode,'phone':phone}),
+
                             headers: {
                                 "Content-Type": "application/json"
                             },

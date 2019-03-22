@@ -552,4 +552,25 @@ public class DrusController {
     }
 
 
+    @RequestMapping("queryaddressList")
+    @ResponseBody
+    public HashMap<String,Object>queryaddressList(@RequestParam("page") Integer page,@RequestParam("rows") Integer rows){
+        return drusServicefeign.queryaddressList(page,rows);
+    }
+
+    @RequestMapping("querycommodityList")
+    @ResponseBody
+    public HashMap<String,Object>querycommodityList(Commodity commodity,@RequestParam("page") Integer page,@RequestParam("rows") Integer rows){
+        return drusServicefeign.querycommodityList(commodity,page,rows);
+    }
+
+
+    @RequestMapping("findProvinceSelect")
+    @ResponseBody
+    public List<Area>findProvinceSelect(@RequestParam("id")Integer id){
+        return drusServicefeign.findProvinceSelect(id);
+    }
+
+
+
 }

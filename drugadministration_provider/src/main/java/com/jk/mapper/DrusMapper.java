@@ -52,7 +52,7 @@ public interface DrusMapper {
      * 修改根据id
      * @param address
      */
-    @Update(" update addressmanagement set address_name = #{address_name},address_area = #{address_area},detailedaddress = #{detailedaddress},zipcode = #{zipcode},phone = #{phone} where address_Id = #{address_Id} ")
+    @Update(" update addressmanagement set address_name = #{address_name},area_province = #{area_province},area_city = #{area_city},detailedaddress = #{detailedaddress},zipcode = #{zipcode},phone = #{phone} where address_Id = #{address_Id} ")
     void updateAddress(Address address);
 
     /**
