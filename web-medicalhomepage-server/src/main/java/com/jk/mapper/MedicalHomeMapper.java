@@ -1,5 +1,6 @@
 package com.jk.mapper;
 
+import com.jk.pojo.UserBean;
 import com.jk.pojo.WebDirectorFigure;
 import com.jk.pojo.WebDrugBean;
 import com.jk.pojo.WebTree;
@@ -27,4 +28,7 @@ public interface MedicalHomeMapper {
 
     @Select("select * from t_web_drug where id = #{ids}")
     WebDrugBean queryDrugBeanById(Integer ids);
+
+    @Select(" select * from t_user where userName = #{value}  ")
+    UserBean findUserByName(String userName);
 }

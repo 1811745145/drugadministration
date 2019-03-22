@@ -1,6 +1,9 @@
 package com.jk.pojo;
 
-public class UserBean {
+import java.io.Serializable;
+
+public class UserBean implements Serializable {
+    private static final long serialVersionUID = 3470856614820133458L;
     private Integer userId;
     private String userPassword;
     private String userName;

@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.jk.mapper.MedicalHomeMapper;
+import com.jk.pojo.UserBean;
 import com.jk.pojo.WebDirectorFigure;
 import com.jk.pojo.WebDrugBean;
 import com.jk.pojo.WebTree;
@@ -77,6 +78,13 @@ public class MedicalHomeController implements MedicalHomeService {
     @ResponseBody
     public WebDrugBean queryDrugBeanById(Integer ids) {
         return medicalHomeMapper.queryDrugBeanById(ids);
+    }
+    @Override
+    @ResponseBody
+    public UserBean findUserByName(@RequestBody UserBean loginPojo) {
+
+
+        return medicalHomeMapper.findUserByName(loginPojo.getUserName());
     }
 
 }

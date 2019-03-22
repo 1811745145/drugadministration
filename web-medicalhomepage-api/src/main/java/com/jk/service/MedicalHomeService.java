@@ -1,5 +1,6 @@
 package com.jk.service;
 
+import com.jk.pojo.UserBean;
 import com.jk.pojo.WebDirectorFigure;
 import com.jk.pojo.WebDrugBean;
 import com.jk.pojo.WebTree;
@@ -37,4 +38,7 @@ public interface MedicalHomeService {
 
     @RequestMapping("queryDrugBeanById")
     WebDrugBean queryDrugBeanById(@RequestParam("ids")Integer ids);
+
+    @RequestMapping("findUserByName")
+    UserBean findUserByName(UserBean loginPojo);
 }
