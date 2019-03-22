@@ -237,7 +237,7 @@
                         <img src="../西北医药网-更专业的医药交易服务平台_files/index_06.png"> 缺药登记
                     </a>
 
-                    <a href="javascript:junmpcar()" class="myshopping">
+                    <a href="http://127.0.0.1:8200/MedicalHomeController/junmpmycar" class="myshopping">
                         <img src="../西北医药网-更专业的医药交易服务平台_files/index_08.png">
                         我的购物车
                     </a>
@@ -247,13 +247,6 @@
         <!--引入购物车页面-->
         <script>
             function   junmpcar() {
-                $.ajax({
-                    url:"http://192.168.72.1:8200/MedicalHomeController/junmpmycar",
-                    type:"post",
-                    success:function (data) {
-                        $(".content-wrapper").html(data)
-                    }
-                })
             }
         </script>
         <!--导航-->
@@ -267,7 +260,7 @@
                     <li><a href="">数据中心</a></li>
                     <li><a href="">资讯平台</a></li>
                     <li><a href="">医药会展</a></li>
-                    <li><a href="">活动专区</a></li>
+                    <li><a href="http://192.168.101.28:8200/MedicalHomeController/tohuodong">活动专区</a></li>
                 </ul>
             </div>
         </div>
@@ -285,7 +278,7 @@
                 订单
             </div>
         </a>
-        <a href="#">
+        <a href="http://127.0.0.1:8200/MedicalHomeController/junmpmycar">
             <div class="xb-right_list">
                 <img alt="" src="../西北医药网-更专业的医药交易服务平台_files/gwc.png">
                 购物车
@@ -307,40 +300,7 @@
     </div>
 
     <div class="content-wrapper">
-        <section class="content-header">
-
-
-        </section>
         <section class="content"  id="login">
-            <script>
-                /*查询左侧树*/
-                $(function(){
-                   selectTree1();
-                })
-                function selectTree1(){
-                    $.ajax({
-                        url:"",
-                        type:"post",
-                        success:function (data) {
-
-                        }
-                    })
-                }
-               function aaaa(){
-
-                   $.ajax({
-                       url:"",
-                       type:"post",
-                       success:function (data) {
-                           var html1="";
-                           for (var i=0;i<=5;i++){
-                               html1+=' <a ONMOUSEOVER="aaaa()" >中西药品</a>'
-                           }
-                           $(".treeli1").append()
-                       }
-                   })
-               }
-            </script>
             <!--导航轮播图片-->
             <div class="navpic-slider">
                 <ul class="topmenu">
@@ -349,32 +309,11 @@
                             <div class="leftdiv">
                                 <dl>
                                     <dt>
-                                        <a href="javascript:inithtml()">家庭常备</a>
+                                        <a href="javascript:inithtml(1)">家庭常备</a>
                                     </dt>
                                     <dd>
                                         <a href="#">风热感冒</a>
                                         <a href="#">中暑</a>
-                                        <a href="#">空调病</a>
-                                        <a href="#">止咳化痰</a>
-                                        <a href="#">发烧头痛</a>
-                                        <a href="#">咽喉肿痛</a>
-                                        <a href="#">消炎清热</a>
-                                        <a href="#">牙痛</a>
-                                        <a href="#">口腔溃疡</a>
-                                        <a href="#">慢性咽炎</a>
-                                        <a href="#">病毒感冒</a>
-                                        <a href="#">扁桃体炎</a>
-                                        <a href="#">过敏性鼻炎</a>
-                                        <a href="#">清热解毒</a>
-                                        <a href="#">消炎镇痛</a>
-                                        <a href="#">跌打损伤</a>
-                                        <a href="#">其他 </a>
-                                        <a href="#">解热镇痛</a>
-                                        <a href="#">消炎退热</a>
-                                        <a href="#">感冒</a>
-                                        <a href="#">上呼吸道感染</a>
-                                        <a href="#">口腔科</a>
-                                        <a href="#">化痰止咳</a>
                                     </dd>
                                 </dl>
 
@@ -382,18 +321,6 @@
                                     <dt><a href="#">男科用药</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">阳痿早泄</a>
-                                        <a href="#">滋肝补肾</a>
-                                        <a href="#">少精无精</a>
-                                        <a href="#">前列腺炎/肥大</a>
-                                        <a href="#">前列腺增生</a>
-                                        <a href="#">滋阴壮阳</a>
-                                        <a href="#">综合滋补</a>
-                                        <a href="#">性功能障碍</a>
-                                        <a href="#">脱发/少发</a>
-                                        <a href="#">其他</a>
-                                        <a href="#">滋补肝肾</a>
-                                        <a href="#">前列腺炎\肥大</a>
                                         <a href="#">滋阴补肾</a>
                                         <a href="#">脱发</a>
                                     </dd>
@@ -402,34 +329,6 @@
                                     <dt><a href="#">妇科用药</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">调经止带用药</a>
-                                        <a href="#">妇科炎症</a>
-                                        <a href="#">乳腺疾病</a>
-                                        <a href="#">妇科内分泌</a>
-                                        <a href="#">避孕药类</a>
-                                        <a href="#">更年期综合症</a>
-                                        <a href="#">宫颈糜烂</a>
-                                        <a href="#">慢性盆腔炎</a>
-                                        <a href="#">阴道炎</a>
-                                        <a href="#">孕期滋补</a>
-                                        <a href="#">不孕不育</a>
-                                        <a href="#">孕妇用药</a>
-                                        <a href="#">子宫疾病</a>
-                                        <a href="#">用药保胎促孕药</a>
-                                        <a href="#">产前后疾病用药</a>
-                                        <a href="#">妇科外用药</a>
-                                        <a href="#">补血养气</a>
-                                        <a href="#">滋补养肾</a>
-                                        <a href="#">其他</a>
-                                        <a href="#">活血养气</a>
-                                        <a href="#">活血补气</a>
-                                        <a href="#">产前后用药</a>
-                                        <a href="#">补养气血</a>
-                                        <a href="#">更年期综合征</a>
-                                        <a href="#">月经不调</a>
-                                        <a href="#">调经止带</a>
-                                        <a href="#">乳腺增生</a>
-                                        <a href="#">补气养血</a>
                                         <a href="#">补血益气</a>
                                         <a href="#">盆腔炎</a>
                                     </dd>
@@ -438,38 +337,6 @@
                                     <dt><a href="#">心脑血管</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">脑血管疾病</a>
-                                        <a href="#">心血管疾病</a>
-                                        <a href="#">心脏疾病</a>
-                                        <a href="#">脑疾病</a>
-                                        <a href="#">高血压</a>
-                                        <a href="#">糖尿病</a>
-                                        <a href="#">冠心病</a>
-                                        <a href="#">高血脂</a>
-                                        <a href="#">中风</a>
-                                        <a href="#">偏瘫</a>
-                                        <a href="#">动脉硬化</a>
-                                        <a href="#">血液疾病</a>
-                                        <a href="#">眩晕症</a>
-                                        <a href="#">心律失常</a>
-                                        <a href="#">静脉曲张</a>
-                                        <a href="#">心绞痛</a>
-                                        <a href="#">心肌炎</a>
-                                        <a href="#">低血压</a>
-                                        <a href="#">低血糖</a>
-                                        <a href="#">高血糖</a>
-                                        <a href="#">心律不齐</a>
-                                        <a href="#">心力衰竭</a>
-                                        <a href="#">其他</a>
-                                        <a href="#">高脂血症</a>
-                                        <a href="#">冠心病，心绞痛</a>
-                                        <a href="#">脑血管病</a>
-                                        <a href="#">冠心病心绞痛</a>
-                                        <a href="#">高血脂症</a>
-                                        <a href="#">活血通络</a>
-                                        <a href="#">心脑血管疾病</a>
-                                        <a href="#">冠心病
-                                            ，心绞痛</a>
                                         <a href="#">眩晕</a>
                                         <a href="#">心率异常</a>
                                     </dd>
@@ -478,24 +345,6 @@
                                     <dt><a href="#">风湿骨伤</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">风湿类风湿</a>
-                                        <a href="#">骨关节炎</a>
-                                        <a href="#">腰椎病</a>
-                                        <a href="#">骨质疏松</a>
-                                        <a href="#">痛风</a>
-                                        <a href="#">骨质增生</a>
-                                        <a href="#">股骨头炎</a>
-                                        <a href="#">活血通络</a>
-                                        <a href="#">肩周炎</a>
-                                        <a href="#">颈椎病</a>
-                                        <a href="#">腰肌劳损</a>
-                                        <a href="#">坐骨神经痛</a>
-                                        <a href="#">腰间盘突出</a>
-                                        <a href="#">活血止痛</a>
-                                        <a href="#">滑膜炎</a>
-                                        <a href="#">骨骼肌痉挛</a>
-                                        <a href="#">其他</a>
-                                        <a href="#">中风</a>
                                         <a href="#">风湿性风湿</a>
                                         <a href="#">强直性脊柱炎</a>
                                         <a href="#">活血化瘀</a>
@@ -506,30 +355,7 @@
                                     <dt><a href="#">儿科用药</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">小儿发烧</a>
-                                        <a href="#">感冒</a><a
-                                            href="#">健胃消食</a><a
-                                            href="#">小儿湿疹</a><a
-                                            href="#">小儿厌食</a><a
-                                            href="#">小儿胀气</a><a
-                                            href="#">小儿呕吐</a><a
-                                            href="#">打虫</a><a
-                                            href="#">小儿惊风</a><a
-                                            href="#">痱子湿疹</a><a
-                                            href="#">多动症</a><a
-                                            href="#">病毒感染</a><a
-                                            href="#">儿童便秘/腹泻</a><a
-                                            href="#">肠道菌群失调</a><a
-                                            href="#">儿童贫血</a><a
-                                            href="#">小儿止咳化痰</a><a
-                                            href="#">小儿肺炎</a><a
-                                            href="#">气管炎</a><a
-                                            href="#">儿童哮喘</a><a
-                                            href="#">其他</a><a
-                                            href="#">健脾消食</a><a
-                                            href="#">化痰止咳</a><a
-                                            href="#">小儿便秘/腹泻</a><a
-                                            href="#">小儿化痰止咳</a>
+                                        <a  href="#">小儿化痰止咳</a>
                                     </dd>
                                 </dl>
                                 <dl>
@@ -551,26 +377,7 @@
                                     <dt><a href="#">肠胃用药</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">胃胀/痛</a><a
-                                            href="#">胃炎</a><a
-                                            href="#">胃溃疡</a><a
-                                            href="#">返酸恶心呕吐</a><a
-                                            href="#">肠炎</a><a
-                                            href="#">便秘</a><a
-                                            href="#">痔疮</a><a
-                                            href="#">十二指肠溃疡</a><a
-                                            href="#">消化不良</a><a
-                                            href="#">腹泻腹痛</a><a
-                                            href="#">胃肠功能紊乱</a><a
-                                            href="#">解暑化湿</a><a
-                                            href="#">其他</a><a
-                                            href="#"></a><a
-                                            href="#">反酸恶心呕吐</a><a
-                                            href="#">胃溃疡/十二指肠溃疡</a><a
-                                            href="#">胃肠溃疡</a><a
-                                            href="#">胃痛</a><a
-                                            href="#">胃肠炎</a><a
-                                            href="#">胃胀\痛</a><a
+                                      <a href="#">胃胀\痛</a><a
                                             href="#">胃痛/胀</a><a
                                             href="#">慢性胃炎</a><a
                                             href="#">溃疡</a>
@@ -580,14 +387,7 @@
                                     <dt><a href="#">肝胆
                                         用药</a></dt>
                                     <dd>
-                                        <a href="#">解酒护肝</a><a
-                                            href="#">乙肝用药</a><a
-                                            href="#">肝炎用药</a><a
-                                            href="#">胆囊炎</a><a
-                                            href="#">疏肝理气</a><a
-                                            href="#">黄疸类药</a><a
-                                            href="#">胆结石</a><a
-                                            href="#">脂肪肝类胰腺炎</a><a
+                                      <a  href="#">脂肪肝类胰腺炎</a><a
                                             href="#">肝硬化</a><a
                                             href="#">阑尾炎</a>
                                     </dd>
@@ -596,28 +396,7 @@
                                     <dt><a href="#">皮肤用药</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">去疤痕</a><a
-                                            href="#">皮炎湿疹</a><a
-                                            href="#">银屑病</a><a
-                                            href="#">痤疮</a><a
-                                            href="#">白癜风</a><a
-                                            href="#">皮肤瘙痒</a><a
-                                            href="#">烧烫伤</a><a
-                                            href="#">蚊虫叮咬</a><a
-                                            href="#">脚气</a><a
-                                            href="#">手足癣</a><a
-                                            href="#">皮肤外伤感染</a><a
-                                            href="#">干裂冻疮</a><a
-                                            href="#">荨麻疹</a><a
-                                            href="#">青春痘</a><a
-                                            href="#">黄褐斑</a><a
-                                            href="#">过敏</a><a
-                                            href="#">灰指甲</a><a
-                                            href="#">艾滋病</a><a
-                                            href="#">梅毒</a><a
-                                            href="#">尖锐湿疣</a><a
-                                            href="#">带状疱疹</a><a
-                                            href="#">其他</a><a
+                                       <a  href="#">其他</a><a
                                             href="#">
                                         痤疮</a><a
                                             href="#">手足藓</a>
@@ -627,20 +406,7 @@
                                     <dt><a href="#">泌尿科用药</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">结石</a><a
-                                            href="#">睾丸炎</a><a
-                                            href="#">尿崩症</a><a
-                                            href="#">尿毒症</a><a
-                                            href="#">尿路感染用药</a><a
-                                            href="#">尿路结石用药</a><a
-                                            href="#">水肿</a><a
-                                            href="#">肾炎肾癌用药</a><a
-                                            href="#">肾病综合症</a><a
-                                            href="#">肾结石用药</a><a
-                                            href="#">膀胱炎用药</a><a
-                                            href="#">尿路感染</a><a
-                                            href="#">尿路结石</a><a
-                                            href="#">其他</a><a
+                                    <a  href="#">其他</a><a
                                             href="#">肾炎/肾癌用药</a><a
                                             href="#">其他
                                     </a><a href="#">肾炎</a>
@@ -650,15 +416,7 @@
                                     <dt><a href="#">
                                         肿瘤科</a></dt>
                                     <dd>
-                                        <a href="#">肝癌</a><a
-                                            href="#">胃癌</a><a
-                                            href="#">乳腺癌</a><a
-                                            href="#">肺癌</a><a
-                                            href="#">食道癌</a><a
-                                            href="#">白血病</a><a
-                                            href="#">放化疗护理</a><a
-                                            href="#">癌症辅助</a><a
-                                            href="#">缓解癌症疼痛</a><a
+                                      <a   href="#">缓解癌症疼痛</a><a
                                             href="#">其他</a>
                                     </dd>
                                 </dl>
@@ -666,26 +424,7 @@
                                     <dt><a href="#">神经/精神系统</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">偏头疼类</a><a
-                                            href="#">周围神经病变</a><a
-                                            href="#">帕金森</a><a
-                                            href="#">抑郁症</a><a
-                                            href="#">晕动症</a><a
-                                            href="#">焦虑症</a><a
-                                            href="#">眩晕</a><a
-                                            href="#">睡眠障碍</a><a
-                                            href="#">神经性疼痛</a><a
-                                            href="#">神经炎</a><a
-                                            href="#">神经系统其他用药</a><a
-                                            href="#">神经衰弱</a><a
-                                            href="#">精神分裂症</a><a
-                                            href="#">老年性痴呆</a><a
-                                            href="#">肌肉无力萎缩</a><a
-                                            href="#">记忆减退</a><a
-                                            href="#">面瘫癫痫</a><a
-                                            href="#">麻醉用药</a><a
-                                            href="#">偏头痛类</a><a
-                                            href="#">偏正头痛</a><a
+                                       <a  href="#">偏正头痛</a><a
                                             href="#">精神系统其他用药</a>
                                     </dd>
                                 </dl>
@@ -737,17 +476,7 @@
                                     <dt><a href="#">血糖仪/试纸</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">艾科</a><a
-                                            href="#">拜耳</a><a
-                                            href="#">怡成</a><a
-                                            href="#">欧姆龙</a><a
-                                            href="#">罗氏</a><a
-                                            href="#">鱼跃</a><a
-                                            href="#">会好</a><a
-                                            href="#">强生</a><a
-                                            href="#">三诺 </a><a
-                                            href="#">辅理善</a><a
-                                            href="#">其他类</a><a
+                                      <a href="#">其他类</a><a
                                             href="#">其他</a>
                                     </dd>
                                 </dl>
@@ -755,9 +484,7 @@
                                     <dt><a href="#">护理用具</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">护理用寝具</a><a
-                                            href="#">引流容器</a><a
-                                            href="#">洗鼻器</a><a
+                                       <a  href="#">洗鼻器</a><a
                                             href="#">吸痰器</a>
                                     </dd>
                                 </dl>
@@ -849,20 +576,7 @@
                                     <dt><a href="#">避孕套</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">塞呋盾</a><a
-                                            href="#">
-                                        杜蕾斯</a><a
-                                            href="#">杰士邦</a><a
-                                            href="#">第6感</a><a
-                                            href="#">冈本</a><a
-                                            href="#">亚马逊</a><a
-                                            href="#">XJAZZ</a><a
-                                            href="#">大官人</a><a
-                                            href="#">玫瑰船</a><a
-                                            href="#">万极</a><a
-                                            href="#">双蝶</a><a
-                                            href="#">夜曲</a><a
-                                            href="#">倍力乐</a><a
+                                      <a  href="#">倍力乐</a><a
                                             href="#">尚牌</a><a
                                             href="#">赤尾</a>
                                     </dd>
@@ -871,12 +585,7 @@
                                     <dt><a href="#">男性用具</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">延时环</a><a
-                                            href="#">充气娃娃</a><a
-                                            href="#">飞机杯</a><a
-                                            href="#">震动飞机杯</a><a
-                                            href="#">延时套环</a><a
-                                            href="#">前列快感</a><a
+                                      <a  href="#">前列快感</a><a
                                             href="#">女忧名器</a><a
                                             href="#">胸臀倒模</a>
                                     </dd>
@@ -885,13 +594,7 @@
                                     <dt><a href="#">女性用具</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">按摩棒</a><a
-                                            href="#">G点棒 </a><a
-                                            href="#">震动指环</a><a
-                                            href="#">振动棒 </a><a
-                                            href="#">G点玩具 </a><a
-                                            href="#">后庭专用</a><a
-                                            href="#">乳房按摩器</a><a
+                                       <a   href="#">乳房按摩器</a><a
                                             href="#">穿戴用具
                                         跳蛋</a><a
                                             href="#">AV震棒</a><a
@@ -918,29 +621,14 @@
                                     <dt><a href="#">保健护理</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">缩阴养阴</a><a
-                                            href="#">延时助勃</a><a
-                                            href="#">迷情香水</a><a
-                                            href="#">丰胸美体</a><a
-                                            href="#">增粗增大</a><a
-                                            href="#">健康护理</a><a
-                                            href="#">验孕测卵</a><a
-                                            href="#">玩具护理</a><a
-                                            href="#">玩具配件</a><a
-                                            href="#">女性欲望提升</a>
+                                       <a href="#">女性欲望提升</a>
                                     </dd>
                                 </dl>
                                 <dl>
                                     <dt><a href="#">情趣内衣</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">套装裙装</a><a
-                                            href="#">连体袜</a><a
-                                            href="#">三点式</a><a
-                                            href="#">性感内裤</a><a
-                                            href="#">吊带</a><a
-                                            href="#">丝袜</a><a
-                                            href="#">制服</a><a
+                                       <a  href="#">制服</a><a
                                             href="#">男士内衣</a>
                                     </dd>
                                 </dl>
@@ -948,17 +636,7 @@
                                     <dt><a href="#">润滑/助情液</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">人体润滑液</a><a
-                                            href="#">按摩油</a><a
-                                            href="#">硅基润滑液</a><a
-                                            href="#">后庭润滑液 </a><a
-                                            href="#">情趣按摩油</a><a
-                                            href="#">果味润滑液</a><a
-                                            href="#">冰火润滑液</a><a
-                                            href="#">水溶性润滑液</a><a
-                                            href="#">倍柔情</a><a
-                                            href="#">爱乐舫</a><a
-                                            href="#">人初油</a><a
+                                      <a    href="#">人初油</a><a
                                             href="#">赤尾</a>
                                     </dd>
                                 </dl>
@@ -982,29 +660,7 @@
                                     <dt><a href="#">根及根茎类</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">天麻</a><a
-                                            href="#">白术</a><a
-                                            href="#">丹参</a><a
-                                            href="#">当归</a><a
-                                            href="#">
-                                        人参</a><a
-                                            href="#">甘草</a><a
-                                            href="#">地黄</a><a
-                                            href="#">芍药</a><a
-                                            href="#">黄芪 </a><a
-                                            href="#">柴胡</a><a
-                                            href="#">旱半夏</a><a
-                                            href="#">板蓝根</a><a
-                                            href="#">黄芩</a><a
-                                            href="#">党参</a><a
-                                            href="#">桔梗</a><a
-                                            href="#">黄连 </a><a
-                                            href="#">浙贝母</a><a
-                                            href="#">伊贝母</a><a
-                                            href="#">川贝母</a><a
-                                            href="#">白芷</a><a
-                                            href="#">麦冬</a><a
-                                            href="#">三七 </a><a
+                                       <a  href="#">三七 </a><a
                                             href="#">何首乌 </a><a
                                             href="#">山药 </a><a
                                             href="#">
@@ -1018,24 +674,7 @@
                                     <dt><a href="#">果实类</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">五味子</a><a
-                                            href="#">山茱萸</a><a
-                                            href="#">连翘</a><a
-                                            href="#">栀子</a><a
-                                            href="#">山楂</a><a
-                                            href="#">八角茴香</a><a
-                                            href="#">瓜蒌</a><a
-                                            href="#">决明子</a><a
-                                            href="#">吴茱萸</a><a
-                                            href="#">酸枣仁</a><a
-                                            href="#">木瓜</a><a
-                                            href="#">枸杞子</a><a
-                                            href="#">枳壳</a><a
-                                            href="#">女贞子</a><a
-                                            href="#">苦杏仁</a><a
-                                            href="#">柏子仁</a><a
-                                            href="#">覆盆子</a><a
-                                            href="#">枳实</a><a
+                                       <a    href="#">枳实</a><a
                                             href="#">桃仁
                                         草果 </a><a
                                             href="#">牛蒡子</a><a
@@ -1051,31 +690,7 @@
                                     <dt><a href="#">全草类</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">白花蛇舌草</a><a
-                                            href="#">鱼腥草</a><a
-                                            href="#">青蒿</a><a
-                                            href="#">蒲公英</a><a
-                                            href="#">广金钱草</a><a
-                                            href="#">益母草</a><a
-                                            href="#">仙鹤草</a><a
-                                            href="#">白屈草</a><a
-                                            href="#">淫羊藿</a><a
-                                            href="#">夏枯草</a><a
-                                            href="#">白英</a><a
-                                            href="#">茵陈</a><a
-                                            href="#">细辛</a><a
-                                            href="#">穿心莲</a><a
-                                            href="#">雪莲花</a><a
-                                            href="#">金钱草 </a><a
-                                            href="#">瓜子金</a><a
-                                            href="#">一点红 </a><a
-                                            href="#">薄荷</a><a
-                                            href="#">鸡骨草</a><a
-                                            href="#">其它</a><a
-                                            href="#">半枝莲</a><a
-                                            href="#">北败酱</a><a
-                                            href="#">北刘寄奴</a><a
-                                            href="#">萹蓄</a><a
+                                       <a  href="#">萹蓄</a><a
                                             href="#">仙鹳草</a>
                                     </dd>
                                 </dl>
@@ -1084,26 +699,7 @@
                                         <a href="#">叶类</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">枇杷叶</a><a
-                                            href="#">紫珠叶</a><a
-                                            href="#">紫苏叶</a><a
-                                            href="#">桑叶 </a><a
-                                            href="#">艾叶</a><a
-                                            href="#">银杏叶</a><a
-                                            href="#">龙利叶</a><a
-                                            href="#">荷叶 </a><a
-                                            href="#">茶叶 </a><a
-                                            href="#">大青叶</a><a
-                                            href="#">石韦</a><a
-                                            href="#">棕板</a><a
-                                            href="#">十大功劳</a><a
-                                            href="#">三尖杉</a><a
-                                            href="#">石南叶</a><a
-                                            href="#">柿叶</a><a
-                                            href="#">番石榴叶</a><a
-                                            href="#">侧柏叶</a><a
-                                            href="#">四季青 </a><a
-                                            href="#">苦丁茶 </a><a
+                                      <a   href="#">苦丁茶 </a><a
                                             href="#">其它</a>
                                     </dd>
                                 </dl>
@@ -1112,26 +708,7 @@
                                         <a href="#">花类</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">金银花</a><a
-                                            href="#">
-                                        菊花</a><a
-                                            href="#">
-                                        红花 </a><a
-                                            href="#">夏枯球 </a><a
-                                            href="#">番红花 </a><a
-                                            href="#">槐米 </a><a
-                                            href="#">旋覆花</a><a
-                                            href="#">款冬花</a><a
-                                            href="#">
-                                        松花粉 </a><a
-                                            href="#">密蒙花</a><a
-                                            href="#">蒲黄</a><a
-                                            href="#">玫瑰花</a><a
-                                            href="#">
-                                        鸡蛋花 </a><a
-                                            href="#">其它</a><a
-                                            href="#">红花</a><a
-                                            href="#">蜜蒙花</a><a
+                                      <a   href="#">蜜蒙花</a><a
                                             href="#">旋复花</a><a
                                             href="#">炒槐米</a>
                                     </dd>
@@ -1141,35 +718,7 @@
                                         <a href="#">皮类</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">杜仲</a><a
-                                            href="#">
-                                        丹皮</a><a
-                                            href="#">
-                                        厚朴</a><a
-                                            href="#">黄柏</a><a
-                                            href="#">桂皮</a><a
-                                            href="#">
-                                        白鲜皮</a><a
-                                            href="#">五加皮</a><a
-                                            href="#">桐皮</a><a
-                                            href="#">桑白皮</a><a
-                                            href="#">地骨皮 </a><a
-                                            href="#">土荆皮</a><a
-                                            href="#">漆树皮</a><a
-                                            href="#">乌桕根皮</a><a
-                                            href="#">苦楝皮 </a><a
-                                            href="#">花生衣 </a><a
-                                            href="#">板栗壳</a><a
-                                            href="#">
-                                        秦皮</a><a
-                                            href="#">苦皮藤</a><a
-                                            href="#">祖司麻 </a><a
-                                            href="#">椿皮 </a><a
-                                            href="#">香加皮</a><a
-                                            href="#">瓜萎皮</a><a
-                                            href="#">其它</a><a
-                                            href="#">白鲜皮</a><a
-                                            href="#">瓜篓皮</a><a
+                                     <a     href="#">瓜篓皮</a><a
                                             href="#">厚朴</a>
                                     </dd>
                                 </dl>
@@ -1177,25 +726,7 @@
                                     <dt><a href="#">藤木类</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">肉苁蓉 </a><a
-                                            href="#">鸡血藤 </a><a
-                                            href="#">皂角刺</a><a
-                                            href="#">锁阳</a><a
-                                            href="#">
-                                        大血藤</a><a
-                                            href="#">石斛</a><a
-                                            href="#">
-                                        钩藤 </a><a
-                                            href="#">木通 </a><a
-                                            href="#">鬼箭羽</a><a
-                                            href="#">苏木 </a><a
-                                            href="#">夜交藤</a><a
-                                            href="#">桑寄生</a><a
-                                            href="#">雷公藤</a><a
-                                            href="#">
-                                        槲寄生</a><a
-                                            href="#">沉香 </a><a
-                                            href="#">其它</a><a
+                                      <a
                                             href="#">青风藤</a><a
                                             href="#">钩藤</a>
                                     </dd>
@@ -1204,26 +735,7 @@
                                     <dt><a href="#">菌藻类</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">冬虫夏草 </a><a
-                                            href="#">
-                                        灵芝</a><a
-                                            href="#">茯苓 </a><a
-                                            href="#">猪苓 </a><a
-                                            href="#">蛹虫草 </a><a
-                                            href="#">海藻</a><a
-                                            href="#">紫芝 </a><a
-                                            href="#">白桦茸 </a><a
-                                            href="#">竹黄</a><a
-                                            href="#">昆布</a><a
-                                            href="#">猴头菇</a><a
-                                            href="#">马勃</a><a
-                                            href="#">雷丸 </a><a
-                                            href="#">
-                                        茯神</a><a
-                                            href="#">
-                                        美舌藻</a><a
-                                            href="#">松露 </a><a
-                                            href="#">虎掌菌</a><a
+                                      <a  href="#">虎掌菌</a><a
                                             href="#">
                                         灰树花</a><a
                                             href="#">其它</a><a
@@ -1234,17 +746,7 @@
                                     <dt><a href="#">树脂类</a>
                                     </dt>
                                     <dd>
-                                        <a href=":#">血竭</a><a
-                                            href="#">枫香脂</a><a
-                                            href="#">乳香</a><a
-                                            href="#">土沉香</a><a
-                                            href="#">安息香 </a><a
-                                            href="#">阿魏</a><a
-                                            href="#">松香</a><a
-                                            href="#">桃胶</a><a
-                                            href="#">琥珀 </a><a
-                                            href="#">没药</a><a
-                                            href="#">天竺黄 </a><a
+                                      <a   href="#">天竺黄 </a><a
                                             href="#">苏合香</a><a
                                             href="#">其它</a>
                                     </dd>
@@ -1253,27 +755,7 @@
                                     <dt><a href="#">动物类</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">蜈蚣</a><a
-                                            href="#">
-                                        水蛭</a><a
-                                            href="#">蟾衣</a><a
-                                            href="#">蛤蟆</a><a
-                                            href="#">
-                                        海马</a><a
-                                            href="#">蟾酥</a><a
-                                            href="#">鹿茸</a><a
-                                            href="#">鳖甲</a><a
-                                            href="#">地龙</a><a
-                                            href="#">牛黄</a><a
-                                            href="#">乌梢蛇</a><a
-                                            href="#">马宝 </a><a
-                                            href="#">壁虎龟板 </a><a
-                                            href="#">海螵蛸</a><a
-                                            href="#">天龙 </a><a
-                                            href="#">干蟾 </a><a
-                                            href="#">五灵脂</a><a
-                                            href="#">刺猬 </a><a
-                                            href="#">猴结 </a><a
+                                     <a   href="#">猴结 </a><a
                                             href="#">
                                         水牛角 </a><a
                                             href="#">其它</a><a
@@ -1284,15 +766,8 @@
                                     <dt><a href="#">昆虫类</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">土元</a><a
-                                            href="#">蝉蜕</a><a
-                                            href="#">全蝎 </a><a
-                                            href="#">僵蚕</a><a
-                                            href="#">
-                                        蜂房</a><a
-                                            href="#">
-                                        蚂蚁 </a><a
-                                            href="#">其它</a>
+                                      <a   href="#"> 蚂蚁 </a>
+                                        <a href="#">其它</a>
                                     </dd>
                                 </dl>
                                 <dl>
@@ -1336,16 +811,7 @@
                                     <dt><a href="#">孕产妈妈</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">孕期维生素</a><a
-                                            href="#">孕期矿物质</a><a
-                                            href="#">产后滋补</a><a
-                                            href="#">吸奶器</a><a
-                                            href="#">防辐射服</a><a
-                                            href="#">乳头保护</a><a
-                                            href="#">爱乐</a><a
-                                            href="#">维斯利</a><a
-                                            href="#">安玛特纳</a><a
-                                            href="#">福施福</a><a
+                                       <a
                                             href="#">生乳汁</a><a
                                             href="#">乳酸钙颗粒</a>
                                     </dd>
@@ -1354,12 +820,7 @@
                                     <dt><a href="#">小儿用药</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">儿童维生素</a><a
-                                            href="#">补钙补锌</a><a
-                                            href="#">小儿腹泻</a><a
-                                            href="#">小儿感冒</a><a
-                                            href="#">退烧消炎</a><a
-                                            href="#">儿童湿疹</a><a
+                                        <a
                                             href="#">佝偻病</a><a
                                             href="#">小儿咽炎</a>
                                     </dd>
@@ -1368,12 +829,7 @@
                                     <dt><a href="#">外用治疗</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">退热</a><a
-                                            href="#">儿童创可贴</a><a
-                                            href="#">儿童口罩</a><a
-                                            href="#">疝气治疗带</a><a
-                                            href="#">儿童体温计</a><a
-                                            href="#">胎心仪</a><a
+                                       <a
                                             href="#">蚊不叮 </a><a
                                             href="#">冰宝</a>
                                     </dd>
@@ -1381,15 +837,7 @@
                                 <dl>
                                     <dt><a href="#">儿童成长</a>
                                     </dt>
-                                    <dd>
-                                        <a href="#">沐浴露</a><a
-                                            href="#">
-                                        洗发精 </a><a
-                                            href="#">香皂</a><a
-                                            href="#">润肤露</a><a
-                                            href="#">纸尿裤</a><a
-                                            href="#">婴儿服</a><a
-                                            href="#">奶瓶</a><a
+                                    <dd><a
                                             href="#">餐具</a><a
                                             href="#">防撞保护奶癣膏</a><a
                                             href="#">爽身粉</a>
@@ -1427,21 +875,7 @@
                                 <dl>
                                     <dt><a href="#">中药细粉</a>
                                     </dt>
-                                    <dd>
-                                        <a href="#">玛卡</a><a
-                                            href="#">鹿茸鹿鞭 </a><a
-                                            href="#">阿胶</a><a
-                                            href="#">西洋参</a><a
-                                            href="#">海狗油 </a><a
-                                            href="#">
-                                        蛋白粉</a><a
-                                            href="#">螺旋藻</a><a
-                                            href="#">蜂制品</a><a
-                                            href="#">枸杞 </a><a
-                                            href="#">菊花</a><a
-                                            href="#">莲子</a><a
-                                            href="#">灵芝</a><a
-                                            href="#">雪蛤</a><a
+                                    <dd><a
                                             href="#">人参</a><a
                                             href="#">怀山药</a>
                                     </dd>
@@ -1466,15 +900,7 @@
                                     <dt><a href="#">中老年保健用品</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">维生素片</a><a
-                                            href="#">狮王</a><a
-                                            href="#">云南白药</a><a
-                                            href="#">黑人</a><a
-                                            href="#">舒适达</a><a
-                                            href="#">佳洁士</a><a
-                                            href="#">舒客</a><a
-                                            href="#">高露洁</a><a
-                                            href="#">冷酸灵</a><a
+                                    <a
                                             href="#">中华</a><a
                                             href="#">竹盐</a>
                                     </dd>
@@ -1516,14 +942,7 @@
                                         <a href="#">药妆</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">森田药妆</a><a
-                                            href="#">片仔癀</a><a
-                                            href="#">伊丽莎白雅顿</a><a
-                                            href="#">瓷肌</a><a
-                                            href="#">薇诺娜</a><a
-                                            href="#">花印</a><a
-                                            href="#">婵真</a><a
-                                            href="#">奇力康</a><a
+                                      <a
                                             href="#">薇姿</a><a
                                             href="#">欧敏肤</a>
                                     </dd>
@@ -1532,13 +951,7 @@
                                     <dt><a href="#">面部护理</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">维生素E乳</a><a
-                                            href="#">柔润保湿霜</a><a
-                                            href="#">片仔癀珍珠霜</a><a
-                                            href="#">玫瑰红润白皙面贴膜 </a><a
-                                            href="#">银杏补水润肤面贴膜 </a><a
-                                            href="#">灵芝驻颜滋养面贴膜</a><a
-                                            href="#">红石榴水润透白面贴膜</a><a
+                                      <a
                                             href="#">珍珠雪肤莹白面贴膜 </a><a
                                             href="#">
                                         银杏去黄亮白面贴膜</a><a
@@ -1550,10 +963,7 @@
                                         <a href="#">洗发</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">飘柔</a><a
-                                            href="#">霸王</a><a
-                                            href="#">滋源</a><a
-                                            href="#">李时珍</a><a
+                                      <a
                                             href="#">康王</a><a
                                             href="#">茶树</a>
                                     </dd>
@@ -1574,49 +984,7 @@
                                     <dt><a href="#">身体护理</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">绵羊油润肤霜</a><a
-                                            href="#">凡士林润肤霜 </a><a
-                                            href="#">爆拆灵</a><a
-                                            href="#">润肤霜</a><a
-                                            href="#">南雪祛痘霜 </a><a
-                                            href="#">鳄油冻疮消乳膏 </a><a
-                                            href="#">美疤克凝胶剂 </a><a
-                                            href="#">痘立克祛黄亮白组合</a><a
-                                            href="#">身体乳</a><a
-                                            href="#">片仔癀珍珠膏</a><a
-                                            href="#">止汗露喷雾</a><a
-                                            href="#">金芦荟痘胶膏</a><a
-                                            href="#">婴宝</a><a
-                                            href="#">甲正王除臭液 </a><a
-                                            href="#">腋留芳狐臭水 </a><a
-                                            href="#">狐臭香体露 </a><a
-                                            href="#">羚锐西施露</a><a
-                                            href="#">名露腋臭露</a><a
-                                            href="#">狐臭净香液</a><a
-                                            href="#">名露腋臭剂Ⅱ</a><a
-                                            href="#">趣味狐臭液 </a><a
-                                            href="#">西施丽香体露 </a><a
-                                            href="#">双重营养滋润</a><a
-                                            href="#">儿童蜂蜜柔嫩霜</a><a
-                                            href="#">蛇脂维肤膏</a><a
-                                            href="#">协和眼部抗皱精华原液 </a><a
-                                            href="#">
-                                        特润护臀膏</a><a
-                                            href="#">儿童芦荟柔嫩霜</a><a
-                                            href="#">协和去痘康肤原液 </a><a
-                                            href="#">协和疤痕修复原液</a><a
-                                            href="#">协和去红血丝修复原液 </a><a
-                                            href="#">舒缓控油洁面泡沫</a><a
-                                            href="#">瑞芙脱毛膏</a><a
-                                            href="#">
-                                        快速脱毛霜 </a><a
-                                            href="#">欣靓脱毛膏</a><a
-                                            href="#">金榄脱毛膏</a><a
-                                            href="#">羚锐脱毛膏</a><a
-                                            href="#">露兰姬娜脱毛膏</a><a
-                                            href="#">艾恋脱毛膏 </a><a
-                                            href="#">
-                                        弘信脱毛膏 </a><a
+                                      <a
                                             href="#">脱毛霜</a><a
                                             href="#">手足护理</a><a
                                             href="#">成人纸尿裤 </a><a
@@ -1627,16 +995,7 @@
                                     <dt><a href="#">女性护理</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">妇炎洁</a><a
-                                            href="#">娇妍</a><a
-                                            href="#">ABC</a><a
-                                            href="#">夏依</a><a
-                                            href="#">洁尔阴</a><a
-                                            href="#">三洋</a><a
-                                            href="#">采幽</a><a
-                                            href="#">西妮</a><a
-                                            href="#">阿希米</a><a
-                                            href="#">施巴</a><a
+                                      <a
                                             href="#">佳茵</a>
                                     </dd>
                                 </dl>
@@ -1644,15 +1003,7 @@
                                     <dt><a href="#">男性护理</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">曼秀雷敦</a><a
-                                            href="#">欧莱雅</a><a
-                                            href="#">妮维雅</a><a
-                                            href="#">高夫</a><a
-                                            href="#">百雀羚</a><a
-                                            href="#">波斯顿</a><a
-                                            href="#">杰威尔</a><a
-                                            href="#">大宝</a><a
-                                            href="#">相宜本草</a><a
+                                      <a
                                             href="#">李医生</a><a
                                             href="#">阿迪达斯</a>
                                     </dd>
@@ -1661,13 +1012,7 @@
                                     <dt><a href="#">美发护理</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">资生堂专业美发</a><a
-                                            href="#">康夫</a><a
-                                            href="#">沙宣</a><a
-                                            href="#">奔腾</a><a
-                                            href="#">金元</a><a
-                                            href="#">日威</a><a
-                                            href="#">莎婷</a><a
+                                      <a
                                             href="#">玫姬</a><a
                                             href="#">芊念</a>
                                     </dd>
@@ -1676,15 +1021,7 @@
                                     <dt><a href="#">眼睛护理</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">优能</a><a
-                                            href="#">海昌</a><a
-                                            href="#">博士伦</a><a
-                                            href="#">卫康</a><a
-                                            href="#">特瑞士</a><a
-                                            href="#">好视力</a><a
-                                            href="#">爱尔康</a><a
-                                            href="#">诺思</a><a
-                                            href="#">韩姬儿</a><a
+                                       <a
                                             href="#">晰雅</a><a
                                             href="#">艾乐视</a>
                                     </dd>
@@ -1694,14 +1031,7 @@
                                         <a href="#">彩妆</a>
                                     </dt>
                                     <dd>
-                                        <a href="#">卡姿兰</a><a
-                                            href="#">兰蔻</a><a
-                                            href="#">悦诗风吟</a><a
-                                            href="#">纪梵希</a><a
-                                            href="#">迪奥</a><a
-                                            href="#">美宝莲</a><a
-                                            href="#">兰芝</a><a
-                                            href="#">圣罗兰</a><a
+                                       <a
                                             href="#">娇兰</a><a
                                             href="#">丝芙兰</a>
                                     </dd>
@@ -1720,14 +1050,12 @@
                             </ul>
                         </div>
                         <div class="bd">
-                            <ul>
-                                <li class="" style="display: none;"><a href="javascript:void(0)" target="_blank"><img
-                                        src="../西北医药网-更专业的医药交易服务平台_files/1550650371TiNctCdM.jpg"></a></li>
-                                <li style="display: none;"><a href="javascript:void(0)" target="_blank"><img
-                                        src="../西北医药网-更专业的医药交易服务平台_files/1550650383pPso4LjH.jpg"></a></li>
-                                <li style="display: list-item;" class="lihover"><a href="javascript:void(0)"
-                                                                                   target="_blank"><img
-                                        src="../西北医药网-更专业的医药交易服务平台_files/1550649774NTkn8JSN.jpg"></a></li>
+                            <ul id="lusss">
+                                <ul>
+                                    <li class="lihover" style="display: list-item;"><a href="javascript:void(0)" target="_blank"><img id="img_0" src=""></a></li>
+                                    <li style="display: none;"><a href="javascript:void(0)" target="_blank"><img id="img_1" src=""></a></li>
+                                    <li style="display: none;"><a href="javascript:void(0)" target="_blank"><img src="" id="img_2"></a></li>
+                                </ul>
                             </ul>
                         </div>
 
@@ -1742,6 +1070,22 @@
                     </script>
 
                 </div>
+                <!--加载轮转图-->
+                <script>
+                    $(function () {
+                        selectDirectorFigure()
+                    })
+                    function selectDirectorFigure() {
+                        $.ajax({
+                            url:'http://192.168.72.1:8200/MedicalHomeController/selectDirectorFigure',
+                            success:function (data) {
+                                $.each(data,function (index,obj) {
+                                    $("#img_"+index+"").prop('src',obj.imgurl)
+                                })
+                            }
+                        })
+                    }
+                </script>
                 <div class="navpic-rt">
                     <ul class="navpicrt-top">
                         <li>
@@ -2172,7 +1516,7 @@
                 function add_cart(id) {
                     var  sl=1
                         $.ajax({
-                          url:"http://127.0.0.1:8200/MedicalHomeController/addCar",
+                          url:"http://192.168.101.28:8200/MedicalHomeController/addCar",
                           type:"post",
                           data:{
                               spid:id,
@@ -2272,8 +1616,9 @@
         selectyiyao();
     })
     function selectyiyao(){/*查询最新发布药品*/
+
         $.ajax({
-            url:"../MedicalHomeController/selectDrupList",
+            url:"http://192.168.101.28:8200/MedicalHomeController/selectDrupList",
             type:"post",
             dataType:'json',
             success:function(data){
@@ -2312,11 +1657,10 @@
         initaaa()
     }
 /*加入分类页面*/
-    function inithtml(){
+    function inithtml(dugtype){
       $.ajax({
-          url:"http://127.0.0.1:8200/MedicalHomeController/junmpclassify",
+          url:"http://192.168.101.28:8200/MedicalHomeController/junmpclassify?dugtype="+dugtype,
           type:"post",
-          data:{},
           success:function(data){
               $(".content-wrapper").html(data)
           }

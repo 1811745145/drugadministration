@@ -35,7 +35,8 @@
         <module>phar_common</module>
         <module>phar_feign</module>
         <module>phar_provider</module>
-
+        <module>frontend_consumer</module>
+        <module>frontend_producer</module>
     </modules>
 
 

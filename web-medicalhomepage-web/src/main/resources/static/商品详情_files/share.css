@@ -1,0 +1,43 @@
+
+.share-dialog .share-dialog-title{
+    height: 45px;
+    line-height: 45px;
+    text-indent: 15px;
+    background: #eee;
+}
+.share-dialog .share-dialog-cont{
+    font-size: 14px;
+}
+
+.share-platform{
+    clear: both;
+    margin-top: 10px;
+}
+.share-platform .share-platform-l{
+    float: left;
+    width: 90px;
+}
+.share-platform-l img{
+    float: left;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+.share-platform .share-platform-r{
+    float: left;
+}
+.share-platform .bds_weixin{
+    background-image: url('../images/dc9cc129d3651446a37034c314e3a7ea.png');
+    background-position: -1px -0px !important;
+}
+.share-platform .bds_tsina{
+    background-image: url('../images/f128273b9bfda046bdd57a864fde1d4f.png');
+    background-position: -1px -0px !important;
+}
+.share-platform .bds_sqq{
+    background-image: url('../images/3ba4901952ee1242bd937f6f39a39c23.png');
+    background-position: -1px -0px !important;
+}
+.share-platform .bds_qzone{
+    background-image: url('../images/eef810e53fd02e4dbee62403625f9038.png');
+    background-position: -1px -0px !important;
+}
