@@ -44,6 +44,11 @@ public class MedicalHomeController {
         return "huodong";
     }
 
+    @RequestMapping("tomore")
+    public String tomore() {
+        return "more";
+    }
+
     /*引入商品展示页面*/
     @RequestMapping("junmpclassify")
     public String junmpclassify(Integer dugtype , Model model) {
