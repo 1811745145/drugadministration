@@ -5,6 +5,7 @@ public class UserBean {
     private String userPassword;
     private String userName;
     private String userAccount;
+    private String email;
 
     public Integer getUserId() {
         return userId;
@@ -36,5 +37,13 @@ public class UserBean {
 
     public void setUserAccount(String userAccount) {
         this.userAccount = userAccount;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
