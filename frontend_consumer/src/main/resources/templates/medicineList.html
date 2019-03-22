@@ -220,13 +220,13 @@
                                         content+=' <li>\n' +
                                             '                            <div class="productzs-imglist">\n' +
                                             '                                <div class="productimg-top">\n' +
-                                            '                                    <a href="/medicine/toDetails?id='+obj.id+'">\n' +
-                                            '                                        <img src="'+obj.picture+'">\n' +
-                                            '                                        <p class="prodct-newszs-name">'+obj.commodityInformation+'</p>\n' +
-                                            '                                        <p class="prodct-newszs-name" style="color: #999">规格:'+obj.specifications+'</p>\n' +
-                                            '                                        <h3 class="news-index-pricestyle" style="width: 96%">价格：'+obj.discount+'</h3>                        </a>\n' +
+                                            '                                    <a href="#">\n' +
+                                            '                                        <img src="'+obj.drugimg+'">\n' +
+                                            '                                        <p class="prodct-newszs-name">'+obj.namee+'</p>\n' +
+                                            '                                        <p class="prodct-newszs-name" style="color: #999">规格:'+obj.specification+'</p>\n' +
+                                            '                                        <h3 class="news-index-pricestyle" style="width: 96%">价格：'+obj.pprice+'</h3>                        </a>\n' +
                                             '                                </div>\n' +
-                                            '                                <a href="javascript:void(0);" onclick="add_cart(650)" class="zs-shop">加入购物车</a>\n' +
+                                            '                                <a href="/medicine/toDetails?id='+obj.id+'"  class="zs-shop">查看详情</a>\n' +
                                             '                            </div>\n' +
                                             '                        </li>';
                                         $("#drugs").html(content);
@@ -284,6 +284,7 @@
                     <script type="text/javascript">
                         /* 页面加载 */
                         $(function () {
+
                             initMyTableInvestment();
                         });
 

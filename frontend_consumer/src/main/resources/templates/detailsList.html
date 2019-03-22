@@ -24,81 +24,7 @@
     </script>
     <!--分享 -->
     <link rel="stylesheet" href="/jss/bootstrap/bootstrap-fileinput/css/share.css">
-    <style>
 
-        .kehupingjia-box{
-            width: 95%;
-            overflow: hidden;
-            border-top: 1px solid #f7f7f7;
-            border-bottom: 1px solid #f7f7f7;
-            margin:10px auto;
-        }
-        .kehupingjia-boxlf{
-            width: 80%;
-            float: left;
-        }
-        .kehupingjai-boxrt{
-            width: 20%;
-            float: left;
-        }
-        .khpj-toptext{
-            width: 100%;
-            overflow: hidden;
-        }
-        .khpj-text-tit{
-            width: 100%;
-            color: #666;
-        }
-        .khpj-imglist{
-            width: 100%;
-            overflow: hidden;
-            border-bottom: none!important;
-        }
-        .khpj-imglist li{
-            float: left;
-            margin: 10px;
-            border: 1px solid #f7f7f7;
-            background-color: #dbdbdb;
-            width: 50px!important;
-            height: 50px!important;
-        }
-        .khpj-imglist li img{
-            width: 48px;
-            height: 48px;
-        }
-        .data-khpj-riqi{
-            width: 100%;
-            line-height: 36px;
-            color: #999;
-        }
-        .kehupingjai-boxrt p{
-            line-height: 36px;
-            color: #666;
-            text-align: center;
-            background-color: #f7f7f7;
-            margin-top: 20px;
-        }
-
-        .pagination .active{
-            background:green;
-
-        }
-        .pagination .active a{
-
-            color:#fff;
-        }
-        .pagination .paginate_button{
-            width:60px;
-            height:30px;
-        }
-        .pagination .paginate_button a{
-            var t = $("#text_box");
-            line-height:33px;
-            text-align:center;
-        }
-
-
-    </style>
     <script>
         $(document).ready(function(){
 //获得文本框对象
@@ -348,32 +274,32 @@
                                 '                        <!--左边的图片展示-->\n' +
                                 '                        <div class="proinfotop-img">\n' +
                                 '                            <div class="page-imgpro">\n' +
-                                '                               <a><img src="'+item.picture+'" width="360px" height="450px"></a>\n' +
+                                '                               <a><img src="'+item.drugimg+'" width="360px" height="450px"></a>\n' +
                                 '                            </div>\n' +
                                 '                        </div>\n' +
                                 '                        <!--右边的内容展示-->\n' +
                                 '                        <div class="proinfotop-rt">\n' +
                                 '                            <div class="proinfo-rttop">\n' +
-                                '                                <h2>'+item.commodityInformation+'                    \t                    \t                    \t                    \t                    </h2>\n' +
-                                '                                <p>'+item.briefIntroduction+'                     \t                    </p>\n' +
+                                '                                <h2>'+item.namee+'                    \t                    \t                    \t                    \t                    </h2>\n' +
+                                '                                <p>'+item.characterr+'                     \t                    </p>\n' +
                                 '                            </div>\n' +
                                 '                            <div class="proinfotop-price">\n' +
                                 '                                <dl>\n' +
                                 '                                    <dt>优惠价格：</dt>\n' +
-                                '                                    <dd>'+item.discount+'</dd>                    </dl>\n' +
+                                '                                    <dd>'+item.prprice+'</dd>                    </dl>\n' +
                                 '                                <dl>\n' +
                                 '                                    <dt>市场价：</dt>\n' +
-                                '                                    <dd style="color: #666;text-decoration: line-through">'+item.unitPrice+'</dd>                    </dl>\n' +
+                                '                                    <dd style="color: #666;text-decoration: line-through">'+item.pprice+'</dd>                    </dl>\n' +
                                 '                                <p class="procuxiaoiinfo">现在购买将在7天后送达</p>\n' +
                                 '                            </div>\n' +
                                 '                            <div class="proinfo-xq">\n' +
                                 '                                <dl>\n' +
                                 '                                    <dt>生产日期：  </dt>\n' +
-                                '                                    <dd>'+item.dateManufacture+'</dd>\n' +
+                                '                                    <dd>'+item.scdate+'</dd>\n' +
                                 '                                </dl>\n' +
                                 '                                <dl>\n' +
                                 '                                    <dt>有效期:</dt>\n' +
-                                '                                    <dd>'+item.termValidity+'</dd>\n' +
+                                '                                    <dd>'+item.yxdate+'</dd>\n' +
                                 '                                </dl>\n' +
                                 '                                <dl>\n' +
                                 '                                    <dt>批准文号：  </dt>\n' +
@@ -389,7 +315,7 @@
                                 '                                            <input id="box" type="text" value="1"/>\n' +
                                 '                                            <a onclick="addbox()"id="add">+</a>\n' +
                                 '                                        </div>\n' +
-                                '                                        <span id="kucun" style="float: left;padding-left: 20px;color: #666;">库存：'+item.number+'件</span>\n' +
+                                '                                        <span id="kucun" style="float: left;padding-left: 20px;color: #666;">库存：'+item.repertory+'件</span>\n' +
                                 '                                    </dd>\n' +
                                 '                                </dl>\n' +
                                 '                                <p class="little-notice">\n' +
