@@ -217,9 +217,9 @@
     <div class="avtive-container">
        <!--限时秒杀-->
         <div class="xianshimiaosha">
-            <h1>限时秒杀</h1>
+            <h1 style="color: red">限时秒杀</h1>
             <ul class="xianshimiaosha-product"></ul>
-            <a href="http://www.xb1y.com/index.php/Home/Activityzone/ActivityInfo/act/1.html" class="active-morepro">
+            <a href="../MedicalHomeController/tomore" class="active-morepro">
                 查看更多&gt;&gt;
             </a>
         </div>
@@ -345,15 +345,15 @@ function select(){
             dataType:'json',
             success:function(data){
                 var   html1="";
-                for (var i = 0; i < data.length; i++) {
+                for (var i = 0; i < 8; i++) {
                     html1+=  '<li>'+
                         '<div class="xsms-pro">'+
                         '<a href="javascript:junmpspxq('+data[i].id+')">'+
                         '<img src='+data[i].drugimg+'>'+
                         '<p>'+data[i].functionRug+'</p>'+
                         '<p>规格：'+data[i].specification+'</p>'+
-                        '<h3 class="news-index-pricestyle">价格：认证后可见</h3>                      </a> '+
-                        '<a href="javascript:junmpspxq('+data[i].id+')" target="_black" class="active-addcars">查看详情</a>'+
+                        '<h3 class="news-index-pricestyle">价格：'+data[i].prprice+'</h3></a> '+
+                        "<a href='javascript:junmpspxq(\""+data[i].id+"\")' class='active-addcars'>查看详情</a>"+
                         '</div>'+
                         '</li>'
 
