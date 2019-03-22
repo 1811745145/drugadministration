@@ -90,7 +90,7 @@ SELECT
 	</select>
 
 	<select id="selectzhongxiyaocount"  parameterType="com.jk.pojo.WebDrugBean"   resultType="int">
-		SELECT count(*) FROM t_web_drug
+		SELECT count(*)  FROM  t_web_drug
 		<include refid="selectWhere"></include>
 	</select>
 
@@ -134,7 +134,7 @@ SELECT
 			<if test="webDrugBean.drupstatus!=null and webDrugBean.drupstatus!='' ">
 				and drupstatus=#{webDrugBean.drupstatus}
 			</if>
-			<if test="webDrugBean.dugtype!=null and webDrugBean.dugtype!='' ">
+	<if test="webDrugBean.dugtype!=null and webDrugBean.dugtype!='' ">
 				and dugtype=#{webDrugBean.dugtype}
 			</if>
 		</where>

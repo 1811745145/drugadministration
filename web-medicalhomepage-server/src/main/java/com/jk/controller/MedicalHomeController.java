@@ -37,9 +37,28 @@ public class MedicalHomeController implements MedicalHomeService {
     @Override
     @ResponseBody
     public List<WebTree> selectTree1(Integer pid) {
-        List<WebTree> list=medicalHomeMapper.selectTree1(pid);
+        List<WebTree> list = getWebTrees(pid);
         return list;
     }
+
+    private List<WebTree> getWebTrees(Integer pid) {
+        List<WebTree> list=medicalHomeMapper.selectTree1(pid);
+
+        for (WebTree tree : list) {
+            Integer id = tree.getIds();
+            List<WebTree> nodelist = getWebTrees(id);
+            if(nodelist.size()<=0){
+
+            }else{
+                tree.setNodes(nodelist);
+
+            }
+        }
+        return list;
+
+    }
+
+
 
     @Override
     @ResponseBody
@@ -64,6 +83,7 @@ public class MedicalHomeController implements MedicalHomeService {
         List<WebDrugBean>list=medicalHomeMapper.selectzhongxiyao(start,rows,webDrugBean);
         result.put("total",count);
         result.put("rows",list);
+        System.out.println(result);
         return result;
     }
 
@@ -79,11 +99,10 @@ public class MedicalHomeController implements MedicalHomeService {
     public WebDrugBean queryDrugBeanById(Integer ids) {
         return medicalHomeMapper.queryDrugBeanById(ids);
     }
+
     @Override
     @ResponseBody
     public UserBean findUserByName(@RequestBody UserBean loginPojo) {
-
-
         return medicalHomeMapper.findUserByName(loginPojo.getUserName());
     }
 

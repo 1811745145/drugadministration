@@ -197,9 +197,9 @@
                     Hi,欢迎来到西北医药网
                     <span>
                 【
-                <a href="#" style="color: #e57816;">请先登录</a>
+             <span  id="qxdl"><a href="#"  style="color: #e57816;">请先登录</a></span>
                 |
-                <a href="#">注册</a>
+               <span  id="zx">   <a href="#">注册</a></span>
                                 】
             </span>
                 </div>
@@ -299,747 +299,83 @@
         </a>
     </div>
 
+    <script>
+        function changeClass(pid){
+
+            $("#li"+pid).removeClass("lihover")
+
+        }
+
+        function initTypeTwo(pid){
+            $("#li"+pid).addClass("lihover")
+            if($("#first"+pid).text()!=""){
+                return;
+            }
+            $.ajax({
+                url:'http://192.168.101.28:8200/MedicalHomeController/selectTree1',
+                type:'get',
+                data:{pid:pid},
+                dataType:'json',
+                success:function(data){
+                    //alert(data)
+                    var html="";
+                    for(var i=0;i<data.length;i++){
+                        var list = data[i].nodes
+                        html+='<dl>'+
+                            '<dt><a href="#">'+data[i].texts+'</a></dt>'+
+                            '<dd>';
+                        if( list != null){
+                            for(var j=0;j < list.length;j++){
+                                html+='<a href="javascript:inithtml('+list[j].url+')">'+list[j].texts+'</a>';
+                            }
+                        }
+
+                        html+="</dd></dl>";
+                    }
+
+                    $("#first"+pid).html(html)
+                }
+            })
+        }
+
+
+
+        function initType(pid){
+            $.ajax({
+                url:'http://192.168.101.28:8200/MedicalHomeController/selectTree1',
+                type:'post',
+                data:{pid:pid},
+                dataType:'json',
+                success:function(data){
+                    var html="";
+                    for(var i=0;i<data.length;i++){
+                        html+='<li style="height:50px;line-height: 50px;" id="li'+data[i].ids+'" onmouseover="initTypeTwo('+data[i].ids+')" onmouseout="changeClass('+data[i].ids+')"><a href="#">'+data[i].texts+'<span>&gt;</span></a>'+
+                            '<div class="submenu">'+
+                            '<div class="leftdiv" id="first'+data[i].ids+'">'+
+                            '</div>'+
+                            '</div>'+
+                            '</li>';
+                    }
+
+                    $(".topmenu").append(html)
+                }
+            })
+        }
+
+        $(function () {
+            initType(0)
+        })
+    </script>
+
+
     <div class="content-wrapper">
         <section class="content"  id="login">
             <!--导航轮播图片-->
             <div class="navpic-slider">
-                <ul class="topmenu">
-                    <li  class="treeli1"><a ONMOUSEOVER="aaaa()" >中西药品</a>
-                        <div class="submenu">
-                            <div class="leftdiv">
-                                <dl>
-                                    <dt>
-                                        <a href="javascript:inithtml(1)">家庭常备</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">风热感冒</a>
-                                        <a href="#">中暑</a>
-                                    </dd>
-                                </dl>
 
-                                <dl>
-                                    <dt><a href="#">男科用药</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">滋阴补肾</a>
-                                        <a href="#">脱发</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">妇科用药</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">补血益气</a>
-                                        <a href="#">盆腔炎</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">心脑血管</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">眩晕</a>
-                                        <a href="#">心率异常</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">风湿骨伤</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">风湿性风湿</a>
-                                        <a href="#">强直性脊柱炎</a>
-                                        <a href="#">活血化瘀</a>
-                                        <a href="#">关节炎</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">儿科用药</a>
-                                    </dt>
-                                    <dd>
-                                        <a  href="#">小儿化痰止咳</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">五官科用药</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">眼科</a><a
-                                            href="#">鼻科</a><a
-                                            href="#">喉科</a><a
-                                            href="#">耳科</a><a
-                                            href="#">口腔科</a><a
-                                            href="#">其他</a><a
-                                            href="#">口腔</a><a
-                                            href="#">鼻炎</a><a
-                                            href="#">牙科</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">肠胃用药</a>
-                                    </dt>
-                                    <dd>
-                                      <a href="#">胃胀\痛</a><a
-                                            href="#">胃痛/胀</a><a
-                                            href="#">慢性胃炎</a><a
-                                            href="#">溃疡</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">肝胆
-                                        用药</a></dt>
-                                    <dd>
-                                      <a  href="#">脂肪肝类胰腺炎</a><a
-                                            href="#">肝硬化</a><a
-                                            href="#">阑尾炎</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">皮肤用药</a>
-                                    </dt>
-                                    <dd>
-                                       <a  href="#">其他</a><a
-                                            href="#">
-                                        痤疮</a><a
-                                            href="#">手足藓</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">泌尿科用药</a>
-                                    </dt>
-                                    <dd>
-                                    <a  href="#">其他</a><a
-                                            href="#">肾炎/肾癌用药</a><a
-                                            href="#">其他
-                                    </a><a href="#">肾炎</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">
-                                        肿瘤科</a></dt>
-                                    <dd>
-                                      <a   href="#">缓解癌症疼痛</a><a
-                                            href="#">其他</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">神经/精神系统</a>
-                                    </dt>
-                                    <dd>
-                                       <a  href="#">偏正头痛</a><a
-                                            href="#">精神系统其他用药</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <a href="#">增强机体免疫力</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">免疫力调节药物</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <a href="#">抗生素</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">其他</a>
-                                        <a href="#">其他
-                                    </a>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </li>
-                    <li class=""><a href="#">医疗器械</a>
-                        <div class="submenu">
-                            <div class="leftdiv">
-                                <dl>
-                                    <dt><a href="#">血压计</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">腕式血压计</a><a
-                                            href="#">臂式血压计</a><a
-                                            href="#">台式血压计</a><a
-                                            href="#">普通表式</a><a
-                                            href="#">保健盒</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">
-                                        制氧机</a></dt>
-                                    <dd>
-                                        <a href="#">氧立得</a><a
-                                            href="#">鱼跃制氧剂</a><a
-                                            href="#">其他供氧器具</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">血糖仪/试纸</a>
-                                    </dt>
-                                    <dd>
-                                      <a href="#">其他类</a><a
-                                            href="#">其他</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">护理用具</a>
-                                    </dt>
-                                    <dd>
-                                       <a  href="#">洗鼻器</a><a
-                                            href="#">吸痰器</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">家庭检测</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">体温计</a><a
-                                            href="#">听诊器</a><a
-                                            href="#">脂肪测量仪</a><a
-                                            href="#">其他检测仪器</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="v">伤口处理</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">创可贴</a><a
-                                            href="#">纱布</a><a
-                                            href="#">绷带</a><a
-                                            href="#">胶布</a><a
-                                            href="#">棉签</a><a
-                                            href="#">皮肤</a><a
-                                            href="#">消毒脱脂棉</a><a
-                                            href="#">其他</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">助行器具</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">拐杖</a><a
-                                            href="#">轮椅</a><a
-                                            href="#">助行器</a><a
-                                            href="#">方便辅助用具</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">理疗康复</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">拔罐器</a><a
-                                            href="#">疝气带</a><a
-                                            href="#">足浴盆</a><a
-                                            href="#">按摩仪</a><a
-                                            href="#">磁疗设备</a><a
-                                            href="#">贴膏</a><a
-                                            href="#">冷热敷贴</a><a
-                                            href="#">雾化器</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">生活健康</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">口罩 </a><a
-                                            href="#">家庭药箱 </a><a
-                                            href="#">一般医疗用品</a><a
-                                            href="#">其他</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">制氧机</a>
-                                    </dt>
-                                    <dd>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">家庭常备</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">其他</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">生活常备</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">一般医疗用品</a>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </li>
-                    <li class=""><a href="#">成人用品</a>
-                        <div class="submenu">
-                            <div class="leftdiv">
-                                <dl>
-                                    <dt><a href="#">避孕套</a>
-                                    </dt>
-                                    <dd>
-                                      <a  href="#">倍力乐</a><a
-                                            href="#">尚牌</a><a
-                                            href="#">赤尾</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">男性用具</a>
-                                    </dt>
-                                    <dd>
-                                      <a  href="#">前列快感</a><a
-                                            href="#">女忧名器</a><a
-                                            href="#">胸臀倒模</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">女性用具</a>
-                                    </dt>
-                                    <dd>
-                                       <a   href="#">乳房按摩器</a><a
-                                            href="#">穿戴用具
-                                        跳蛋</a><a
-                                            href="#">AV震棒</a><a
-                                            href="#">伸缩转珠</a><a
-                                            href="#">舌舔唇吸 </a><a
-                                            href="#">私处护理</a><a
-                                            href="#">嘿咻机器 </a><a
-                                            href="#">仿真玩具</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">双人情趣</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">后庭肛塞</a><a
-                                            href="#">男女共用 </a><a
-                                            href="#">男同专用</a><a
-                                            href="#">女同专用</a><a
-                                            href="#">体位道具</a><a
-                                            href="#">SM专区</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">保健护理</a>
-                                    </dt>
-                                    <dd>
-                                       <a href="#">女性欲望提升</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">情趣内衣</a>
-                                    </dt>
-                                    <dd>
-                                       <a  href="#">制服</a><a
-                                            href="#">男士内衣</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">润滑/助情液</a>
-                                    </dt>
-                                    <dd>
-                                      <a    href="#">人初油</a><a
-                                            href="#">赤尾</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">两性玩具</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">震动器 </a><a
-                                            href="#">排珠棒 </a><a
-                                            href="#">后庭栓</a><a
-                                            href="#">夹吸器</a>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </li>
-                    <li class=""><a href="#">中药饮片</a>
-                        <div class="submenu">
-                            <div class="leftdiv">
-                                <dl>
-                                    <dt><a href="#">根及根茎类</a>
-                                    </dt>
-                                    <dd>
-                                       <a  href="#">三七 </a><a
-                                            href="#">何首乌 </a><a
-                                            href="#">山药 </a><a
-                                            href="#">
-                                        大黄</a><a
-                                            href="#">
-                                        其它</a><a
-                                            href="#">大黄</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">果实类</a>
-                                    </dt>
-                                    <dd>
-                                       <a    href="#">枳实</a><a
-                                            href="#">桃仁
-                                        草果 </a><a
-                                            href="#">牛蒡子</a><a
-                                            href="#">丝瓜络</a><a
-                                            href="#">车前子</a><a
-                                            href="#">金樱子</a><a
-                                            href="#">其它</a><a
-                                            href="#">桃仁草果</a><a
-                                            href="#">桃仁
-                                        草果</a></dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">全草类</a>
-                                    </dt>
-                                    <dd>
-                                       <a  href="#">萹蓄</a><a
-                                            href="#">仙鹳草</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <a href="#">叶类</a>
-                                    </dt>
-                                    <dd>
-                                      <a   href="#">苦丁茶 </a><a
-                                            href="#">其它</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <a href="#">花类</a>
-                                    </dt>
-                                    <dd>
-                                      <a   href="#">蜜蒙花</a><a
-                                            href="#">旋复花</a><a
-                                            href="#">炒槐米</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <a href="#">皮类</a>
-                                    </dt>
-                                    <dd>
-                                     <a     href="#">瓜篓皮</a><a
-                                            href="#">厚朴</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">藤木类</a>
-                                    </dt>
-                                    <dd>
-                                      <a
-                                            href="#">青风藤</a><a
-                                            href="#">钩藤</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">菌藻类</a>
-                                    </dt>
-                                    <dd>
-                                      <a  href="#">虎掌菌</a><a
-                                            href="#">
-                                        灰树花</a><a
-                                            href="#">其它</a><a
-                                            href="#">茯神</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">树脂类</a>
-                                    </dt>
-                                    <dd>
-                                      <a   href="#">天竺黄 </a><a
-                                            href="#">苏合香</a><a
-                                            href="#">其它</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">动物类</a>
-                                    </dt>
-                                    <dd>
-                                     <a   href="#">猴结 </a><a
-                                            href="#">
-                                        水牛角 </a><a
-                                            href="#">其它</a><a
-                                            href="#">水蛭</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">昆虫类</a>
-                                    </dt>
-                                    <dd>
-                                      <a   href="#"> 蚂蚁 </a>
-                                        <a href="#">其它</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">矿物类</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">雄黄 </a><a
-                                            href="#">朱砂</a><a
-                                            href="#">石膏</a><a
-                                            href="#">阳起石</a><a
-                                            href="#">青礞石 </a><a
-                                            href="#">青矾</a><a
-                                            href="#">其它</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">其它类</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">红景天 </a><a
-                                            href="#">五倍子</a><a
-                                            href="#">海金沙</a><a
-                                            href="#">薄荷油</a><a
-                                            href="#">桉油 </a><a
-                                            href="#">
-                                        冰片</a><a
-                                            href="#">
-                                        麦芽</a><a
-                                            href="#">阿胶</a><a
-                                            href="#">其它</a><a
-                                            href="#">冰片</a>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#">母婴用品</a>
-                        <div class="submenu">
-                            <div class="leftdiv">
-                                <dl>
-                                    <dt><a href="#">孕产妈妈</a>
-                                    </dt>
-                                    <dd>
-                                       <a
-                                            href="#">生乳汁</a><a
-                                            href="#">乳酸钙颗粒</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">小儿用药</a>
-                                    </dt>
-                                    <dd>
-                                        <a
-                                            href="#">佝偻病</a><a
-                                            href="#">小儿咽炎</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">外用治疗</a>
-                                    </dt>
-                                    <dd>
-                                       <a
-                                            href="#">蚊不叮 </a><a
-                                            href="#">冰宝</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">儿童成长</a>
-                                    </dt>
-                                    <dd><a
-                                            href="#">餐具</a><a
-                                            href="#">防撞保护奶癣膏</a><a
-                                            href="#">爽身粉</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">营养辅食</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">钙铁锌硒维生素</a><a
-                                            href="#">婴儿配方粉复合营养素</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">孕妈专区</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">母乳喂养</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">儿科用药</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">小儿止咳化痰</a><a
-                                            href="#">小儿便秘/腹泻</a>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#">滋补养生</a>
-                        <div class="submenu">
-                            <div class="leftdiv">
-                                <dl>
-                                    <dt><a href="#">中药细粉</a>
-                                    </dt>
-                                    <dd><a
-                                            href="#">人参</a><a
-                                            href="#">怀山药</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">精品礼盒</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">海产品</a><a
-                                            href="#">灵芝类</a><a
-                                            href="#">鹿茸类</a><a
-                                            href="#">人参类</a>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#">保健用品</a>
-                        <div class="submenu">
-                            <div class="leftdiv">
-                                <dl>
-                                    <dt><a href="#">中老年保健用品</a>
-                                    </dt>
-                                    <dd>
-                                    <a
-                                            href="#">中华</a><a
-                                            href="#">竹盐</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">老年保健用品</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">皓齿洁</a><a
-                                            href="#">上海防酸</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">婴幼儿保健用品</a>
-                                    </dt>
-                                    <dd>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">夫妻保健用品</a>
-                                    </dt>
-                                    <dd>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">治疗保健用品</a>
-                                    </dt>
-                                    <dd>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#">药品原料</a>
-                        <div class="submenu">
-                            <div class="leftdiv">
-                                <dl>
-                                    <dt>
-                                        <a href="#">药妆</a>
-                                    </dt>
-                                    <dd>
-                                      <a
-                                            href="#">薇姿</a><a
-                                            href="#">欧敏肤</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">面部护理</a>
-                                    </dt>
-                                    <dd>
-                                      <a
-                                            href="#">珍珠雪肤莹白面贴膜 </a><a
-                                            href="#">
-                                        银杏去黄亮白面贴膜</a><a
-                                            href="#">曼秀雷敦男士润唇膏 </a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <a href="#">洗发</a>
-                                    </dt>
-                                    <dd>
-                                      <a
-                                            href="#">康王</a><a
-                                            href="#">茶树</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <a href="#">护发</a>
-                                    </dt>
-                                    <dd>
-                                        <a href="#">沙金防脱固发洗发水</a><a
-                                            href="#">霸王女士防脱洗发液 </a><a
-                                            href="#">秀术米醋防脱洗发露</a><a
-                                            href="#">索芙特防脱育发香波 </a><a
-                                            href="#">霸王防脱洗发液 </a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">身体护理</a>
-                                    </dt>
-                                    <dd>
-                                      <a
-                                            href="#">脱毛霜</a><a
-                                            href="#">手足护理</a><a
-                                            href="#">成人纸尿裤 </a><a
-                                            href="#">其他</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">女性护理</a>
-                                    </dt>
-                                    <dd>
-                                      <a
-                                            href="#">佳茵</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">男性护理</a>
-                                    </dt>
-                                    <dd>
-                                      <a
-                                            href="#">李医生</a><a
-                                            href="#">阿迪达斯</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">美发护理</a>
-                                    </dt>
-                                    <dd>
-                                      <a
-                                            href="#">玫姬</a><a
-                                            href="#">芊念</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt><a href="#">眼睛护理</a>
-                                    </dt>
-                                    <dd>
-                                       <a
-                                            href="#">晰雅</a><a
-                                            href="#">艾乐视</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <a href="#">彩妆</a>
-                                    </dt>
-                                    <dd>
-                                       <a
-                                            href="#">娇兰</a><a
-                                            href="#">丝芙兰</a>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="topmenu">
+
+                 </ul>
                 <div class="pic-slider">
                     <div id="slideBox" class="slideBox">
                         <div class="hd">
@@ -1488,6 +824,7 @@
             <script type="text/javascript">
                 $(function () {
                     initaaa()
+
                 });
                 function   initaaa(){
                     $("img[original]").lazyload({placeholder: "images/color3.gif"});
@@ -1531,6 +868,7 @@
 
                         })
                 }
+
 
 
             </script>
@@ -1614,7 +952,27 @@
 <script>
     $(function(){
         selectyiyao();
+        zhtc()
     })
+function  zhtc() {
+    $.ajax({
+        url:"http://192.168.101.28:8200/MedicalHomeController/zhtc",
+        type:"post",
+        success:function (data) {
+            $("#qxdl").html(data.userName)
+           var  zx='<a  href="javascript:dlzx()"> 注销</a>'
+            $("#zx").html(zx)
+        }
+    })
+}
+function  dlzx(){
+        $.ajax({
+            url:"http://192.168.101.28:8200/MedicalHomeController/zhtc1",
+            success:function (data) {
+                history.go(0)
+            }
+        })
+}
     function selectyiyao(){/*查询最新发布药品*/
 
         $.ajax({

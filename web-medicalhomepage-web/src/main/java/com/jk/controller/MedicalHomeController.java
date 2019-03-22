@@ -86,8 +86,8 @@ public class MedicalHomeController {
     @RequestMapping("zhtc")
     @ResponseBody
     public   UserBean selectUser(){
-
-        return null;
+        UserBean user = (UserBean) redisTemplate.opsForValue().get("user");
+        return user;
     }
 
     /*账号退出*/
@@ -114,13 +114,12 @@ public class MedicalHomeController {
         Integer  userid= (Integer) session.getAttribute("user");*/
         UserBean user = (UserBean) redisTemplate.opsForValue().get("user");
         Integer biaoshi = 0;
-        Integer userid = user.getUserId();
         //*查询用户是否登录*//*
-        System.out.println(userid);
-        if (userid != null){
-            Boolean aBoolean = redisTemplate.hasKey(userid);
+
+        if (user != null){
+            Boolean aBoolean = redisTemplate.hasKey(user.getUserId());
             if (aBoolean) {
-                webShoppingcCart = (WebShoppingcCart) redisTemplate.opsForValue().get(userid);
+                webShoppingcCart = (WebShoppingcCart) redisTemplate.opsForValue().get(user.getUserId());
                 for (WebDrugBean emt : webShoppingcCart.getWebDrugBean()) {
                     Integer  id=emt.getId();
                     if (spid.equals(id)) {
@@ -153,7 +152,7 @@ public class MedicalHomeController {
                     webShoppingcCart.getWebDrugBean().add(webDrugBean);
                 }
             }
-            redisTemplate.opsForValue().set(userid, webShoppingcCart, 20, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(user.getUserId(), webShoppingcCart, 20, TimeUnit.MINUTES);
 
             return "1";
         } else {

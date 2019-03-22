@@ -1,11 +1,22 @@
 package com.jk.pojo;
 
+import java.util.List;
+
 public class WebTree {
 
     private    Integer   ids;
     private    String    texts;
     private    String    url;
     private   Integer    pid;
+   private List<WebTree> nodes;
+
+    public List<WebTree> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<WebTree> nodes) {
+        this.nodes = nodes;
+    }
 
     public Integer getIds() {
         return ids;
