@@ -54,6 +54,21 @@ public class WebDrugBean implements Serializable {
 
     private   Integer  dugtype;//药品类型
 
+    private String drugActiveStatus;     //药品活动状态
+    private String  drugUtilityTaboo;     //不良反应
+    private String drugUtilityAdverseReaction;      //禁忌
+    private String drugUtilityBases;   //主要成分
+    private String drugSpecificationExecutiveStandard;   //执行标准
+    private String drugSpecificationApprovalNumber;   // 批准文号
+    private String drugUtilityCharacter;   //性状
+    private String drugSpecificationSpell;   //拼音
+    private String drugSpecificationAttention;  //注意事项
+    private String drugSpecificationOverdose;  //药物过量
+    private String drugSpecificationToxicology;  //药物毒理
+    private String drugSpecificationInteraction;  //药物相互作用
+    private String drugSpecificationUsageDosage;  //用法用量
+
+
 
     public Integer getDugtype() {
         return dugtype;
@@ -247,6 +262,114 @@ public class WebDrugBean implements Serializable {
         this.repertory = repertory;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getDrugActiveStatus() {
+        return drugActiveStatus;
+    }
+
+    public void setDrugActiveStatus(String drugActiveStatus) {
+        this.drugActiveStatus = drugActiveStatus;
+    }
+
+    public String getDrugUtilityTaboo() {
+        return drugUtilityTaboo;
+    }
+
+    public void setDrugUtilityTaboo(String drugUtilityTaboo) {
+        this.drugUtilityTaboo = drugUtilityTaboo;
+    }
+
+    public String getDrugUtilityAdverseReaction() {
+        return drugUtilityAdverseReaction;
+    }
+
+    public void setDrugUtilityAdverseReaction(String drugUtilityAdverseReaction) {
+        this.drugUtilityAdverseReaction = drugUtilityAdverseReaction;
+    }
+
+    public String getDrugUtilityBases() {
+        return drugUtilityBases;
+    }
+
+    public void setDrugUtilityBases(String drugUtilityBases) {
+        this.drugUtilityBases = drugUtilityBases;
+    }
+
+    public String getDrugSpecificationExecutiveStandard() {
+        return drugSpecificationExecutiveStandard;
+    }
+
+    public void setDrugSpecificationExecutiveStandard(String drugSpecificationExecutiveStandard) {
+        this.drugSpecificationExecutiveStandard = drugSpecificationExecutiveStandard;
+    }
+
+    public String getDrugSpecificationApprovalNumber() {
+        return drugSpecificationApprovalNumber;
+    }
+
+    public void setDrugSpecificationApprovalNumber(String drugSpecificationApprovalNumber) {
+        this.drugSpecificationApprovalNumber = drugSpecificationApprovalNumber;
+    }
+
+    public String getDrugUtilityCharacter() {
+        return drugUtilityCharacter;
+    }
+
+    public void setDrugUtilityCharacter(String drugUtilityCharacter) {
+        this.drugUtilityCharacter = drugUtilityCharacter;
+    }
+
+    public String getDrugSpecificationSpell() {
+        return drugSpecificationSpell;
+    }
+
+    public void setDrugSpecificationSpell(String drugSpecificationSpell) {
+        this.drugSpecificationSpell = drugSpecificationSpell;
+    }
+
+    public String getDrugSpecificationAttention() {
+        return drugSpecificationAttention;
+    }
+
+    public void setDrugSpecificationAttention(String drugSpecificationAttention) {
+        this.drugSpecificationAttention = drugSpecificationAttention;
+    }
+
+    public String getDrugSpecificationOverdose() {
+        return drugSpecificationOverdose;
+    }
+
+    public void setDrugSpecificationOverdose(String drugSpecificationOverdose) {
+        this.drugSpecificationOverdose = drugSpecificationOverdose;
+    }
+
+    public String getDrugSpecificationToxicology() {
+        return drugSpecificationToxicology;
+    }
+
+    public void setDrugSpecificationToxicology(String drugSpecificationToxicology) {
+        this.drugSpecificationToxicology = drugSpecificationToxicology;
+    }
+
+    public String getDrugSpecificationInteraction() {
+        return drugSpecificationInteraction;
+    }
+
+    public void setDrugSpecificationInteraction(String drugSpecificationInteraction) {
+        this.drugSpecificationInteraction = drugSpecificationInteraction;
+    }
+
+    public String getDrugSpecificationUsageDosage() {
+        return drugSpecificationUsageDosage;
+    }
+
+    public void setDrugSpecificationUsageDosage(String drugSpecificationUsageDosage) {
+        this.drugSpecificationUsageDosage = drugSpecificationUsageDosage;
+    }
+
     @Override
     public String toString() {
         return "WebDrugBean{" +
@@ -274,6 +397,19 @@ public class WebDrugBean implements Serializable {
                 ", brand=" + brand +
                 ", drupstatus=" + drupstatus +
                 ", dugtype=" + dugtype +
+                ", drugActiveStatus='" + drugActiveStatus + '\'' +
+                ", drugUtilityTaboo='" + drugUtilityTaboo + '\'' +
+                ", drugUtilityAdverseReaction='" + drugUtilityAdverseReaction + '\'' +
+                ", drugUtilityBases='" + drugUtilityBases + '\'' +
+                ", drugSpecificationExecutiveStandard='" + drugSpecificationExecutiveStandard + '\'' +
+                ", drugSpecificationApprovalNumber='" + drugSpecificationApprovalNumber + '\'' +
+                ", drugUtilityCharacter='" + drugUtilityCharacter + '\'' +
+                ", drugSpecificationSpell='" + drugSpecificationSpell + '\'' +
+                ", drugSpecificationAttention='" + drugSpecificationAttention + '\'' +
+                ", drugSpecificationOverdose='" + drugSpecificationOverdose + '\'' +
+                ", drugSpecificationToxicology='" + drugSpecificationToxicology + '\'' +
+                ", drugSpecificationInteraction='" + drugSpecificationInteraction + '\'' +
+                ", drugSpecificationUsageDosage='" + drugSpecificationUsageDosage + '\'' +
                 '}';
     }
 }
