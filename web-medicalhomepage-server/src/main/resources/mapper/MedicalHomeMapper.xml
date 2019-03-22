@@ -82,6 +82,87 @@ SELECT
 	t.sftenterprise   sftenterprise,
 	t.specification  specification,
 	t.yxdate   yxdate
- FROM t_web_drug t ORDER BY RAND() LIMIT 5;
+ FROM t_web_drug t ORDER BY RAND() LIMIT 5
+	</select>
+
+	<select id="selectDirectorFigure"  resultType="com.jk.pojo.WebDirectorFigure">
+    select * from  t_web_directorfigure
+	</select>
+
+	<select id="selectzhongxiyaocount"  parameterType="com.jk.pojo.WebDrugBean"   resultType="int">
+		SELECT count(*) FROM t_web_drug
+		<include refid="selectWhere"></include>
+	</select>
+
+	<select id="selectzhongxiyao" resultType="com.jk.pojo.WebDrugBean">
+		select
+		acount               acount,
+		status              status,
+		brand              brand,
+		drupstatus          drupstatus,
+		characterr       characterr,
+		conversionfactor  conversionfactor,
+		directorytype     directorytype,
+		dosage              dosage,
+		drugefficacy   drugefficacy,
+		drugimg             drugimg,
+		functionRug    functionRug,
+		id                 id,
+		menterprise   menterprise,
+		namee          namee,
+		packingunit  packingunit,
+		pprice          pprice,
+		prprice           prprice,
+		repertory          repertory  ,
+		scdate              scdate,
+		serialNumber   serialNumber,
+		sftenterprise   sftenterprise,
+		specification  specification,
+		yxdate   yxdate
+		from t_web_drug
+		<include refid="selectWhere"></include>
+		limit  #{start},#{rows}
+	</select>
+	<sql id="selectWhere">
+		<where>
+			<if test="webDrugBean.status!=null and webDrugBean.status!='' ">
+				and status=#{webDrugBean.status}
+			</if>
+			<if test="webDrugBean.brand!=null and webDrugBean.brand!='' ">
+				and brand=#{webDrugBean.brand}
+			</if>
+			<if test="webDrugBean.drupstatus!=null and webDrugBean.drupstatus!='' ">
+				and drupstatus=#{webDrugBean.drupstatus}
+			</if>
+			<if test="webDrugBean.dugtype!=null and webDrugBean.dugtype!='' ">
+				and dugtype=#{webDrugBean.dugtype}
+			</if>
+		</where>
+	</sql>
+
+
+	<select id="selectTj5"   resultType="com.jk.pojo.WebDrugBean">
+	SELECT
+		t.acount               acount,
+		t.characterr       characterr,
+		t.conversionfactor  conversionfactor,
+		t.directorytype     directorytype,
+		t.dosage              dosage,
+		t.drugefficacy   drugefficacy,
+		t.drugimg             drugimg,
+		t.functionRug    functionRug,
+		t.id                 id,
+		t.menterprise   menterprise,
+		t.namee          namee,
+		t.packingunit  packingunit,
+		t.pprice          pprice,
+		t.prprice           prprice,
+		t.repertory          repertory  ,
+		t.scdate              scdate,
+		t.serialNumber   serialNumber,
+		t.sftenterprise   sftenterprise,
+		t.specification  specification,
+		t.yxdate   yxdate
+	 FROM t_web_drug t ORDER BY RAND() LIMIT 5
 	</select>
 </mapper>

@@ -1,13 +1,16 @@
 package com.jk.controller;
 
 import com.jk.mapper.MedicalHomeMapper;
+import com.jk.pojo.WebDirectorFigure;
 import com.jk.pojo.WebDrugBean;
 import com.jk.pojo.WebTree;
 import com.jk.service.MedicalHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -44,5 +47,36 @@ public class MedicalHomeController implements MedicalHomeService {
         return list;
     }
 
+    @Override
+    @ResponseBody
+    public List<WebDirectorFigure> selectDirectorFigure() {
+        List<WebDirectorFigure>  list=medicalHomeMapper.selectDirectorFigure();
+        return list;
+    }
+
+    @Override
+    @ResponseBody
+    public HashMap<String ,Object> selectzhongxiyao(Integer page, Integer rows,@RequestBody WebDrugBean webDrugBean) {
+        HashMap<String ,Object> result=new HashMap<>();
+        Integer count = medicalHomeMapper.selectzhongxiyaocount(webDrugBean);
+        int start=(page-1)*rows;
+        List<WebDrugBean>list=medicalHomeMapper.selectzhongxiyao(start,rows,webDrugBean);
+        result.put("total",count);
+        result.put("rows",list);
+        return result;
+    }
+
+    @Override
+    @ResponseBody
+    public List<WebDrugBean> selectTj5() {
+        List<WebDrugBean> webDrugBean=medicalHomeMapper.selectTj5();
+        return webDrugBean;
+    }
+
+    @Override
+    @ResponseBody
+    public WebDrugBean queryDrugBeanById(Integer ids) {
+        return medicalHomeMapper.queryDrugBeanById(ids);
+    }
 
 }

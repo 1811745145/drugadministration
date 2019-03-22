@@ -46,6 +46,47 @@ public class WebDrugBean implements Serializable {
 
     private Integer repertory;// 库存
 
+    private  Integer    status;  //药品分类   （大类）
+
+    private  Integer    brand;   //品牌
+
+    private  Integer  drupstatus; //药品分类（小类）
+
+    private   Integer  dugtype;//药品类型
+
+
+    public Integer getDugtype() {
+        return dugtype;
+    }
+
+    public void setDugtype(Integer dugtype) {
+        this.dugtype = dugtype;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Integer brand) {
+        this.brand = brand;
+    }
+
+    public Integer getDrupstatus() {
+        return drupstatus;
+    }
+
+    public void setDrupstatus(Integer drupstatus) {
+        this.drupstatus = drupstatus;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -229,6 +270,10 @@ public class WebDrugBean implements Serializable {
                 ", acount=" + acount +
                 ", functionRug='" + functionRug + '\'' +
                 ", repertory=" + repertory +
+                ", status=" + status +
+                ", brand=" + brand +
+                ", drupstatus=" + drupstatus +
+                ", dugtype=" + dugtype +
                 '}';
     }
 }
