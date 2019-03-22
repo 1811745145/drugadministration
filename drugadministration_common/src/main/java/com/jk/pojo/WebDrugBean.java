@@ -32,9 +32,9 @@ public class WebDrugBean implements Serializable {
 
     private Long prprice;//临时零售价
 
-    private Date scdate;//生产日期
+    private String scdate;//生产日期
 
-    private Date yxdate;//有效日期
+    private String yxdate;//有效日期
 
     private String drugefficacy;//药品功效
 
@@ -67,6 +67,7 @@ public class WebDrugBean implements Serializable {
     private String drugSpecificationToxicology;  //药物毒理
     private String drugSpecificationInteraction;  //药物相互作用
     private String drugSpecificationUsageDosage;  //用法用量
+    private String discountstatus ;//优惠状态
 
 
 
@@ -206,19 +207,19 @@ public class WebDrugBean implements Serializable {
         this.prprice = prprice;
     }
 
-    public Date getScdate() {
+    public String getScdate() {
         return scdate;
     }
 
-    public void setScdate(Date scdate) {
+    public void setScdate(String scdate) {
         this.scdate = scdate;
     }
 
-    public Date getYxdate() {
+    public String getYxdate() {
         return yxdate;
     }
 
-    public void setYxdate(Date yxdate) {
+    public void setYxdate(String yxdate) {
         this.yxdate = yxdate;
     }
 
@@ -370,6 +371,14 @@ public class WebDrugBean implements Serializable {
         this.drugSpecificationUsageDosage = drugSpecificationUsageDosage;
     }
 
+    public String getDiscountstatus() {
+        return discountstatus;
+    }
+
+    public void setDiscountstatus(String discountstatus) {
+        this.discountstatus = discountstatus;
+    }
+
     @Override
     public String toString() {
         return "WebDrugBean{" +
@@ -386,8 +395,8 @@ public class WebDrugBean implements Serializable {
                 ", sftenterprise='" + sftenterprise + '\'' +
                 ", pprice=" + pprice +
                 ", prprice=" + prprice +
-                ", scdate=" + scdate +
-                ", yxdate=" + yxdate +
+                ", scdate='" + scdate + '\'' +
+                ", yxdate='" + yxdate + '\'' +
                 ", drugefficacy='" + drugefficacy + '\'' +
                 ", drugimg='" + drugimg + '\'' +
                 ", acount=" + acount +
@@ -410,6 +419,7 @@ public class WebDrugBean implements Serializable {
                 ", drugSpecificationToxicology='" + drugSpecificationToxicology + '\'' +
                 ", drugSpecificationInteraction='" + drugSpecificationInteraction + '\'' +
                 ", drugSpecificationUsageDosage='" + drugSpecificationUsageDosage + '\'' +
+                ", discountstatus='" + discountstatus + '\'' +
                 '}';
     }
 }
