@@ -2,19 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jk.mapper.MedicineMapper">
     <!--查询药品精选 -->
-    <select id="queryMedicineList" parameterType="map" resultType="com.jk.pojo.MedicineBean">
-        select t.id,t.picture,t.commodity_information as commodityInformation,
-        t.specifications,t.manufacturer,t.unit_price as unitPrice,t.number,t.discount,
-        t.date_manufacture as dateManufacture,t.term_validity as termValidity,
-        t.approval_number as approvalNumber,RAND() as r
-        from t_medicine t ORDER BY r LIMIT 0,10
+    <select id="queryMedicineList" parameterType="map" resultType="com.jk.pojo.WebDrugBean">
+        select t.id,t.serialNumber,t.namee,t.dosage,t.characterr,t.specification,
+        t.conversionfactor,t.packingunit,t.directorytype,t.menterprise,t.sftenterprise,
+        t.pprice,t.prprice,t.scdate,t.yxdate,t.drugefficacy,t.drugimg,t.acount,t.functionRug,
+        t.repertory,t.approvalNumber
+        ,RAND() as r
+        from t_web_drug t ORDER BY r LIMIT 0,10
     </select>
     <!--查询药品精选详情 -->
-    <select id="queryMedicine"  resultType="com.jk.pojo.MedicineBean">
-        select t.id,t.picture,t.commodity_information as commodityInformation,
-        t.specifications,t.manufacturer,t.unit_price as unitPrice,t.number,t.discount,
-        t.date_manufacture as dateManufacture,t.term_validity as termValidity,
-        t.approval_number as approvalNumber,t.brief_introduction as briefIntroduction
-        from t_medicine t where  id = #{id}
+    <select id="queryMedicine"  resultType="com.jk.pojo.WebDrugBean">
+        select t.id,t.serialNumber,t.namee,t.dosage,t.characterr,t.specification,
+        t.conversionfactor,t.packingunit,t.directorytype,t.menterprise,t.sftenterprise,
+        t.pprice,t.prprice,t.scdate,t.yxdate,t.drugefficacy,t.drugimg,t.acount,t.functionRug,
+        t.repertory,t.approvalNumber
+        from t_web_drug t where  id = #{id}
     </select>
 </mapper>

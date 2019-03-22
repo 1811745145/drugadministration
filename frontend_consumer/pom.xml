@@ -25,6 +25,11 @@
     </properties>
 
     <dependencies>
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <!--oss 阿里云上传图片-->
         <dependency>
             <groupId>com.aliyun.oss</groupId>
