@@ -1,6 +1,7 @@
 package com.jk.mapper;
 
 import com.jk.pojo.*;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -29,4 +30,7 @@ public interface WebMapper {
     int findQiuGouCount(@Param("qiuGou")QiuGou qiuGou);
 
     List<Gongying> findQiuGouList(@Param("qiuGou")QiuGou qiuGou,@Param("start") int start,@Param("rows") Integer rows);
+
+    @Insert(" insert into t_user(userName,userPassword,email)values(#{userName},#{userPassword},#{email})  ")
+    void regSave(UserBean userBean);
 }

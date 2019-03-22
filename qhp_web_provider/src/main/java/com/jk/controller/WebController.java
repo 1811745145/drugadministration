@@ -77,5 +77,11 @@ public class WebController implements WebServiceApi {
         return params;
     }
 
+    @Override
+    @ResponseBody
+    public void regSave(@RequestBody UserBean userBean) {
+        webMapper.regSave(userBean);
+    }
+
 
 }

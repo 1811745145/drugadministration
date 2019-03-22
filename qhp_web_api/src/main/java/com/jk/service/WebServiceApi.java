@@ -28,4 +28,7 @@ public interface WebServiceApi {
 
     @RequestMapping("findQiuGouList")
     HashMap<String, Object> findQiuGouList(QiuGou qiuGou, @RequestParam("page") Integer page, @RequestParam("rows") Integer rows);
+
+    @RequestMapping("userBean")
+    void regSave(UserBean userBean);
 }
