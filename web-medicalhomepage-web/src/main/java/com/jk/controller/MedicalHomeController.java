@@ -48,7 +48,6 @@ public class MedicalHomeController {
     @RequestMapping("junmpclassify")
     public String junmpclassify(Integer dugtype , Model model) {
         model.addAttribute("dugtype",dugtype);
-        System.out.println(dugtype);
         return "classify";
     }
     /*引入购物车页面*/
@@ -72,19 +71,15 @@ public class MedicalHomeController {
     public String addCar(Integer spid, HttpServletRequest request, HttpServletResponse response, Integer sl) {
         WebShoppingcCart webShoppingcCart = new WebShoppingcCart();
         HttpSession session = request.getSession();
-        WebUserBean webUserBean1 = (WebUserBean) redisTemplate.opsForValue().get("user");
-        System.out.println(webUserBean1);
+        UserBean userBean= (UserBean) session.getAttribute("user");
         Integer biaoshi = 0;
         //*查询用户是否登录*//*
-        WebUserBean user = (WebUserBean) session.getAttribute("user");
-        if (webUserBean1 != null) {
-            Boolean aBoolean = redisTemplate.hasKey(user.getUserid());
+        UserBean user = (UserBean) session.getAttribute("user");
+        if (userBean != null) {
+            Boolean aBoolean = redisTemplate.hasKey(userBean.getUserId());
             if (aBoolean) {
-
-                webShoppingcCart = (WebShoppingcCart) redisTemplate.opsForValue().get(user.getUserid());
-
+                webShoppingcCart = (WebShoppingcCart) redisTemplate.opsForValue().get(userBean.getUserId());
                 for (WebDrugBean emt : webShoppingcCart.getWebDrugBean()) {
-
                     Integer  id=emt.getId();
                     if (spid.equals(id)) {
                         emt.setAcount(emt.getAcount() + sl);
@@ -116,7 +111,7 @@ public class MedicalHomeController {
                     webShoppingcCart.getWebDrugBean().add(webDrugBean);
                 }
             }
-            redisTemplate.opsForValue().set(user.getUserid(), webShoppingcCart, 20, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(userBean.getUserId(), webShoppingcCart, 20, TimeUnit.MINUTES);
             /**/
             return "1";
         } else {
@@ -129,10 +124,10 @@ public class MedicalHomeController {
     @RequestMapping("selectCarAll")
     public WebShoppingcCart selectCarAll(HttpServletRequest httpServletRequest){
         HttpSession session = httpServletRequest.getSession();
-        WebUserBean webUserBean1 = (WebUserBean) redisTemplate.opsForValue().get("user");
+        UserBean userBean= (UserBean) session.getAttribute("user");
         WebShoppingcCart webShoppingcCart = new WebShoppingcCart();
-        if (webUserBean1 !=null){
-            webShoppingcCart = (WebShoppingcCart) redisTemplate.opsForValue().get(webUserBean1.getUserid());
+        if (userBean!=null){
+            webShoppingcCart = (WebShoppingcCart) redisTemplate.opsForValue().get(userBean.getUserId());
             return webShoppingcCart;
         }else{
             return  webShoppingcCart;
