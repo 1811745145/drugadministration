@@ -420,5 +420,7 @@ public class WebDrugBean implements Serializable {
                 ", drugSpecificationUsageDosage='" + drugSpecificationUsageDosage + '\'' +
                 ", drupstatus=" + drupstatus +
                 '}';
+
+
     }
 }
