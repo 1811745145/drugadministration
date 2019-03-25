@@ -91,53 +91,13 @@
           t_store
         where drugType='西药'
     </select>
-
-    <!--<update id="countersign" parameterType="int">
-        update drug_no_return set return_Type = 1 where return_Id = #{value}
-    </update>
-
-    <select id="queryProductList" resultType="com.jk.pojo.ProductBuy">
-        select * from register_drug
+    <select id="drugListById"  resultType="com.jk.pojo.Tstore">
+        select
+          *
+        from
+          t_store
+        where storeId=#{storeId}
     </select>
 
-    <insert id="addProduct" parameterType="com.jk.pojo.ProductBuy">
-        insert into register_drug
-          (
-          drug_Name,
-          manufacturers_Name,
-          specifications,
-          area,
-          contacts,
-          phone
-          )
-        values
-          (
-          #{drug_Name},
-          #{manufacturers_Name},
-          #{specifications},
-          #{area},
-          #{contacts},
-          #{phone}
-          )
-    </insert>
 
-    <select id="queryProductuyBuy" resultType="com.jk.pojo.ProductBuy">
-        select * from register_drug where drug_Id = #{value}
-    </select>
-    
-    <update id="updeteProductuyBuy" parameterType="com.jk.pojo.ProductBuy">
-        update register_drug set
-          drug_Name = #{drug_Name},
-          manufacturers_Name = #{manufacturers_Name},
-          specifications = #{specifications},
-          area = #{area},
-          contacts = #{contacts},
-          phone = #{phone}
-        where drug_Id = #{drug_Id}
-
-    </update>
-
-    <delete id="delProductuyBuy" parameterType="int">
-        delete from register_drug where drug_Id = #{value}
-    </delete>-->
 </mapper>

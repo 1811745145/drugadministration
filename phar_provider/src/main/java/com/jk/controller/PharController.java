@@ -165,4 +165,10 @@ public class PharController implements PharService {
 
         return pharMapper.findUserByName(loginPojo.getUserName());
     }
+
+    @Override
+    @ResponseBody
+    public Tstore drugListById(@RequestBody String storeId) {
+        return pharMapper.drugListById(storeId);
+    }
 }

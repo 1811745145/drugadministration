@@ -8,6 +8,7 @@ import com.jk.service.PharServiceFingn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -235,6 +236,11 @@ public class PharController {
         return "westernMedicineList";
     }
 
+    /**
+     * 登录redis缓存
+     * @param loginPojo
+     * @return
+     */
     @RequestMapping("loginDrul")
     @ResponseBody
     public String loginDrul(LoginPojo loginPojo){
@@ -254,9 +260,34 @@ public class PharController {
 
     }
 
+    /**
+     * 跳登陆页面
+     * @return
+     */
     @RequestMapping("tiao")
     public String loginDrul(){
         return "loginDrul";
     }
 
+    /**
+     * 跳商品详情页面
+     * @return
+     */
+    @RequestMapping("toParticulars")
+    public String toParticulars(){
+
+        return "particularsList";
+    }
+
+
+
+    /**
+     * 商品详情根据ID查询
+     * @return
+     */
+    @GetMapping("drugListById")
+    @ResponseBody
+    public Tstore drugListById(String  storeId){
+        return pharServiceFingn.drugListById(storeId);
+    }
 }

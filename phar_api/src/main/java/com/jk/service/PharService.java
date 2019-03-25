@@ -3,10 +3,7 @@ package com.jk.service;
 import com.jk.pojo.LoginPojo;
 import com.jk.pojo.Tenterprise;
 import com.jk.pojo.Tstore;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -113,4 +110,13 @@ public interface PharService {
 
     @RequestMapping("findUserByName")
     LoginPojo findUserByName(LoginPojo loginPojo);
+
+
+
+    /**
+     * 商品详情根据ID查询
+     * @return
+     */
+    @GetMapping("drugListById")
+    Tstore drugListById(String storeId);
 }

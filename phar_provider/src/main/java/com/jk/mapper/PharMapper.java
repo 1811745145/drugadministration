@@ -43,4 +43,6 @@ public interface PharMapper {
 
     @Select("  select * from t_user where userName = #{value} ")
     LoginPojo findUserByName(String userName);
+
+    Tstore drugListById(String storeId);
 }
